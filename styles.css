@@ -284,6 +284,7 @@ img {
   padding: 10rem 2rem;
   background: var(--main-white);
   color: var(--main-gray);
+  min-height: 88vh;
 }
 
 .projects-section-header {
