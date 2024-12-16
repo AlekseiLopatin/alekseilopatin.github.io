@@ -78,6 +78,23 @@ body {
   border: 0.1rem solid var(--main-black);
   padding: 0.5rem;
   color: var(--main-black);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.input-container {
+  align-items: center; 
+  gap: 0.5rem; 
+  justify-content: center; 
+}
+
+input {    
+    padding: 0.5rem 1rem; /* Padding inside the input */
+    font-size: 1.5rem; /* Adjust font size */
+    border: 0.2rem solid var(--main-red); /* Border styling */
+    border-radius: 0.5rem; /* Rounded corners */
+    width: 10rem; /* Adjust input width */
+    text-align: center; /* Center the number */
 }
 
 #rollStats {
@@ -101,3 +118,9 @@ button {
   border: 0.3rem solid var(--main-gold);
   font-weight: 500;
 }
+
+.active {
+  border: 0.3rem solid var(--main-red);
+}
+
+

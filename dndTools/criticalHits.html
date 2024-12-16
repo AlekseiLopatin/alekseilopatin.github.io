@@ -22,20 +22,22 @@
     <body>
       <div id="app">
         <div id="who">
-            <button id="player1">Player</button>
-            <button id="player2">Dungeon Master</button>
-            <button id="player3">Anti-Crit</button>
+            <button class="change1" id="player1" onclick="changeTable('0'); activateButton1(this)">Player</button>
+            <button class="change1" id="player2" onclick="changeTable('1'); activateButton1(this)">Dungeon Master</button>
+            
         </div>
         <div id="roll">
             <button id="roll1">ROLL</button>
-            <form id="roll2" placeholder="Your Roll"></form>
-            <button id="roll2">Show</button>
+            <div class="input-container">
+                <input id="roll2" type="number" placeholder="ROLL" min="1" max="100">
+                <button id="roll3">Show</button>
+            </div>
         </div>
         <div id="type">
-            <button id="button1">Slashing</button>
-            <button id="button2">Piercing</button>
-            <button id="button3">Bludgeoning</button>
-            <button id="button4">Magical</button>
+            <button class="change2" id="button1" onclick="changeType('slashing'); activateButton2(this)">Slashing</button>
+            <button class="change2" id="button2" onclick="changeType('piercing'); activateButton2(this)">Piercing</button>
+            <button class="change2" id="button3" onclick="changeType('bludgeoning'); activateButton2(this)">Bludgeoning</button>
+            <button class="change2" id="button4" onclick="changeType('magic'); activateButton2(this)">Magical</button>
         </div>
         <div id="rollStats">
             <span class="stat">Your Roll: <strong><span id="rollStat"></span></strong></span>
@@ -44,5 +46,6 @@
             Welcome to Critical Hit Roll. Choose what rolls are you going to use. ROLL the dice or enter your dice result. Use the buttons above.
         </div>
       </div>
+      <script src="./script.js"></script>
     </body>
 </html>
