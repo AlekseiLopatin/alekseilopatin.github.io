@@ -767,7 +767,7 @@ function changeType(typ) {
         text.innerText = table[Math.ceil((result) / 2) - 1][type];
         rollStat.innerText = result;
     } else {
-        text.innerText = "Roll the dice!";
+        text.innerText = "Roll the dice OR enter your Roll!";
     };
 };
 
