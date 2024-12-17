@@ -754,7 +754,7 @@ function showResult() {
             rollStat.innerText = result;
             text.innerText = table[Math.ceil((result) / 2) - 1][type];
         } else {
-            text.innerText = "Choose the number from 1 ro 100"
+            text.innerText = "Choose the number from 1 to 100"
         }
     }
 };
