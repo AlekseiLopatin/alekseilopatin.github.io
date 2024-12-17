@@ -740,22 +740,24 @@ function rollDice() {
 };
 
 function showResult() {
+    type = null;
+    rollStat.innerHTML = null;
     result = document.getElementById('roll2').value;
-    rollStat.innerHTML = result;
-    document.getElementById('roll2').value = ''; 
-    if (table === null) {
-        text.innerText = "Player OR Dungeon Master?";
-    } else if (result === null) {
-        text.innerText = "Enter your roll!";
-    } else if (type === null) {
-        text.innerText = "Choose damage type!";
-    } else {
-        if (result >= 1 && result <=100) {
+    if (result >= 1 && result <=100) {
+        rollStat.innerHTML = result;
+        document.getElementById('roll2').value = ''; 
+        if (table === null) {
+            text.innerText = "Player OR Dungeon Master?";
+        } else if (result === null) {
+            text.innerText = "Enter your roll!";
+        } else if (type === null) {
+            text.innerText = "Choose damage type!";
+        } else {
             rollStat.innerText = result;
             text.innerText = table[Math.ceil((result) / 2) - 1][type];
-        } else {
-            text.innerText = "Choose the number from 1 to 100"
-        }
+        } 
+    } else {
+        text.innerText = "Choose the number from 1 to 100"
     }
 };
 

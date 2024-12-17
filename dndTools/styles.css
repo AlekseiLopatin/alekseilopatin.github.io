@@ -93,7 +93,7 @@ input {
     font-size: 1.5rem; /* Adjust font size */
     border: 0.2rem solid var(--main-red); /* Border styling */
     border-radius: 0.5rem; /* Rounded corners */
-    width: 10rem; /* Adjust input width */
+    width: 12rem; /* Adjust input width */
     text-align: center; /* Center the number */
 }
 
