@@ -9,79 +9,104 @@
     --light-green: #acd157;
   }
   
-  body {
-    font-family: "Lato", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    background-color: var(--fcc-blue);
-    color: var(--light-grey);
+body {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  background-color: var(--fcc-blue);
+  color: var(--light-grey);
+}
+
+.notice {
+  font-size: 12px;
+  font-style: italic;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 1280px;
+}
+
+h1,
+.container,
+.output {
+  margin: 20px auto;
+}
+
+label,
+legend {
+  font-weight: bold;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--light-yellow);
+  border: 2px solid var(--dark-yellow);
+}
+
+button,
+input,
+select {
+  min-height: 24px;
+  color: var(--dark-blue);
+}
+
+fieldset,
+label,
+button,
+input,
+select {
+  margin-bottom: 10px;
+}
+
+.outputs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 4rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 30.625em) {
+  .outputs-grid {
+    grid-template-columns: 1fr
   }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 680px;
-  }
-  
-  h1,
-  .container,
-  .output {
-    margin: 20px auto;
-  }
-  
-  label,
-  legend {
-    font-weight: bold;
-  }
-  
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  button {
-    cursor: pointer;
-    text-decoration: none;
-    background-color: var(--light-yellow);
-    border: 2px solid var(--dark-yellow);
-  }
-  
-  button,
-  input,
-  select {
-    min-height: 24px;
-    color: var(--dark-blue);
-  }
-  
-  fieldset,
-  label,
-  button,
-  input,
-  select {
-    margin-bottom: 10px;
-  }
-  
-  .output {
-    border: 2px solid var(--light-grey);
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .hide {
-    display: none;
-  }
-  
-  .output span {
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-  
-  .surplus {
-    color: var(--light-pink);
-  }
-  
-  .deficit {
-    color: var(--light-green);
-  }
+}
+
+.output, .output1, .output2 {
+  border: 2px solid var(--light-grey);
+  padding: 10px;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+.output span,  .output1 span, .output2 span{
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.surplus {
+  color: var(--light-pink);
+}
+
+.deficit {
+  color: var(--light-green);
+}
+
+i {
+  font-size: 10rem;
+}
