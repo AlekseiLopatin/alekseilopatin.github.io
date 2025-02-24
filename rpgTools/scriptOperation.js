@@ -32,7 +32,7 @@ const rewardSupply = ['Припасы +1. Ресурс', 'Припасы +1. Р�
 const penaltyAssault = ['Время +1. Натиск +1', 'Время +1', 'Припасы -1', 'Натиск +1', 'Натиск +1', 'Натиск +1'];
 const penaltyRecon = ['Время +1', '2 Смерти', '1 Смерть', 'Натиск +1', 'Натиск +1', 'Отсутствует'];
 const penaltyReligious = ['Боевой Дух -1. Натиск +1', 'Натиск +1', 'Натиск +1', 'Боевой Дух -1', 'Боевой Дух -1', 'Отсутствует'];
-const penaltySupply = ['', '', '', '', '', ''];
+const penaltySupply = ['Боевой Дух -1. Припасы -1', 'Припасы -1', 'Боевой Дух -1', 'Боевой Дух -1', 'Отсутствует', 'Отсутствует'];
 
 let type = "";
 let subType = "";
@@ -43,6 +43,7 @@ let specialist = "";
 let thirdOperation = "";
 let comm = false;
 let gm = false;
+let outputID = -1;
 
 let numberOperations = () => {
   const num = Math.floor(Math.random() * 6 + 1);
@@ -99,7 +100,7 @@ const rollType = (oper) => {
       } else {
       type = "Штурмовая";
       oper.innerHTML = `
-        <span> ${type} Операция </span>
+        <span id="operation${outputID + 1}"> ${type} Операция </span>
         <hr>
         `;
       repeat = false;
@@ -111,7 +112,7 @@ const rollType = (oper) => {
         } else {
         type = "Разведывательная";
         oper.innerHTML = `
-          <span> ${type} Операция </span>
+          <span id="operation${outputID + 1}"> ${type} Операция </span>
           <hr>
           `;
         repeat = false;
@@ -123,7 +124,7 @@ const rollType = (oper) => {
         } else {
           type = "Религиозная";
           oper.innerHTML = `
-            <span> ${type} Операция </span>
+            <span id="operation${outputID + 1}"> ${type} Операция </span>
             <hr>
             `;
           repeat = false;
@@ -135,7 +136,7 @@ const rollType = (oper) => {
         } else {
           type = "Снабженческая";
           oper.innerHTML = `
-            <span> ${type} Операция </span>
+            <span id="operation${outputID + 1}"> ${type} Операция </span>
             <hr>
             `;
           repeat = false;
@@ -155,7 +156,7 @@ const rollType = (oper) => {
           if (comm === false) {
             type = commanderFocus.options[commanderFocus.selectedIndex].text;
             oper.innerHTML = `
-              <span> ${type} Операция </span>
+              <span id="operation${outputID + 1}"> ${type} Операция </span>
               <hr>
               <p class="notice">По выбору Командира.</p>
               `;
@@ -181,7 +182,7 @@ const rollType = (oper) => {
           if (gm === false) {
             type = GMFocus.options[GMFocus.selectedIndex].text;
             oper.innerHTML = `
-              <span> ${type} Операция </span>
+              <span id="operation${outputID + 1}"> ${type} Операция </span>
               <hr>
               <p class="notice">По выбору ГМа.</p>
               `;
@@ -195,46 +196,40 @@ const rollType = (oper) => {
   };
 };
 
-const fillOutput = (outputBox) => {
-  
-  const rollSubType = Math.floor(Math.random() * 6 + 1);
-  if (type === "Штурмовая") {
-    subType = subAssault[rollSubType - 1];
-  } else if (type === "Разведывательная") {
-    subType = subRecon[rollSubType - 1];
-  } else if (type === "Религиозная") {
-    subType = subReligious[rollSubType - 1];
-  } else if (type === "Снабженческая") {
-    subType = subSupply[rollSubType - 1];
-  }
-  
-  const rollReward = Math.floor(Math.random() * 6 + 1);
-  if (type === "Штурмовая") {
-    reward = rewardAssault[rollReward - 1];
-  } else if (type === "Разведывательная") {
-    reward = rewardRecon[rollReward - 1];
-  } else if (type === "Религиозная") {
-    reward = rewardReligious[rollReward - 1];
-  } else if (type === "Снабженческая") {
-    reward = rewardSupply[rollReward - 1];
-  }
+//make a function to randomize the subType
+const randomizer = (table) => {
+  const roll = Math.floor(Math.random() * 6 + 1);
+  return table[roll - 1];
+};
 
-  const rollPenalty = Math.floor(Math.random() * 6 + 1);
+const fillOutput = (outputBox) => {
+
   if (type === "Штурмовая") {
-    penalty = penaltyAssault[rollPenalty - 1];
+    subType = randomizer(subAssault);
+    reward = randomizer(rewardAssault);
+    penalty = randomizer(penaltyAssault);
   } else if (type === "Разведывательная") {
-    penalty = penaltyRecon[rollPenalty - 1];
+    subType = randomizer(subRecon);
+    reward = randomizer(rewardRecon);
+    penalty = randomizer(penaltyRecon);
   } else if (type === "Религиозная") {
-    penalty = penaltyReligious[rollPenalty - 1];
+    subType = randomizer(subReligious);
+    reward = randomizer(rewardReligious);
+    penalty = randomizer(penaltyReligious);
   } else if (type === "Снабженческая") {
-    penalty = penaltySupply[rollPenalty - 1];
+    subType = randomizer(subSupply);
+    reward = randomizer(rewardSupply);
+    penalty = randomizer(penaltySupply);
   }
+  
+  outputID++;
 
   outputBox.insertAdjacentHTML('beforeend', `
-    <p>Тип - ${subType} </p>
-    <p>Награда - ${reward} </p>
-    <p>Расплата - ${penalty} </p>    
+    <p id="subTypeID${outputID}">Тип - ${subType} <button type="button" id="regenerate-btn" onclick="changeSubType(${outputID})">↺</button></p>
+    <p id="rewardID${outputID}">Награда - ${reward} <button type="button" id="regenerate-btn" onclick="changeReward(${outputID})">↺</button></p>
+    <p id="penaltyID${outputID}">Расплата - ${penalty} <button type="button" id="regenerate-btn" onclick="changePenalty(${outputID})">↺</button></p>    
     `);
+   
 
   if (commanderSpentIntel.checked) {
     thirdOperation = "Особая";
@@ -254,6 +249,69 @@ const fillOutput = (outputBox) => {
     <hr>
     <p><i class="fa-solid fa-xmark"></i></p>
     `;
+  };
+};
+
+const changeSubType = (id) => {
+  const operationType = document.getElementById(`operation${id}`);
+  if (operationType.innerHTML === ' Снабженческая Операция ') {
+    subType = randomizer(subSupply);
+    const subText = document.getElementById(`subTypeID${id}`);
+    subText.innerHTML = `Тип - ${subType} <button type="button" id="regenerate-btn" onclick="changeSubType(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Штурмовая Операция ') {
+    subType = randomizer(subAssault);
+    const subText = document.getElementById(`subTypeID${id}`);
+    subText.innerHTML = `Тип - ${subType} <button type="button" id="regenerate-btn" onclick="changeSubType(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Религиозная Операция ') {
+    subType = randomizer(subReligious);
+    const subText = document.getElementById(`subTypeID${id}`);
+    subText.innerHTML = `Тип - ${subType} <button type="button" id="regenerate-btn" onclick="changeSubType(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Разведывательная Операция ') {
+    subType = randomizer(subRecon);
+    const subText = document.getElementById(`subTypeID${id}`);
+    subText.innerHTML = `Тип - ${subType} <button type="button" id="regenerate-btn" onclick="changeSubType(${id})">↺</button>`;
+  };
+};
+
+const changeReward = (id) => {
+  const operationType = document.getElementById(`operation${id}`);
+  if (operationType.innerHTML === ' Снабженческая Операция ') {
+    reward = randomizer(rewardSupply);
+    const subText = document.getElementById(`rewardID${id}`);
+    subText.innerHTML = `Награда - ${reward} <button type="button" id="regenerate-btn" onclick="changeReward(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Штурмовая Операция ') {
+    reward = randomizer(rewardAssault);
+    const subText = document.getElementById(`rewardID${id}`);
+    subText.innerHTML = `Награда - ${reward} <button type="button" id="regenerate-btn" onclick="changeReward(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Религиозная Операция ') {
+    reward = randomizer(rewardReligious);
+    const subText = document.getElementById(`rewardID${id}`);
+    subText.innerHTML = `Награда - ${reward} <button type="button" id="regenerate-btn" onclick="changeReward(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Разведывательная Операция ') {
+    reward = randomizer(rewardRecon);
+    const subText = document.getElementById(`rewardID${id}`);
+    subText.innerHTML = `Награда - ${reward} <button type="button" id="regenerate-btn" onclick="changeReward(${id})">↺</button>`;
+  };
+};
+
+const changePenalty = (id) => {
+  const operationType = document.getElementById(`operation${id}`);
+  if (operationType.innerHTML === ' Снабженческая Операция ') {
+    penalty = randomizer(penaltySupply);
+    const subText = document.getElementById(`penaltyID${id}`);
+    subText.innerHTML = `Расплата - ${penalty} <button type="button" id="regenerate-btn" onclick="changePenalty(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Штурмовая Операция ') {
+    penalty = randomizer(penaltyAssault);
+    const subText = document.getElementById(`penaltyID${id}`);
+    subText.innerHTML = `Расплата - ${penalty} <button type="button" id="regenerate-btn" onclick="changePenalty(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Религиозная Операция ') {
+    penalty = randomizer(penaltyReligious);
+    const subText = document.getElementById(`penaltyID${id}`);
+    subText.innerHTML = `Расплата - ${penalty} <button type="button" id="regenerate-btn" onclick="changePenalty(${id})">↺</button>`;
+  } else if (operationType.innerHTML === ' Разведывательная Операция ') {
+    penalty = randomizer(penaltyRecon);
+    const subText = document.getElementById(`penaltyID${id}`);
+    subText.innerHTML = `Расплата - ${penalty} <button type="button" id="regenerate-btn" onclick="changePenalty(${id})">↺</button>`;
   };
 };
 
@@ -299,6 +357,7 @@ function clearForm() {
   thirdOperation = "";
   gm = false;
   comm = false;
+  outputID = -1;
   
   output.classList.add('hide');
   output1.classList.add('hide');

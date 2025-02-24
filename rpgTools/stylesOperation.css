@@ -71,7 +71,7 @@ select {
 .outputs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 4rem;
+  grid-gap: 2rem;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
