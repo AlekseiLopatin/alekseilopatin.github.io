@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Class members cards
+    </title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Class info</h1>
+    <main>
+      <div class="team-stats">
+        <p>School: <span id="school"></span></p>
+        <p>Year: <span id="year"></span></p>
+        <p>Teacher: <span id="teacher"></span></p>
+      </div>
+      <label class="options-label" for="classroom">Filter Class:</label>
+      <select name="classroom" id="classroom">
+        <option value="Choose">All Students</option>
+        <option value="5A">5A</option>
+        <option value="5B">5B</option>
+        <option value="5C">5C</option>
+        <option value="January">Born in January</option>
+        <option value="February">Born in February</option>
+        <option value="March">Born in March</option>
+        <option value="April">Born in April</option>
+        <option value="May">Born in May</option>
+        <option value="June">Born in June</option>
+        <option value="July">Born in July</option>
+        <option value="August">Born in August</option>
+        <option value="September">Born in September</option>
+        <option value="October">Born in October</option>
+        <option value="November">Born in November</option>
+        <option value="December">Born in December</option>
+      </select>
+      <div class="cards" id="student-cards">
+        <div class="student-card">
+          <h2>Choose a class</h2>
+        </div>
+      </div>
+    </main>
+    <footer>&copy; Aleksei Lopatin</footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
