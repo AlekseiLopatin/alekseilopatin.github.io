@@ -11,717 +11,717 @@ const myFavoriteClassroom = {
   },
   students: [
     {
-      name: "Crystal",
+      name: "Crystal",/*
       birthday: 4,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 1,
       classNumber: "5A",
       spiritAnimal: null,
-    },/*
+    },
     {
-      name: "Titan",
+      name: "Titan",/*
       birthday: 22,
-      birthmonth: "May",
+      birthmonth: "May",*/
       number: 2,
       classNumber: "5A",
       spiritAnimal: "Sloth",
     },
     {
-      name: "Nakhun",
+      name: "Nakhun",/*
       birthday: 8,
-      birthmonth: "November",
+      birthmonth: "November",*/
       number: 3,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "North",
+      name: "North",/*
       birthday: 9,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 4,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Title",
+      name: "Title",/*
       birthday: 19,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 5,
       classNumber: "5A",
       spiritAnimal: "Seal",
     },
     {
-      name: "PP",
+      name: "PP",/*
       birthday: 15,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 6,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Theo",
+      name: "Theo",/*
       birthday: 5,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 7,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Khonpon",
+      name: "Khonpon",/*
       birthday: 31,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 8,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Arm",
+      name: "Arm",/*
       birthday: 3,
-      birthmonth: "June",
+      birthmonth: "June",*/
       number: 9,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Hayday",
+      name: "Hayday",/*
       birthday: 10,
-      birthmonth: "December",
+      birthmonth: "December",*/
       number: 10,
       classNumber: "5A",
       spiritAnimal: "Hen",
     },
     {
-      name: "Porsche",
+      name: "Porsche",/*
       birthday: 21,
-      birthmonth: "February",
+      birthmonth: "February",*/
       number: 11,
       classNumber: "5A",
       spiritAnimal: "Octopus",
     },
     {
-      name: "Deejang",
+      name: "Deejang",/*
       birthday: 17,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 12,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Tangjai",
+      name: "Tangjai",/*
       birthday: 20,
-      birthmonth: "June",
+      birthmonth: "June",*/
       number: 13,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Marki",
+      name: "Marki",/*
       birthday: 27,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 14,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Namking",
+      name: "Namking",/*
       birthday: 5,
-      birthmonth: "December",
+      birthmonth: "December",*/
       number: 15,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Toey",
+      name: "Toey",/*
       birthday: 9,
-      birthmonth: "March",
+      birthmonth: "March",*/
       number: 16,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Kaimook",
+      name: "Kaimook",/*
       birthday: 25,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 17,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Bella",
+      name: "Bella",/*
       birthday: 15,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 18,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Tiew",
+      name: "Tiew",/*
       birthday: 28,
-      birthmonth: "November",
+      birthmonth: "November",*/
       number: 19,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Aom",
+      name: "Aom",/*
       birthday: 13,
-      birthmonth: "March",
+      birthmonth: "March",*/
       number: 20,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Ing",
+      name: "Ing",/*
       birthday: 5,
-      birthmonth: "June",
+      birthmonth: "June",*/
       number: 21,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Preawa",
+      name: "Preawa",/*
       birthday: 5,
-      birthmonth: "December",
+      birthmonth: "December",*/
       number: 22,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Khaohom",
+      name: "Khaohom",/*
       birthday: 29,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 23,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Idea",
+      name: "Idea",/*
       birthday: 20,
-      birthmonth: "November",
+      birthmonth: "November",*/
       number: 24,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Baibua",
+      name: "Baibua",/*
       birthday: 5,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 25,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Nampan",
+      name: "Nampan",/*
       birthday: 21,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 26,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Nampoon",
+      name: "Nampoon",/*
       birthday: 21,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 27,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Proudfah",
+      name: "Proudfah",/*
       birthday: 12,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 28,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Meena",
+      name: "Meena",/*
       birthday: 28,
-      birthmonth: "February",
+      birthmonth: "February",*/
       number: 29,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Alicia",
+      name: "Alicia",/*
       birthday: 21,
-      birthmonth: "April",
+      birthmonth: "April",*/
       number: 30,
       classNumber: "5A",
       spiritAnimal: null,
     },
     {
-      name: "Anpan",
+      name: "Anpan",/*
       birthday: 5,
-      birthmonth: "July",
+      birthmonth: "July",*/
       number: 1,
       classNumber: "5B",
       spiritAnimal: "G.O.A.T.",
-    },/*
+    },
     {
-      name: "Good",
+      name: "Good",/*
       birthday: 14,
-      birthmonth: "February",
+      birthmonth: "February",*/
       number: 2,
       classNumber: "5B",
       spiritAnimal: "Horse",
     },
     {
-      name: "First",
+      name: "First",/*
       birthday: 21,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 3,
       classNumber: "5B",
       spiritAnimal: null,
     },
     {
-      name: "Pice",
+      name: "Pice",/*
       birthday: 8,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 4,
       classNumber: "5B",
       spiritAnimal: null,
     },
     {
-      name: "Tonkla",
+      name: "Tonkla",/*
       birthday: 8,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 5,
       classNumber: "5B",
       spiritAnimal: "Goldfish",
     },
     {
-      name: "Dome",
+      name: "Dome",/*
       birthday: 23,
-      birthmonth: "May",
+      birthmonth: "May",*/
       number: 6,
       classNumber: "5B",
       spiritAnimal: "Snake",
     },
     {
-      name: "Il",
+      name: "Il",/*
       birthday: 24,
-      birthmonth: "July",
+      birthmonth: "July",*/
       number: 7,
       classNumber: "5B",
       spiritAnimal: "Wolf",
     },
     {
-      name: "Pawan",
+      name: "Pawan",/*
       birthday: 20,
-      birthmonth: "March",
+      birthmonth: "March",*/
       number: 8,
       classNumber: "5B",
       spiritAnimal: "Bird",
     },
     {
-      name: "Pat",
+      name: "Pat",/*
       birthday: 3,
-      birthmonth: "June",
+      birthmonth: "June",*/
       number: 9,
       classNumber: "5B",
       spiritAnimal: "Bug",
     },
     {
-      name: "Tonnam",
+      name: "Tonnam",/*
       birthday: 13,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 10,
       classNumber: "5B",
       spiritAnimal: "Goldfish",
     },
     {
-      name: "Pheem",
+      name: "Pheem",/*
       birthday: 11,
-      birthmonth: "July",
+      birthmonth: "July",*/
       number: 11,
       classNumber: "5B",
       spiritAnimal: "Snake",
     },
     {
-      name: "Prame",
+      name: "Prame",/*
       birthday: 27,
-      birthmonth: "Juky",
+      birthmonth: "July",*/
       number: 13,
       classNumber: "5B",
       spiritAnimal: null,
     },
     {
-      name: "Pro",
+      name: "Pro",/*
       birthday: 5,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 14,
       classNumber: "5B",
       spiritAnimal: "Wolf",
     },
     {
-      name: "Pakkad",
+      name: "Pakkad",/*
       birthday: 1,
-      birthmonth: "February",
+      birthmonth: "February",*/
       number: 15,
       classNumber: "5B",
       spiritAnimal: "Pig",
     },
     {
-      name: "Moji",
+      name: "Moji",/*
       birthday: 19,
-      birthmonth: "November",
+      birthmonth: "November",*/
       number: 16,
       classNumber: "5B",
       spiritAnimal: "Cockroach",
     },
     {
-      name: "Namtan",
+      name: "Namtan",/*
       birthday: 23,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 17,
       classNumber: "5B",
       spiritAnimal: "Rabbit",
     },
     {
-      name: "Noodee",
+      name: "Noodee",/*
       birthday: 18,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 18,
       classNumber: "5B",
       spiritAnimal: "Bee",
     },
     {
-      name: "Nirin",
+      name: "Nirin",/*
       birthday: 17,
-      birthmonth: "May",
+      birthmonth: "May",*/
       number: 19,
       classNumber: "5B",
       spiritAnimal: "Cat",
     },
     {
-      name: "Get",
+      name: "Get",/*
       birthday: 30,
-      birthmonth: "March",
+      birthmonth: "March",*/
       number: 20,
       classNumber: "5B",
       spiritAnimal: "Butterfly",
     },
     {
-      name: "Tonhom",
+      name: "Tonhom",/*
       birthday: 3,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 21,
       classNumber: "5B",
       spiritAnimal: "Butterfly",
     },
     {
-      name: "Jomkwan",
+      name: "Jomkwan",/*
       birthday: 28,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 22,
       classNumber: "5B",
       spiritAnimal: "Dog/Cat",
     },
     {
-      name: "Rada",
+      name: "Rada",/*
       birthday: 19,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 23,
       classNumber: "5B",
       spiritAnimal: "Butterfly",
     },
     {
-      name: "Onepiece",
+      name: "Onepiece",/*
       birthday: 19,
-      birthmonth: "March",
+      birthmonth: "March",*/
       number: 24,
       classNumber: "5B",
       spiritAnimal: "Caterpillar",
     },
     {
-      name: "Ice",
+      name: "Ice",/*
       birthday: "",
-      birthmonth: "",
+      birthmonth: "",*/
       number: 25,
       classNumber: "5B",
       spiritAnimal: null,
     },
     {
-      name: "Focus",
+      name: "Focus",/*
       birthday: "",
-      birthmonth: "",
+      birthmonth: "",*/
       number: 26,
       classNumber: "5B",
       spiritAnimal: "Cat",
     },
     {
-      name: "Party",
+      name: "Party",/*
       birthday: 26,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 27,
       classNumber: "5B",
       spiritAnimal: "Cat",
     },
     {
-      name: "Mew",
+      name: "Mew",/*
       birthday: "",
-      birthmonth: "",
+      birthmonth: "",*/
       number: 28,
       classNumber: "5B",
       spiritAnimal: null,
     },
     {
-      name: "Pim",
+      name: "Pim",/*
       birthday: 10,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 29,
       classNumber: "5B",
       spiritAnimal: "Sloth",
     },
     {
-      name: "Plagim",
+      name: "Plagim",/*
       birthday: 26,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 30,
       classNumber: "5B",
       spiritAnimal: "Mouse",
-    },*/
+    },
     {
-      name: "Din",
+      name: "Din",/*
       birthday: 4,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 1,
       classNumber: "5C",
       spiritAnimal: null,
-    },/*
+    },
     {
-      name: "James",
+      name: "James",/*
       birthday: 22,
-      birthmonth: "May",
+      birthmonth: "May",*/
       number: 2,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Ice",
+      name: "Ice",/*
       birthday: 8,
-      birthmonth: "November",
+      birthmonth: "November",*/
       number: 3,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Poon",
+      name: "Poon",/*
       birthday: 9,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 4,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Auto",
+      name: "Auto",/*
       birthday: 19,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 5,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Junior",
+      name: "Junior",/*
       birthday: 15,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 6,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Stam",
+      name: "Stam",/*
       birthday: 5,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 7,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Boat",
+      name: "Boat",/*
       birthday: 31,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 8,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Phum",
+      name: "Phum",/*
       birthday: 3,
-      birthmonth: "June",
+      birthmonth: "June",*/
       number: 9,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Captain",
+      name: "Captain",/*
       birthday: 10,
-      birthmonth: "December",
+      birthmonth: "December",*/
       number: 10,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Ozone",
+      name: "Ozone",/*
       birthday: 21,
-      birthmonth: "February",
+      birthmonth: "February",*/
       number: 11,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "JJ",
+      name: "JJ",/*
       birthday: 17,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 12,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Smith",
+      name: "Smith",/*
       birthday: 20,
-      birthmonth: "June",
+      birthmonth: "June",*/
       number: 13,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Phet",
+      name: "Phet",/*
       birthday: 27,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 14,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Pure",
+      name: "Pure",/*
       birthday: 5,
-      birthmonth: "December",
+      birthmonth: "December",*/
       number: 15,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Mak",
+      name: "Mak",/*
       birthday: 9,
-      birthmonth: "March",
+      birthmonth: "March",*/
       number: 16,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Kaohom",
+      name: "Kaohom",/*
       birthday: 25,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 17,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Porsche",
+      name: "Porsche",/*
       birthday: 15,
-      birthmonth: "August",
+      birthmonth: "August",*/
       number: 18,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Nammon",
+      name: "Nammon",/*
       birthday: 28,
-      birthmonth: "November",
+      birthmonth: "November",*/
       number: 19,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Gam",
+      name: "Gam",/*
       birthday: 13,
-      birthmonth: "March",
+      birthmonth: "March",*/
       number: 20,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Paint",
+      name: "Paint",/*
       birthday: 5,
-      birthmonth: "June",
+      birthmonth: "June",*/
       number: 21,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Inndy",
+      name: "Inndy",/*
       birthday: 5,
-      birthmonth: "December",
+      birthmonth: "December",*/
       number: 22,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Namkhing",
+      name: "Namkhing",/*
       birthday: 29,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 23,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Porchom",
+      name: "Porchom",/*
       birthday: 20,
-      birthmonth: "November",
+      birthmonth: "November",*/
       number: 24,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Natcha",
+      name: "Natcha",/*
       birthday: 5,
-      birthmonth: "September",
+      birthmonth: "September",*/
       number: 25,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Mei",
+      name: "Mei",/*
       birthday: 21,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 26,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Nammon",
+      name: "Nammon",/*
       birthday: 21,
-      birthmonth: "October",
+      birthmonth: "October",*/
       number: 27,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Maysa",
+      name: "Maysa",/*
       birthday: 12,
-      birthmonth: "January",
+      birthmonth: "January",*/
       number: 28,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Baibua",
+      name: "Baibua",/*
       birthday: 28,
-      birthmonth: "February",
+      birthmonth: "February",*/
       number: 29,
       classNumber: "5C",
       spiritAnimal: null,
     },
     {
-      name: "Khaohom",
+      name: "Khaohom",/*
       birthday: 21,
-      birthmonth: "April",
+      birthmonth: "April",*/
       number: 30,
       classNumber: "5C",
       spiritAnimal: null,
-    },*/
+    },
   ],
 };
 
@@ -737,11 +737,10 @@ teacher.textContent = teacherName;
 const setPlayerCards = (arr = students) => {
   studentCards.innerHTML += arr
     .map(
-      ({ name, classNumber, birthday, birthmonth, number, spiritAnimal }) => {
+      ({ name, classNumber,/* birthday, birthmonth,*/ number, spiritAnimal }) => {
         return `
         <div class="student-card">
           <h2>${name}</h2>
-          <p>Birthday: ${birthday} ${birthmonth}</p>
           <p>Number: ${number}</p>
           <p>Classroom: ${classNumber}</p>
           <p>Spirit Animal: ${spiritAnimal !== null ? spiritAnimal : "N/A"}</p>
@@ -763,7 +762,7 @@ classroomDropdownList.addEventListener("change", (e) => {
       break;
     case "5C":
       setPlayerCards(students.filter((student) => student.classNumber === "5C"));
-      break;
+      break;/*
     case "January":
       setPlayerCards(students.filter((student) => student.birthmonth === "January"));
       break;
@@ -799,7 +798,7 @@ classroomDropdownList.addEventListener("change", (e) => {
       break;
     case "December":
       setPlayerCards(students.filter((student) => student.birthmonth === "December"));
-      break;
+      break;*/
     default:
       setPlayerCards();
 
