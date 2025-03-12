@@ -17,7 +17,7 @@ const myFavoriteClassroom = {
       number: 1,
       classNumber: "5A",
       spiritAnimal: null,
-    },
+    },/*
     {
       name: "Titan",
       birthday: 22,
@@ -257,7 +257,7 @@ const myFavoriteClassroom = {
       number: 1,
       classNumber: "5B",
       spiritAnimal: "G.O.A.T.",
-    },
+    },/*
     {
       name: "Good",
       birthday: 14,
@@ -481,7 +481,7 @@ const myFavoriteClassroom = {
       number: 30,
       classNumber: "5B",
       spiritAnimal: "Mouse",
-    },
+    },*/
     {
       name: "Din",
       birthday: 4,
@@ -489,7 +489,7 @@ const myFavoriteClassroom = {
       number: 1,
       classNumber: "5C",
       spiritAnimal: null,
-    },
+    },/*
     {
       name: "James",
       birthday: 22,
@@ -721,7 +721,7 @@ const myFavoriteClassroom = {
       number: 30,
       classNumber: "5C",
       spiritAnimal: null,
-    },
+    },*/
   ],
 };
 
