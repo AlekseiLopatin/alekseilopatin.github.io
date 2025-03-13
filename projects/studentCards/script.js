@@ -16,7 +16,7 @@ const myFavoriteClassroom = {
       birthmonth: "September",*/
       number: 1,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Cheetah",
     },
     {
       name: "Titan",/*
@@ -40,7 +40,7 @@ const myFavoriteClassroom = {
       birthmonth: "January",*/
       number: 4,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Snake",
     },
     {
       name: "Title",/*
@@ -56,7 +56,7 @@ const myFavoriteClassroom = {
       birthmonth: "August",*/
       number: 6,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Polar Bear",
     },
     {
       name: "Theo",/*
@@ -64,7 +64,7 @@ const myFavoriteClassroom = {
       birthmonth: "August",*/
       number: 7,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Cat",
     },
     {
       name: "Khonpon",/*
@@ -104,7 +104,7 @@ const myFavoriteClassroom = {
       birthmonth: "January",*/
       number: 12,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Buffalo",
     },
     {
       name: "Tangjai",/*
@@ -128,7 +128,7 @@ const myFavoriteClassroom = {
       birthmonth: "December",*/
       number: 15,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Rabbit",
     },
     {
       name: "Toey",/*
@@ -136,7 +136,7 @@ const myFavoriteClassroom = {
       birthmonth: "March",*/
       number: 16,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Fox",
     },
     {
       name: "Kaimook",/*
@@ -160,7 +160,7 @@ const myFavoriteClassroom = {
       birthmonth: "November",*/
       number: 19,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Pony",
     },
     {
       name: "Aom",/*
@@ -168,7 +168,7 @@ const myFavoriteClassroom = {
       birthmonth: "March",*/
       number: 20,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Sloth",
     },
     {
       name: "Ing",/*
@@ -176,7 +176,7 @@ const myFavoriteClassroom = {
       birthmonth: "June",*/
       number: 21,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Hamster",
     },
     {
       name: "Preawa",/*
@@ -184,7 +184,7 @@ const myFavoriteClassroom = {
       birthmonth: "December",*/
       number: 22,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Giraffe",
     },
     {
       name: "Khaohom",/*
@@ -192,7 +192,7 @@ const myFavoriteClassroom = {
       birthmonth: "September",*/
       number: 23,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Cat",
     },
     {
       name: "Idea",/*
@@ -200,7 +200,7 @@ const myFavoriteClassroom = {
       birthmonth: "November",*/
       number: 24,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Frog",
     },
     {
       name: "Baibua",/*
@@ -208,7 +208,7 @@ const myFavoriteClassroom = {
       birthmonth: "September",*/
       number: 25,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Dog",
     },
     {
       name: "Nampan",/*
@@ -224,7 +224,7 @@ const myFavoriteClassroom = {
       birthmonth: "October",*/
       number: 27,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Black Cat",
     },
     {
       name: "Proudfah",/*
@@ -240,7 +240,7 @@ const myFavoriteClassroom = {
       birthmonth: "February",*/
       number: 29,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Pig",
     },
     {
       name: "Alicia",/*
@@ -248,7 +248,7 @@ const myFavoriteClassroom = {
       birthmonth: "April",*/
       number: 30,
       classNumber: "5A",
-      spiritAnimal: null,
+      spiritAnimal: "Dog",
     },
     {
       name: "Anpan",/*
