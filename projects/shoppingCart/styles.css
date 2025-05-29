@@ -33,6 +33,12 @@ body {
   margin: 25px 0;
 }
 
+.discount {
+  color: var(--main-gray);
+  text-align: center;
+  margin: 10px 0;
+}
+
 #kombucha-card-container {
   display: flex;
   flex-direction: column;
