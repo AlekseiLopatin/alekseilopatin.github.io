@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../media/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../media/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../media/favicon-16x16.png">
+    <link rel="manifest" href="../../media/site.webmanifest">
+    <title>Kombucha Shopping Cart</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="title">Kombucha Flavors</h1>
+    </header>
+    <main>
+      <button id="cart-btn" type="button" class="btn">
+        <span id="show-hide-cart">Show</span> Cart
+      </button>
+      <div id="cart-container">
+        <button class="btn" id="clear-cart-btn">Clear Cart</button>
+        <div id="products-container"></div>
+        <p>Total number of items: <span id="total-items">0</span></p>
+        <p>Total: <span id="total">$0</span></p>
+      </div>
+      <div id="kombucha-card-container"></div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
