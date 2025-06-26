@@ -18,7 +18,7 @@ const getCreature = async () => {
   try {
     const creatureNameOrId = searchInput.value.toLowerCase();
     const response = await fetch(
-      `alekseilopatin.com/projects/studentSearchApp/${creatureNameOrId}.json`
+      `jsonFiles/${creatureNameOrId}.json`
     );
     const data = await response.json();
 
