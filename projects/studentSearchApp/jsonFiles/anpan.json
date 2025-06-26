@@ -1,0 +1,41 @@
+{
+  "id": 1,
+  "name": "Anpan",
+  "weight": 42,
+  "height": 32,
+  "special": {
+    "name": "Blazing Reflex",
+    "description": "Increases speed when hit by a Fire-type move."
+  },
+  "stats": [
+    {
+      "base_stat": 65,
+      "name": "hp"
+    },
+    {
+      "base_stat": 80,
+      "name": "attack"
+    },
+    {
+      "base_stat": 50,
+      "name": "defense"
+    },
+    {
+      "base_stat": 90,
+      "name": "special-attack"
+    },
+    {
+      "base_stat": 55,
+      "name": "special-defense"
+    },
+    {
+      "base_stat": 100,
+      "name": "speed"
+    }
+  ],
+  "types": [
+    {
+      "name": "fire"
+    }
+  ]
+}
