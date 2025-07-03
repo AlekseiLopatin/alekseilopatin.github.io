@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <img src="../media/anubanLogo.png">
+    <h1>
+      Anuban Phanat Suksalai
+    </h1>
+
+    <div id="stopwatch-display">
+      <h1>
+        Stopwatch
+      </h1>
+      <div class="time_display"> 
+        <div id="stopWatchDisplay" class="stopWatchStart">
+            <span class="time_digit_label" id="time_record">
+                00 : 00 : 00
+            </span>
+        </div>
+      </div>
+    </div>
+    <div class="time_menu_container">
+        <div class="time_menu_layout">   
+            <div class="menu_panel_onwatch" style="width: 100%;">                    
+                <button id="start_button_onwatch" onclick="stopWatchStart()">
+                    <i class="fas fa-play" alt="START"></i>
+                    <span>                                 
+                        Start                          
+                    </span>
+                </button>                    
+                <button id="pause_button_onwatch" onclick="stopWatchPause()" style="display: none;">                  
+                    <i class="fas fa-pause" alt="PAUSE"></i>
+                    <span>                            
+                        Pause                        
+                    </span>             
+                </button>                     
+                <button id="continue_button_onwatch" onclick="stopWatchContinue()" style="display: none;">                 
+                    <i class="fas fa-play" alt="PAUSE"></i>
+                    <span>                              
+                        Continue                 
+                    </span>                  
+                </button>                     
+                <button id="reset_button_onwatch" onclick="stopWatchStop()" disabled="">             
+                    <i class="fas fa-stop"></i>
+                    <span>                             
+                        Stop              
+                    </span>                
+                </button>                  
+            </div>
+        </div>
+    </div>
+    <p>Made with ❤️ by T. Aleksei</p>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/fa3305a003.js" crossorigin="anonymous"></script>
+  </body>
+
+</html>
