@@ -32,7 +32,24 @@ h1 {
     display: flex; 
     flex-direction: column; 
     justify-content: center;
+}
 
+@media (max-width: 1200px) {
+  #stopwatch-display {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 980px) {
+  #stopwatch-display {
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 460px) {
+  #stopwatch-display {
+    font-size: 0.3em;
+  }
 }
 
 .time_display {
