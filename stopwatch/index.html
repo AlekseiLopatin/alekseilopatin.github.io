@@ -7,55 +7,70 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
   </head>
   <body>
-    <h1>
-      Anuban Phanat Suksalai
-    </h1>
+    <h1>Anuban Phanat Suksalai</h1>
 
+    <div id="mode-switch">
+      <button id="switchModeBtn">Switch to Timer</button>
+    </div>
+
+    <!-- Stopwatch Display -->
     <div id="stopwatch-display">
-      <h1>
-        Stopwatch
-      </h1>
+      <h2>Stopwatch</h2>
+      
       <div class="time_display"> 
         <div id="stopWatchDisplay" class="stopWatchStart">
-            <span class="time_digit_label" id="time_record">
-                00 : 00 : 00
-            </span>
+            <span class="time_digit_label" id="time_record">00 : 00 : 00.00</span>
         </div>
       </div>
-    </div>
-    <div class="time_menu_container">
+      <div class="time_menu_container">
         <div class="time_menu_layout">   
-            <div class="menu_panel_onwatch" style="width: 100%;">                    
-                <button id="start_button_onwatch" onclick="stopWatchStart()">
-                    <i class="fas fa-play" alt="START"></i>
-                    <span>                                 
-                        Start                          
-                    </span>
-                </button>                    
-                <button id="pause_button_onwatch" onclick="stopWatchPause()" style="display: none;">                  
-                    <i class="fas fa-pause" alt="PAUSE"></i>
-                    <span>                            
-                        Pause                        
-                    </span>             
-                </button>                     
-                <button id="continue_button_onwatch" onclick="stopWatchContinue()" style="display: none;">                 
-                    <i class="fas fa-play" alt="PAUSE"></i>
-                    <span>                              
-                        Continue                 
-                    </span>                  
-                </button>                     
-                <button id="reset_button_onwatch" onclick="stopWatchStop()" disabled="">             
-                    <i class="fas fa-stop"></i>
-                    <span>                             
-                        Stop              
-                    </span>                
-                </button>                  
-            </div>
+          <button id="start_button_onwatch" onclick="stopWatchStart()">
+              <i class="fas fa-play"></i> Start
+          </button>                    
+          <button id="pause_button_onwatch" onclick="stopWatchPause()" style="display: none;">
+              <i class="fas fa-pause"></i> Pause
+          </button>                     
+          <button id="continue_button_onwatch" onclick="stopWatchContinue()" style="display: none;">
+              <i class="fas fa-play"></i> Continue
+          </button>                     
+          <button id="reset_button_onwatch" onclick="stopWatchStop()" disabled>
+              <i class="fas fa-stop"></i> Stop
+          </button>                  
         </div>
+      </div>
+      <h3>History</h3>
+      <ul id="stopwatch-history"></ul>
     </div>
+
+    <!-- Timer Display -->
+    <div id="timer-display" style="display: none;">
+      <h2>Timer</h2>
+      <div class="time_display"> 
+        <div id="timerDisplay">
+            <span class="time_digit_label" id="timer_record">15 : 00 : 00</span>
+        </div>
+      </div>
+      <div class="time_menu_container">
+        <div class="time_menu_layout">
+          <button onclick="startTimer()">Start</button>
+          <button onclick="pauseTimer()">Pause</button>
+          <button onclick="resetTimer()">Reset</button>
+        </div>
+      </div>
+      <div class="timer-presets">
+        <button onclick="setTimer(1)">1 min</button>
+        <button onclick="setTimer(5)">5 min</button>
+        <button onclick="setTimer(15)">15 min</button>
+        <button onclick="setTimer(30)">30 min</button>
+        <button onclick="setTimer(60)">60 min</button>
+        <input type="number" id="customTimer" placeholder="Custom (min)">
+        <button onclick="setCustomTimer()">Set</button>
+      </div>
+    </div>
+
     <p>Made with ❤️ by T. Aleksei</p>
+
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/fa3305a003.js" crossorigin="anonymous"></script>
   </body>
-
 </html>
