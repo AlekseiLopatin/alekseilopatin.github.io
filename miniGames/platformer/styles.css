@@ -8,10 +8,87 @@
   --main-bg-color: #e5d5b2;
   --section-bg-color: #ffffff;
   --golden-yellow: #feac32;
+  --platform-color: #333231;
+  --player-color: #ff6b6b;
+  --checkpoint-color: #f1be32;
+}
+
+/* Theme 1: Default (Warm Desert) */
+.theme-desert {
+  --main-bg-color: #e5d5b2;
+  --section-bg-color: #ffffff;
+  --golden-yellow: #feac32;
+  --platform-color: #8b4513;
+  --player-color: #ff6b6b;
+  --checkpoint-color: #f1be32;
+}
+
+/* Theme 2: Ocean Blue */
+.theme-ocean {
+  --main-bg-color: #4a90e2;
+  --section-bg-color: #e8f4fd;
+  --golden-yellow: #00bcd4;
+  --platform-color: #1565c0;
+  --player-color: #ff5722;
+  --checkpoint-color: #00bcd4;
+}
+
+/* Theme 3: Forest Green */
+.theme-forest {
+  --main-bg-color: #2e7d32;
+  --section-bg-color: #e8f5e8;
+  --golden-yellow: #4caf50;
+  --platform-color: #1b5e20;
+  --player-color: #ff9800;
+  --checkpoint-color: #4caf50;
+}
+
+/* Theme 4: Sunset Purple */
+.theme-sunset {
+  --main-bg-color: #673ab7;
+  --section-bg-color: #f3e5f5;
+  --golden-yellow: #e91e63;
+  --platform-color: #4a148c;
+  --player-color: #ff5722;
+  --checkpoint-color: #e91e63;
+}
+
+/* Theme 5: Midnight Dark */
+.theme-midnight {
+  --main-bg-color: #263238;
+  --section-bg-color: #37474f;
+  --golden-yellow: #ffc107;
+  --platform-color: #102027;
+  --player-color: #e91e63;
+  --checkpoint-color: #ffc107;
+}
+
+/* Theme 6: Final Victory (Rainbow) */
+.theme-victory {
+  --main-bg-color: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+  --section-bg-color: #ffffff;
+  --golden-yellow: #ffd700;
+  --platform-color: #2c3e50;
+  --player-color: #e74c3c;
+  --checkpoint-color: #ffd700;
 }
 
 body {
-  background-color: var(--main-bg-color);
+  background: var(--main-bg-color);
+  transition: background 0.8s ease-in-out;
+}
+
+/* Special handling for victory theme gradient */
+body.theme-victory {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .start-screen {

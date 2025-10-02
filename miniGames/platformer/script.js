@@ -9,28 +9,52 @@ canvas.height = innerHeight;
 const gravity = 0.5;
 let isCheckpointCollisionDetectionActive = true;
 
+// Theme management
+const themes = ['theme-desert', 'theme-ocean', 'theme-forest', 'theme-sunset', 'theme-midnight', 'theme-victory'];
+let currentThemeIndex = 0;
+
+// Helper function to get CSS variable values
+const getCSSVariable = (variable) => {
+  return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+};
+
+// Function to change theme
+const changeTheme = (themeIndex) => {
+  // Remove all existing theme classes
+  document.body.className = document.body.className.replace(/theme-\w+/g, '');
+  
+  // Add new theme class
+  if (themeIndex < themes.length) {
+    document.body.classList.add(themes[themeIndex]);
+    currentThemeIndex = themeIndex;
+    console.log(`Theme changed to: ${themes[themeIndex]}`);
+  }
+};
+
 const proportionalSize = (size) => {
   return innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;
 }
 
 class Player {
   constructor() {
-    this.position = {
-      x: proportionalSize(10),
-      y: proportionalSize(400),
-    };
-    this.velocity = {
-      x: 0,
-      y: 0,
-    };
-    this.width = proportionalSize(40);
-    this.height = proportionalSize(40);
+    this.position = { x: proportionalSize(10), y: proportionalSize(400) };
+    this.velocity = { x: 0, y: 0 };
+    this.width = proportionalSize(50);
+    this.height = proportionalSize(70);
+
+    this.image = new Image();
+    this.image.src = "../../media/player_idle.png"; 
   }
   draw() {
-    ctx.fillStyle = "#d4a44b";
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // Fallback to colored rectangle if image fails to load
+    if (this.image.complete && this.image.naturalWidth > 0) {
+      ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+    } else {
+      ctx.fillStyle = getCSSVariable('--player-color');
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
   }
-  
+
   update() {
     this.draw();
     this.position.x += this.velocity.x;
@@ -42,16 +66,8 @@ class Player {
         this.velocity.y = gravity;
       }
       this.velocity.y += gravity;
-    } else {
-      this.velocity.y = 0;
-    }
-
-    if (this.position.x < this.width) {
-      this.position.x = this.width;
-    }
-
-    if (this.position.x >= canvas.width - this.width * 2) {
-      this.position.x = canvas.width - this.width * 2;
+      } else {
+        this.velocity.y = 0;
     }
   }
 }
@@ -66,7 +82,7 @@ class Platform {
     this.height = proportionalSize(40);
   }
   draw() {
-    ctx.fillStyle = "#333231";
+    ctx.fillStyle = getCSSVariable('--platform-color');
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }
@@ -83,7 +99,7 @@ class CheckPoint {
   };
 
   draw() {
-    ctx.fillStyle = "#f1be32";
+    ctx.fillStyle = getCSSVariable('--checkpoint-color');
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
   claim() {
@@ -198,31 +214,45 @@ const animate = () => {
   });
 
   checkpoints.forEach((checkpoint, index, checkpoints) => {
-    const checkpointDetectionRules = [
-      player.position.x >= checkpoint.position.x,
-      player.position.y >= checkpoint.position.y,
-      player.position.y + player.height <=
-        checkpoint.position.y + checkpoint.height,
-      isCheckpointCollisionDetectionActive,
-      player.position.x - player.width <=
-        checkpoint.position.x - checkpoint.width + player.width * 0.9,
-      index === 0 || checkpoints[index - 1].claimed === true,
-    ];
+    // Skip if checkpoint already claimed
+    if (checkpoint.claimed) return;
+    
+    // Standard bounding box collision detection
+    const isColliding = 
+      player.position.x < checkpoint.position.x + checkpoint.width &&
+      player.position.x + player.width > checkpoint.position.x &&
+      player.position.y < checkpoint.position.y + checkpoint.height &&
+      player.position.y + player.height > checkpoint.position.y;
+    
+    // Check if collision is active and checkpoint can be claimed (in order)
+    const canClaim = 
+      isCheckpointCollisionDetectionActive &&
+      (index === 0 || checkpoints[index - 1].claimed === true);
 
-    if (checkpointDetectionRules.every((rule) => rule)) {
+    if (isColliding && canClaim) {
+      console.log(`Checkpoint ${index + 1} claimed!`);
       checkpoint.claim();
-
+      
+      // Change theme based on checkpoint index
+      changeTheme(index);
 
       if (index === checkpoints.length - 1) {
+        // Final checkpoint reached - use victory theme
+        console.log("Final checkpoint reached! Game complete!");
         isCheckpointCollisionDetectionActive = false;
-        showCheckpointScreen("You reached the final checkpoint!");
+        showCheckpointScreen("🎉 Victory! You completed Block Warrior! 🎉");
         movePlayer("ArrowRight", 0, false);
-      } else if (player.position.x >= checkpoint.position.x && player.position.x <= checkpoint.position.x + 40) {
-        showCheckpointScreen("You reached a checkpoint!");
+      } else {
+        // Regular checkpoint reached
+        
+        showCheckpointScreen(`Checkpoint reached!`);
       }
-
-
-    };
+    }
+    
+    // Debug info (remove this later if you want)
+    if (isColliding && !canClaim) {
+      console.log(`Collision with checkpoint ${index + 1}, but can't claim yet. Previous claimed: ${index === 0 ? 'N/A' : checkpoints[index - 1].claimed}`);
+    }
   });
 }
 
@@ -268,6 +298,10 @@ const movePlayer = (key, xVelocity, isPressed) => {
 const startGame = () => {
   canvas.style.display = "block";
   startScreen.style.display = "none";
+  
+  // Initialize with desert theme
+  changeTheme(0);
+  
   animate();
 }
 
