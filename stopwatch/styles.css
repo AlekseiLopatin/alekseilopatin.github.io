@@ -1,8 +1,8 @@
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
-  background: linear-gradient(to right, #74ebd5, #acb6e5);
-  color: #222;
+  background-color: #0b0d10;
+  color: #f0f0f0;
   margin: 0;
   padding: 20px;
 }
@@ -13,7 +13,7 @@ h1 {
 }
 
 .time_display {
-  background: #fff;
+  background: #0b0d10;
   border-radius: 15px;
   display: inline-block;
   padding: 20px 40px;
@@ -27,19 +27,35 @@ h1 {
 }
 
 button {
-  background: #4CAF50;
+  background: #161a20;
   border: none;
-  color: white;
+  color: #f0f0f0;
   padding: 10px 20px;
   margin: 5px;
-  border-radius: 8px;
+  border-radius: 1000px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: box-shadow 0.5s ease;
   font-size: 1rem;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  height: 114%;
+  width: 104%;
+  border-radius: 1000px;
+  background-image: linear-gradient(to bottom right, #008cff, #e100ff);
+  top: -3px;
+  left: -2px;
+  z-index: -1;
 }
 
 button:hover {
-  background: #45a049;
+  z-index: 0;
+  box-shadow: 40px 0 100px #008cff, -40px 0 100px #e100ff;
 }
 
 #stopwatch-history {
@@ -47,7 +63,7 @@ button:hover {
   padding: 0;
   max-height: 150px;
   overflow-y: auto;
-  background: #f9f9f9;
+  background: #161a20;
   margin: 10px auto;
   border-radius: 10px;
   width: 60%;
