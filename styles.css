@@ -164,7 +164,7 @@ img {
   background-image: linear-gradient(20deg, #3a3d40 0%, #181719 100%)
 }
 
-.welcome-section > p {
+.welcome-section .content p {
   font-size: 3rem;
   font-weight: 200;
   font-style: italic;
@@ -323,6 +323,8 @@ img {
   box-shadow: 1px 1px 2px var(--main-gray);
   border-radius: 2px;
   transition: 300ms;
+  position: relative;
+  overflow: hidden;
 }
 
 iframe {
@@ -342,10 +344,13 @@ iframe {
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  color: var;
-  font-size: 20px;
+  color: var(--main-white);
+  font-size: 2rem;
+  font-weight: 300;
   text-align: center;
+  white-space: nowrap;
   transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
 }
 
 .hover-image {
@@ -462,7 +467,4 @@ iframe {
 
 .hide {
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px); /* Start slightly below */
-  transition: opacity 1s ease-out, transform 1s ease-out, visibility 1s;
-}
+  visibility: hidden;
