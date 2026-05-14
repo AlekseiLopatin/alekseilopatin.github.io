@@ -171,6 +171,17 @@ img {
   color: var(--main-gold);
 }
 
+.welcome-section .bio {
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: normal;
+  color: var(--main-white);
+  max-width: 600px;
+  margin-top: 2.5rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
 .welcome-image {
   max-width: 40%; 
   height: auto; 
@@ -450,6 +461,41 @@ iframe {
 
 .contact-details:hover {
   transform: translateY(8px);
+}
+
+.projects-cta {
+  text-align: center;
+  padding: 6rem 2rem;
+  background: var(--main-gray);
+  border-top: 4px solid var(--main-gold);
+}
+
+.projects-cta h2 {
+  color: var(--main-white);
+  margin-bottom: 1.5rem;
+}
+
+.projects-cta p {
+  color: var(--main-white);
+  opacity: 0.85;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+
+.btn-contact {
+  font-size: 2rem;
+  background: var(--main-gold);
+  color: var(--main-black);
+  padding: 1.2rem 3rem;
+  border-radius: 2px;
+  transition: 300ms;
+  font-weight: 300;
+}
+
+.btn-contact:hover {
+  box-shadow: 2px 2px 0 0 var(--main-white);
+  transform: translate(-1%, -1%);
+  color: var(--main-black);
 }
 
 .footer {
