@@ -12,6 +12,10 @@
   <img alt="License" src="https://img.shields.io/github/license/AlekseiLopatin/alekseilopatin.github.io?style=flat-square&color=blue">
 </p>
 
+<p align="center">
+  <img src="media/screenshot.png" alt="Portfolio screenshot" width="800">
+</p>
+
 ---
 
 ## About
@@ -25,6 +29,12 @@ Every project in this repo is hand-written vanilla JavaScript — no React, no V
 Visit **[alekseilopatin.com](https://alekseilopatin.com)** to see everything in action. Each project below also links directly to its live demo.
 
 ## Projects
+
+### Full-stack
+
+| Project | Stack | What it does |
+|---|---|---|
+| [School Portal](https://school.alekseilopatin.com) | Next.js · Supabase · Tailwind | Multilingual school management app — news feed, gradebook, and student art gallery. Teacher login with role-based access. Deployed on Vercel. |
 
 ### Web apps & utilities
 
