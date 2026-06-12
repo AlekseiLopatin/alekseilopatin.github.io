@@ -589,7 +589,8 @@ function buildWheel(stage, p){
     spin(winner, done){
       const w = p.indexOf(winner);
       const desired = -Math.PI/2 - (w + 0.5)*arc;
-      const target = rot + (5 + Math.random()*2)*Math.PI*2 + mod(desired - rot, Math.PI*2);
+      const turns = 5 + irand(3); // whole revolutions only — a fraction would break arrow alignment
+      const target = rot + turns*Math.PI*2 + mod(desired - rot, Math.PI*2);
       const start = rot, dur = 5200, t0 = performance.now();
       let lastIdx = idxAtPointer(rot);
       const step = now => {
@@ -816,11 +817,16 @@ function buildRace(stage, p){
   const n = p.length;
   const top = 16, bottom = 76;
   const laneH = clamp((H - top - bottom) / n, 20, 60);
-  const startX = 18, finishX = W - 70;
   const runners = p.map((name, i) => ({
     name, emoji: RACERS[hashCode(name) % RACERS.length],
     p: 0, burst: 1, lane: i,
   }));
+  // names live in a fixed label column at the start line; only the emoji races,
+  // so nothing but the actual racer can appear to cross the finish
+  const nameFs = clamp(laneH*0.5, 10, 15);
+  ctx.font = `600 ${nameFs}px Segoe UI, sans-serif`;
+  const labelW = clamp(Math.max(...p.map(nm => ctx.measureText(trunc(nm,14)).width)) + 20, 70, 170);
+  const startX = labelW, finishX = W - 70;
   let raf = null;
 
   function draw(winnerIdx=-1){
@@ -833,23 +839,28 @@ function buildRace(stage, p){
         ctx.fillRect(finishX + k*sq, y, sq, Math.min(sq, top + n*laneH - y));
       }
     }
+    // start line
+    ctx.strokeStyle = '#ffffff30'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(startX, top); ctx.lineTo(startX, top + n*laneH); ctx.stroke();
     runners.forEach((r, i) => {
       const y = top + i*laneH + laneH/2;
       // lane line
       ctx.strokeStyle = '#ffffff10'; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(startX, y + laneH/2); ctx.lineTo(W-20, y + laneH/2); ctx.stroke();
-      const x = startX + r.p * (finishX - startX - 8);
-      const fs = clamp(laneH*0.72, 14, 30);
-      ctx.font = `${fs}px Segoe UI, sans-serif`;
-      ctx.textBaseline = 'middle';
+      ctx.beginPath(); ctx.moveTo(8, y + laneH/2); ctx.lineTo(W-20, y + laneH/2); ctx.stroke();
+      ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
       if (i === winnerIdx){
         ctx.fillStyle = '#fbbf2433';
         ctx.fillRect(0, y - laneH/2, W, laneH);
       }
-      ctx.fillText(r.emoji, x, y + 1);
+      // pinned name label
       ctx.fillStyle = (i === winnerIdx) ? '#fbbf24' : '#cbd5e1';
-      ctx.font = `600 ${clamp(laneH*0.5, 10, 15)}px Segoe UI, sans-serif`;
-      ctx.fillText(trunc(r.name, 16), x + fs + 6, y + 1);
+      ctx.font = `600 ${nameFs}px Segoe UI, sans-serif`;
+      ctx.fillText(trunc(r.name, 14), 8, y + 1);
+      // racer emoji — at p=1 its center sits exactly on the finish line
+      const fs = clamp(laneH*0.72, 14, 30);
+      const x = startX + 6 + r.p * (finishX - startX - 6 - fs/2);
+      ctx.font = `${fs}px Segoe UI, sans-serif`;
+      ctx.fillText(r.emoji, x, y + 1);
     });
   }
   draw();
@@ -872,7 +883,7 @@ function buildRace(stage, p){
         runners.forEach(r => {
           r.p += r.burst * dt / r.dur;
           if (r.name === winner){ if (r.p >= 1){ r.p = 1; winnerDone = true; } }
-          else r.p = Math.min(r.p, 0.965);
+          else r.p = Math.min(r.p, 0.94);
         });
         draw(winnerDone ? wIdx : -1);
         if (!winnerDone) raf = requestAnimationFrame(step);
