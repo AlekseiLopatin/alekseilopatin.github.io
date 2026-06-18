@@ -705,7 +705,9 @@ function buildPlinko(stage, p){
   const topPad = 30;
   // pegs
   const pegs = [];
-  const rows = 9, gapY = (floorY - topPad - 40) / rows;
+  const avail = floorY - topPad - 40;
+  // scale row count to height: the ball needs ~36px between rows to fit through
+  const rows = clamp(Math.floor(avail / 36), 2, 9), gapY = avail / rows;
   const gapX = clamp(W/14, 44, 86);
   for (let r=0; r<rows; r++){
     const offset = (r % 2) ? gapX/2 : 0;
@@ -752,50 +754,74 @@ function buildPlinko(stage, p){
   return {
     spin(winner, done){
       const w = p.indexOf(winner);
-      const targetX = w*slotW + slotW/2;
+      // clamp inside the walls so edge slots stay reachable on narrow screens
+      const targetX = clamp(w*slotW + slotW/2, BR + 2, W - BR - 2);
       ball = {x: clamp(targetX + rand(-W/4, W/4), 30, W-30), y: 8, vx: rand(-40,40), vy: 0};
       settledIdx = -1;
       let lastT = performance.now(), doneCalled = false;
+      const startT = lastT;
+      let maxY = ball.y, lastProgressT = lastT, ghostUntil = 0;
+      const settle = () => {
+        ball.x = targetX; ball.y = floorY - BR - 2; ball.vx = ball.vy = 0;
+        settledIdx = w;
+        draw();
+        if (!doneCalled){ doneCalled = true; sClunk(); setTimeout(done, 600); }
+      };
       const step = now => {
         const dt = clamp((now - lastT)/1000, 0.005, 0.03);
         lastT = now;
+        // failsafe: never let a wedged ball stall the round
+        if (now - startT > 9000){ settle(); return; }
+        if (ball.y > maxY + 4){ maxY = ball.y; lastProgressT = now; }
+        else if (now - lastProgressT > 900){
+          ghostUntil = now + 300; // slip through the pegs for a moment
+          ball.vy = Math.max(ball.vy, 240);
+          ball.vx = (targetX > ball.x ? 1 : -1) * rand(60, 130);
+          lastProgressT = now;
+        }
         ball.vy += 1300 * dt;
         // gentle homing, stronger as it descends
         const depth = clamp(ball.y / floorY, 0, 1);
         ball.vx += (targetX - ball.x) * depth * depth * 4.5 * dt * 10;
+        ball.vx *= Math.exp(-1.5 * dt); // damp the homing oscillation
         ball.vx = clamp(ball.vx, -350, 350);
         ball.x += ball.vx * dt; ball.y += ball.vy * dt;
         // walls
         if (ball.x < BR){ ball.x = BR; ball.vx = Math.abs(ball.vx)*0.6; }
         if (ball.x > W-BR){ ball.x = W-BR; ball.vx = -Math.abs(ball.vx)*0.6; }
-        // peg collisions
-        for (const pg of pegs){
+        // peg collisions (skipped briefly while ghosting out of a wedge)
+        if (now >= ghostUntil) for (const pg of pegs){
           const dx = ball.x - pg.x, dy = ball.y - pg.y;
           const d2 = dx*dx + dy*dy, rr = BR + PR;
           if (d2 < rr*rr && d2 > 0.01){
             const d = Math.sqrt(d2);
             ball.x = pg.x + dx/d * rr; ball.y = pg.y + dy/d * rr;
             if (ball.vy > 60) sTick();
-            ball.vy = -Math.abs(ball.vy) * rand(0.25, 0.45);
-            const towards = Math.sign(targetX - ball.x) || (Math.random()<.5?-1:1);
-            const dir = (Math.random() < 0.78) ? towards : -towards;
-            ball.vx = dir * rand(70, 190);
+            if (dy < -1){
+              // hit from above — bounce off
+              ball.vy = -Math.abs(ball.vy) * rand(0.25, 0.45);
+              const towards = Math.sign(targetX - ball.x) || (Math.random()<.5?-1:1);
+              const dir = (Math.random() < 0.78) ? towards : -towards;
+              ball.vx = dir * rand(70, 190);
+            } else {
+              // glancing side hit — keep falling so the ball can't wedge between pegs
+              ball.vy = Math.max(ball.vy * 0.5, 60);
+            }
           }
         }
         // floor / settle
         if (ball.y > floorY - BR - 2){
           ball.y = floorY - BR - 2;
+          ball.vx = 0; // the slide below owns horizontal motion; leftover speed would drag the ball off the slot
           if (Math.abs(ball.x - targetX) > 3){
-            ball.x += clamp((targetX - ball.x)*8*dt, -4, 4)*60*dt*10;
+            // one step per landing, frame-rate independent — a dt-scaled step diverges at low fps
+            ball.x += clamp((targetX - ball.x) * 0.55, -34, 34);
             ball.vy = -120;
           } else if (Math.abs(ball.vy) > 130){
             ball.vy = -Math.abs(ball.vy)*0.4;
             sClunk();
           } else {
-            ball.x = targetX;
-            settledIdx = w;
-            draw();
-            if (!doneCalled){ doneCalled = true; sClunk(); setTimeout(done, 600); }
+            settle();
             return;
           }
         }
