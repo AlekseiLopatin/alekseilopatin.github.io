@@ -1,121 +1,117 @@
-*,
-*::before,
-*::after {
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
+
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-:root {
-  --dark-grey: #1b1b32;
-  --light-grey: #f5f6f7;
-  --black: #000;
-  --white: #fff;
-  --grey: #3b3b4f;
-  --golden-yellow: #fecc4c;
-  --yellow: #ffcc4c;
-  --gold: #feac32;
-  --orange: #ffac33;
-  --dark-orange: #f89808;
-}
-
 body {
-  background-color: var(--dark-grey);
+  font-family: var(--font-body);
+  background-color: var(--color-base);
+  color: var(--color-text);
 }
 
 header {
-  color: var(--light-grey);
+  color: var(--color-text);
   text-align: center;
+  padding: 1rem;
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin: 25px 0;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin: 1.4rem 0;
+  color: var(--color-text);
 }
 
 .rules-container {
   display: none;
-  background-color: var(--light-grey);
-  color: var(--black);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   width: 50%;
-  margin: 20px auto;
-  height: 300px;
-  border-radius: 10px;
+  margin: 1.2rem auto;
+  max-height: 300px;
+  border-radius: var(--radius-md);
   overflow-y: scroll;
+  padding: 1rem;
 }
 
-.rules-container ul {
-  list-style-type: none;
-}
+.rules-container ul { list-style-type: none; }
 
-.points {
-  margin-top: 15px;
-}
+.points { margin-top: 1rem; }
 
 main {
-  background-color: var(--light-grey);
-  padding: 20px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 1.4rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 1rem;
-  margin: auto;
+  margin: 1rem auto;
   justify-items: center;
   width: 50%;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }
 
 #dice {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .die {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   text-align: center;
-  margin-right: 15px;
-  border: 4px solid var(--black);
-  padding: 10px;
+  margin-right: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem;
+  color: var(--color-accent);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .rounds-text {
   text-align: center;
+  color: var(--color-text-muted);
 }
 
-input[type="radio"]:disabled + label {
-  color: var(--grey);
-}
+input[type="radio"]:disabled + label { color: var(--color-text-faint); }
 
 #score-history {
-  margin-top: 15px;
+  margin-top: 1rem;
   text-align: center;
   list-style-position: inside;
+  color: var(--color-text-muted);
 }
 
 .btn {
   cursor: pointer;
   width: 200px;
-  margin: 10px 0 10px 0.5rem;
-  color: var(--black);
-  background-color: var(--gold);
-  background-image: linear-gradient(var(--golden-yellow), var(--orange));
-  border-color: var(--gold);
-  border-width: 3px;
+  height: 44px;
+  margin: 0.6rem 0 0.6rem 0.5rem;
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  transition: background-color var(--transition);
 }
 
-.btn:hover:enabled {
-  background-image: linear-gradient(var(--yellow), var(--dark-orange));
+.btn:hover:enabled { background-color: var(--color-accent-hover); }
+
+form > .btn {
+  display: block;
+  margin: 0.6rem auto;
 }
 
-@media (max-width: 992px) {
-  main {
-    width: 100%;
-  }
-}
-
-@media (max-width: 500px) {
-  .btn {
-    width: 120px;
-  }
-}
+@media (max-width: 992px) { main { width: 100%; } }
+@media (max-width: 500px) { .btn { width: 120px; } }

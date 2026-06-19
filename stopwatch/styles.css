@@ -1,40 +1,49 @@
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
+
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   text-align: center;
-  background-color: #0b0d10;
-  color: #f0f0f0;
+  background-color: var(--color-base);
+  color: var(--color-text);
   margin: 0;
-  padding: 20px;
+  padding: 2rem 1rem;
 }
 
 h1 {
+  font-family: var(--font-heading);
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 1.2rem;
+  color: var(--color-text);
 }
 
 .time_display {
-  background: #0b0d10;
-  border-radius: 15px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   display: inline-block;
-  padding: 20px 40px;
-  margin: 15px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  padding: 1.2rem 2.5rem;
+  margin: 1rem 0;
+  box-shadow: var(--shadow-md);
 }
 
 .time_digit_label {
   font-size: 4rem;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-accent);
 }
 
 button {
-  background: #161a20;
-  border: none;
-  color: #f0f0f0;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 1000px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 0.6rem 1.4rem;
+  margin: 0.3rem;
+  border-radius: 100px;
   cursor: pointer;
-  transition: box-shadow 0.5s ease;
+  transition: all var(--transition);
+  font-family: var(--font-body);
   font-size: 1rem;
   position: relative;
 }
@@ -42,18 +51,20 @@ button {
 button::after {
   content: '';
   position: absolute;
-  height: 114%;
-  width: 104%;
-  border-radius: 1000px;
-  background-image: linear-gradient(to bottom right, #008cff, #e100ff);
-  top: -3px;
-  left: -2px;
+  height: 110%;
+  width: 102%;
+  border-radius: 100px;
+  background: var(--color-border-accent);
+  top: -2px;
+  left: -1px;
   z-index: -1;
 }
 
 button:hover {
   z-index: 0;
-  box-shadow: 40px 0 100px #008cff, -40px 0 100px #e100ff;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-elevated);
 }
 
 #stopwatch-history {
@@ -61,26 +72,32 @@ button:hover {
   padding: 0;
   max-height: 150px;
   overflow-y: auto;
-  background: #161a20;
-  margin: 10px auto;
-  border-radius: 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  margin: 0.8rem auto;
+  border-radius: var(--radius-md);
   width: 60%;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
 }
 
 #stopwatch-history li {
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
+  padding: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
 }
 
-.timer-presets {
-  margin-top: 15px;
-}
+.timer-presets { margin-top: 1rem; }
 
 input[type="number"] {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #aaa;
-  margin-right: 5px;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-elevated);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  margin-right: 0.3rem;
+  outline: none;
 }
 
+input[type="number"]:focus { border-color: var(--color-accent); }

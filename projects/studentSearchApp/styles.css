@@ -1,30 +1,16 @@
-/* CSS reset */
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-}
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+body { line-height: 1.5; }
+img { display: block; }
 
 body {
-  line-height: 1.5;
-}
-
-img {
-  display: block;
-}
-
-/* Project styling */
-
-body {
-  height: 100vh;
-  background-color: #e5d5b2;
-  color: #0a0a23;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  min-height: 100vh;
+  background-color: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-body);
 }
 
 main {
@@ -32,65 +18,81 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 2rem 1rem;
 }
 
 h1 {
-  color: #d4a44b;
-  font-size: 1.7em;
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+  font-size: 1.8rem;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .container {
   width: 325px;
-  margin: 25px 0;
-  background-color: #f5f6f7;
-  border: 1px solid #f5f6f7;
-  border-radius: 15px;
-  box-shadow: 10px 10px 0px 0px rgba(223, 220, 220, 0.75);
+  margin: 1.4rem 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
-.output,
-#search-form {
+.output, #search-form {
   display: flex;
   justify-content: center;
 }
 
 #search-form {
   flex-wrap: wrap;
-  margin: 10px 0;
-  padding: 5px;
-  border-radius: 8px 8px 0 0;
-  gap: 10px;
+  margin: 0.6rem 0;
+  padding: 0.4rem;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  gap: 0.6rem;
+  background: var(--color-elevated);
 }
 
-label {
-  align-self: center;
-}
+label { align-self: center; color: var(--color-text-muted); font-size: 0.9rem; }
 
 #search-input:focus-visible,
 #search-button:focus-visible {
-  outline: 3px solid #198eee;
+  outline: 2px solid var(--color-accent);
 }
 
 #search-input {
-  height: 40px;
-  padding-left: 10px;
-  width: 200px;
+  height: 38px;
+  padding-left: 0.6rem;
+  width: 190px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
 }
 
+#search-input:focus { border-color: var(--color-accent); }
+
 #search-button {
-  padding: 14px 0;
+  padding: 0.5rem 0;
   width: 80px;
   border-radius: 20px;
   text-align: center;
-  background-color: #d4a44b;
-  color: #f5f6f7;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
   border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: background-color var(--transition);
 }
 
+#search-button:hover { background-color: var(--color-accent-hover); }
+
 .output {
-  margin: 10px 0;
-  padding: 5px;
+  margin: 0.6rem 0;
+  padding: 0.4rem;
   flex-direction: column;
   align-items: center;
 }
@@ -103,34 +105,29 @@ label {
 }
 
 .top-container {
-  display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
-  margin-bottom: 10px;
-  padding: 10px;
-  background-color: #f0f1f7;
-  min-height: 200px;
+  margin-bottom: 0.6rem;
+  padding: 0.8rem;
+  background-color: var(--color-elevated);
+  min-height: 180px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 
-.bottom-container {
-  min-height: 325px;
-}
+.bottom-container { min-height: 300px; }
 
 .name-and-id {
   height: 28px;
-  font-size: 1.1em;
+  font-size: 1.05rem;
   text-transform: capitalize;
-  margin-bottom: 5px;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
 }
 
-#creature-name,
-#special-name {
-  font-weight: bold;
-}
+#creature-name, #special-name { font-weight: 400; color: var(--color-accent); }
 
-.size,
-#special-description {
+.size, #special-description {
   font-size: 0.85rem;
+  color: var(--color-text-muted);
 }
 
 #types {
@@ -143,128 +140,59 @@ label {
 
 .type {
   width: 66px;
-  padding: 5px;
+  padding: 4px;
   font-size: 0.7rem;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 4px;
   background-color: red;
   text-transform: uppercase;
+  color: white;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  font-size: 1 rem;
-  color: #f5f6f7;
-  background-color: #d4a44b;
+  font-size: 0.95rem;
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
 }
 
 th:nth-child(even),
 td:nth-child(even) {
-  border-left: 5px solid #f5f6f7;
+  border-left: 3px solid rgba(20,18,16,0.3);
 }
 
-tr {
-  border-bottom: 5px solid #f5f6f7;
-}
+tr { border-bottom: 3px solid rgba(20,18,16,0.2); }
 
-td,
-th {
+td, th {
   text-align: center;
-  padding: 8px;
+  padding: 6px;
 }
 
-/* Special styling for Creature types */
-
-.normal {
-  background-color: #b7b7aa;
-}
-
-.fire {
-  background-color: #ff6f52;
-}
-
-.water {
-  background-color: #42a1ff;
-}
-
-.electric {
-  background-color: #fecc33;
-}
-
-.grass {
-  background-color: #78cc55;
-}
-
-.ice {
-  background-color: #66ccfe;
-}
-
-.fighting {
-  background-color: #d3887e;
-}
-
-.poison {
-  background-color: #c68bb7;
-}
-
-.ground {
-  background-color: #dfba52;
-}
-
-.flying {
-  background-color: #8899ff;
-}
-
-.psychic {
-  background-color: #ff66a3;
-}
-
-.bug {
-  background-color: #aabb23;
-}
-
-.rock {
-  background-color: #baaa66;
-}
-
-.ghost {
-  background-color: #9995d0;
-}
-
-.dragon {
-  background-color: #9e93f1;
-}
-
-.dark {
-  background-color: #b59682;
-}
-
-.steel {
-  background-color: #abaabb;
-}
-
-.fairy {
-  background-color: #ed99ed;
-}
+/* Type badge colours kept as-is (they're semantic game data) */
+.normal   { background-color: #b7b7aa; }
+.fire     { background-color: #ff6f52; }
+.water    { background-color: #42a1ff; }
+.electric { background-color: #fecc33; color: #333; }
+.grass    { background-color: #78cc55; }
+.ice      { background-color: #66ccfe; color: #333; }
+.fighting { background-color: #d3887e; }
+.poison   { background-color: #c68bb7; }
+.ground   { background-color: #dfba52; color: #333; }
+.flying   { background-color: #8899ff; }
+.psychic  { background-color: #ff66a3; }
+.bug      { background-color: #aabb23; }
+.rock     { background-color: #baaa66; }
+.ghost    { background-color: #9995d0; }
+.dragon   { background-color: #9e93f1; }
+.dark     { background-color: #b59682; }
+.steel    { background-color: #abaabb; }
+.fairy    { background-color: #ed99ed; color: #333; }
 
 @media screen and (min-width: 550px) {
-  h1 {
-    font-size: 2em;
-  }
-
-  .container {
-    width: 450px;
-  }
-
-  #search-form,
-  .top-container,
-  .bottom-container {
-    width: 95%;
-  }
-
-  .type {
-    width: 75px;
-  }
+  h1 { font-size: 2rem; }
+  .container { width: 450px; }
+  #search-form, .top-container, .bottom-container { width: 95%; }
+  .type { width: 75px; }
 }

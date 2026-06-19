@@ -1,19 +1,18 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --main-bg-color: #e5d5b2;
-  --section-bg-color: #ffffff;
-  --golden-yellow: #feac32;
-  --platform-color: #333231;
-  --player-color: #ff6b6b;
-  --checkpoint-color: #f1be32;
+  --main-bg-color: var(--color-base);
+  --section-bg-color: var(--color-surface);
+  --golden-yellow: var(--color-accent);
+  --platform-color: var(--color-border-strong);
+  --player-color: var(--color-error);
+  --checkpoint-color: var(--color-accent);
 }
 
-/* Theme 1: Default (Warm Desert) */
+/* Theme 1: Warm Desert */
 .theme-desert {
   --main-bg-color: #e5d5b2;
   --section-bg-color: #ffffff;
@@ -74,11 +73,12 @@
 }
 
 body {
+  font-family: var(--font-body);
   background: var(--main-bg-color);
   transition: background 0.8s ease-in-out;
+  color: var(--color-text);
 }
 
-/* Special handling for victory theme gradient */
 body.theme-victory {
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
   background-size: 400% 400%;
@@ -86,8 +86,8 @@ body.theme-victory {
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
@@ -102,34 +102,32 @@ body.theme-victory {
   border-radius: 30px;
   padding: 20px;
   padding-bottom: 5px;
+  border: 1px solid rgba(0,0,0,0.15);
 }
 
-.main-title {
-  text-align: center;
-}
+.main-title { text-align: center; color: var(--color-on-accent); }
 
 .instructions {
   text-align: center;
-  font-size: 1.2rem;
-  margin: 15px;
+  font-size: 1.1rem;
+  margin: 1rem;
   line-height: 2rem;
 }
 
 .btn {
   cursor: pointer;
   width: 100px;
-  margin: 10px;
-  color: #0a0a23;
-  font-size: 18px;
+  margin: 0.6rem;
+  color: var(--color-on-accent);
+  font-size: 1.1rem;
   background-color: var(--golden-yellow);
-  background-image: linear-gradient(#fecc4c, #ffac33);
-  border-color: var(--golden-yellow);
-  border-width: 3px;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+  transition: background-color var(--transition);
 }
 
-.btn:hover {
-  background-image: linear-gradient(#ffcc4c, #f89808);
-}
+.btn:hover { opacity: 0.85; }
 
 .btn-container {
   display: flex;
@@ -151,17 +149,9 @@ body.theme-victory {
   display: none;
 }
 
-#canvas {
-  display: none;
-}
+#canvas { display: none; }
 
 @media (min-width: 768px) {
-  .start-screen {
-    width: 60%;
-    max-width: 700px;
-  }
-
-  .checkpoint-screen {
-    max-width: 300px;
-  }
+  .start-screen { width: 60%; max-width: 700px; }
+  .checkpoint-screen { max-width: 300px; }
 }

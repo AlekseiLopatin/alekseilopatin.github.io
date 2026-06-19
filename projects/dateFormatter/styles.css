@@ -1,24 +1,21 @@
-*,
-*::before,
-*::after {
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --dark-grey: #0a0a23;
-  --white: #ffffff;
-  --yellow: #f1be32;
-}
-
 body {
-  color: var(--white);
-  background-color: var(--dark-grey);
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-base);
+  padding: 2rem 1rem;
 }
 
 .title-container {
-  margin: 10px 0;
+  margin: 1rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,78 +23,69 @@ body {
 }
 
 .title {
-  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--color-text);
 }
 
-.date-svg {
-  width: 30px;
-  height: 30px;
-}
+.date-svg { width: 30px; height: 30px; }
 
 .divider {
-  margin: auto;
+  margin: 0.8rem auto;
   width: 150px;
-  height: 10px;
-  background-color: var(--yellow);
+  height: 4px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
 }
 
 .dropdown-container {
   width: 50%;
-  margin: 40px auto;
+  margin: 2.5rem auto;
   position: relative;
 }
 
 select {
   display: block;
-  margin: 20px auto 0;
+  margin: 1.2rem auto 0;
   width: 100%;
   height: 50px;
-  font-size: 100%;
-  font-weight: bold;
+  font-size: 1rem;
+  font-family: var(--font-body);
   cursor: pointer;
-  background-color: var(--white);
-  border: none;
-  color: var(--dark-grey);
+  background-color: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   appearance: none;
-  padding: 10px;
-  padding-right: 38px;
   -webkit-appearance: none;
   -moz-appearance: none;
-  transition: color 0.3s ease, background-color 0.3s ease,
-    border-bottom-color 0.3s ease;
+  padding: 0.5rem 2.4rem 0.5rem 0.8rem;
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--transition);
 }
+
+select:focus { border-color: var(--color-accent); }
 
 .select-icon {
   position: absolute;
-  top: 4px;
+  top: 22px;
   right: 4px;
   width: 30px;
-  height: 36px;
+  height: 30px;
   pointer-events: none;
-  padding-left: 5px;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.select-icon svg.icon {
-  transition: fill 0.3s ease;
-  fill: var(--dark-grey);
-}
+.select-icon svg.icon { fill: var(--color-text-muted); }
 
 #current-date {
   font-size: 2rem;
   text-align: center;
+  color: var(--color-accent);
+  margin-top: 1rem;
 }
 
 @media (max-width: 375px) {
-  .title {
-    font-size: 2rem;
-  }
-
-  .dropdown-container {
-    width: 80%;
-  }
-
-  .date-svg {
-    display: none;
-  }
+  .title { font-size: 1.8rem; }
+  .dropdown-container { width: 90%; }
+  .date-svg { display: none; }
 }

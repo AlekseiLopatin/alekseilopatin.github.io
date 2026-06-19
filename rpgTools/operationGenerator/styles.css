@@ -1,44 +1,46 @@
-:root {
-    --light-grey: #f5f6f7;
-    --dark-blue: #0a0a23;
-    --fcc-blue: #1b1b32;
-    --light-yellow: #fecc4c;
-    --dark-yellow: #feac32;
-    --light-pink: #ffadad;
-    --dark-red: #850000;
-    --light-green: #acd157;
-  }
-  
-body {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  background-color: var(--fcc-blue);
-  color: var(--light-grey);
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.notice {
-  font-size: 12px;
-  font-style: italic;
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: var(--color-text);
 }
 
 h1 {
+  font-family: var(--font-heading);
   text-align: center;
+  color: var(--color-text);
+  margin: 1.4rem 0;
 }
 
-.container {
-  width: 90%;
-  max-width: 1280px;
+h2 {
+  color: var(--color-text);
+  margin-bottom: 0.8rem;
 }
 
 h1,
 .container,
 .output {
-  margin: 20px auto;
+  margin: 1.2rem auto;
 }
 
 label,
 legend {
-  font-weight: bold;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.container {
+  width: 90%;
+  max-width: 680px;
 }
 
 .input-container {
@@ -48,16 +50,49 @@ legend {
 
 button {
   cursor: pointer;
-  text-decoration: none;
-  background-color: var(--light-yellow);
-  border: 2px solid var(--dark-yellow);
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-border-accent);
+  color: var(--color-on-accent);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition);
+}
+
+button:hover {
+  background-color: var(--color-accent-hover);
 }
 
 button,
 input,
 select {
-  min-height: 24px;
-  color: var(--dark-blue);
+  min-height: 28px;
+}
+
+select,
+input {
+  background-color: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+select:focus,
+input:focus {
+  border-color: var(--color-accent);
+}
+
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
 }
 
 fieldset,
@@ -65,8 +100,39 @@ label,
 button,
 input,
 select {
-  margin-bottom: 10px;
+  margin-bottom: 0.6rem;
 }
+
+.output {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  padding: 0.8rem;
+  text-align: center;
+  border-radius: var(--radius-md);
+}
+
+.output span {
+  font-weight: 400;
+  font-size: 1.1em;
+  color: var(--color-text);
+}
+
+.hide {
+  display: none;
+}
+
+.surplus {
+  color: var(--color-error);
+}
+
+.deficit {
+  color: var(--color-success);
+}
+
+/* operationGenerator specific */
+.notice { font-size: 0.8rem; font-style: italic; color: var(--color-text-faint); }
+
+.container { width: 90%; max-width: 1280px; }
 
 .outputs-grid {
   display: grid;
@@ -74,39 +140,28 @@ select {
   grid-gap: 2rem;
   width: 100%;
   max-width: 1280px;
-  margin: 0 auto;
-  margin-bottom: 6rem;
+  margin: 0 auto 4rem;
 }
 
 @media (max-width: 30.625em) {
-  .outputs-grid {
-    grid-template-columns: 1fr
-  }
+  .outputs-grid { grid-template-columns: 1fr; }
 }
 
 .output, .output1, .output2 {
-  border: 2px solid var(--light-grey);
-  padding: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: 1rem;
   text-align: center;
+  border-radius: var(--radius-md);
 }
 
-.hide {
-  display: none;
+.output span, .output1 span, .output2 span {
+  font-weight: 400;
+  font-size: 1.1em;
+  color: var(--color-text);
 }
 
-.output span,  .output1 span, .output2 span{
-  font-weight: bold;
-  font-size: 1.2em;
-}
+.surplus { color: var(--color-error); }
+.deficit { color: var(--color-success); }
 
-.surplus {
-  color: var(--light-pink);
-}
-
-.deficit {
-  color: var(--light-green);
-}
-
-i {
-  font-size: 10rem;
-}
+i { font-size: 6rem; color: var(--color-accent); }

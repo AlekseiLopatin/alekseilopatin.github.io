@@ -1,184 +1,179 @@
-:root {
-    --white: #e5d5b2;
-    --light-grey: #e5d5b2;
-    --dark-grey: #333231;
-    --yellow: #d4a44b;
-    --golden-yellow: #feac32;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: var(--dark-grey);
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  h1 {
-    color: var(--light-grey);
-    margin: 20px 0 40px 0;
-  }
-  
-  .todo-app {
-    background-color: var(--white);
-    width: 300px;
-    height: 350px;
-    border: 5px solid var(--yellow);
-    border-radius: 8px;
-    padding: 15px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .btn {
-    cursor: pointer;
-    width: 100px;
-    margin: 10px;
-    color: var(--dark-grey);
-    background-color: var(--golden-yellow);
-    background-image: linear-gradient(#fecc4c, #ffac33);
-    border-color: var(--golden-yellow);
-    border-width: 3px;
-  }
-  
-  .btn:hover {
-    background-image: linear-gradient(#ffcc4c, #f89808);
-  }
-  
-  .large-btn {
-    width: 80%;
-    font-size: 1.2rem;
-    align-self: center;
-    justify-self: center;
-  }
-  
-  .close-task-form-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .close-icon {
-    width: 20px;
-    height: 20px;
-  }
-  
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-base);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  margin: 1.2rem 0 2rem 0;
+  font-size: 2rem;
+}
+
+.todo-app {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  width: 300px;
+  min-height: 350px;
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  box-shadow: var(--shadow-md);
+}
+
+.btn {
+  cursor: pointer;
+  width: 100px;
+  margin: 0.4rem;
+  color: var(--color-on-accent);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: background-color var(--transition);
+}
+
+.btn:hover { background-color: var(--color-accent-hover); }
+
+.large-btn {
+  width: 80%;
+  font-size: 1rem;
+  align-self: center;
+  justify-self: center;
+}
+
+.close-task-form-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.close-icon { width: 20px; height: 20px; }
+
+.task-form {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  width: 300px;
+  min-height: 350px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+  z-index: 10;
+  box-shadow: var(--shadow-md);
+}
+
+.task-form-header { display: flex; justify-content: flex-end; }
+
+.task-form-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.task-form-footer { display: flex; justify-content: center; }
+
+.task-form-label,
+#title-input,
+#date-input,
+#description-input {
+  display: block;
+}
+
+.task-form-label {
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+#title-input,
+#date-input,
+#description-input {
+  width: 100%;
+  margin-bottom: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+#title-input:focus,
+#date-input:focus,
+#description-input:focus {
+  border-color: var(--color-accent);
+}
+
+#confirm-close-dialog {
+  padding: 1rem;
+  margin: 0.6rem auto;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.confirm-close-dialog-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.6rem;
+}
+
+.discard-message-text {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+#tasks-container { height: 100%; overflow-y: auto; }
+
+.task {
+  margin: 0.3rem 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.hidden { display: none; }
+
+@media (min-width: 576px) {
+  .todo-app,
   .task-form {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--white);
-    border-radius: 5px;
-    padding: 15px;
-    width: 300px;
-    height: 350px;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: auto;
+    width: 400px;
+    min-height: 450px;
   }
-  
-  .task-form-header {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .task-form-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  
-  .task-form-footer {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .task-form-label,
-  #title-input,
-  #date-input,
-  #description-input {
-    display: block;
-  }
-  
-  .task-form-label {
-    margin-bottom: 5px;
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  
-  #title-input,
-  #date-input,
-  #description-input {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 2px;
-  }
-  
-  #confirm-close-dialog {
-    padding: 10px;
-    margin: 10px auto;
-    border-radius: 15px;
-  }
-  
-  .confirm-close-dialog-btn-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .discard-message-text {
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  
-  #tasks-container {
-    height: 100%;
-    overflow-y: auto;
-  }
-  
-  .task {
-    margin: 5px 0;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  @media (min-width: 576px) {
-    .todo-app,
-    .task-form {
-      width: 400px;
-      height: 450px;
-    }
-  
-    .task-form-label {
-      font-size: 1.5rem;
-    }
-  
-    #title-input,
-    #date-input {
-      height: 2rem;
-    }
-  
-    #title-input,
-    #date-input,
-    #description-input {
-      padding: 5px;
-      margin-bottom: 20px;
-    }
-  }
+}

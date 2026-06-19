@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksei Lopatin — Brand Book · Refined Ember</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300&family=Raleway:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    /* ============================================================
+       REFINED EMBER — BRAND SYSTEM v1.0
+       Aleksei Lopatin · alekseilopatin.com
+       ============================================================
+
+       HOW TO USE THESE VARIABLES IN ANY PROJECT:
+       1. Copy the :root block into your main CSS / globals.css
+       2. Reference variables: color: var(--color-text);
+       3. For Tailwind projects: map these into tailwind.config.js
+          under theme.extend.colors
+
+       FONT IMPORTS (add to <head> of every page):
+       <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    */
+
+    :root {
+      /* --- Backgrounds --- */
+      --color-base:     #141210;  /* page background */
+      --color-surface:  #201c18;  /* cards, panels, nav */
+      --color-elevated: #2c2620;  /* modals, dropdowns, code blocks */
+
+      /* --- Accent (gold) --- */
+      --color-accent:        #d4a44b;  /* primary CTA, links, highlights */
+      --color-accent-hover:  #e8b85c;  /* hover / focus state */
+      --color-accent-muted:  rgba(212, 164, 75, 0.15); /* subtle tint backgrounds */
+      --color-on-accent:     #141210;  /* text/icon on gold backgrounds */
+
+      /* --- Text --- */
+      --color-text:       #e8dcc8;  /* primary body text */
+      --color-text-muted: #9a8870;  /* secondary, captions, placeholders */
+      --color-text-faint: #5a4e42;  /* disabled, decorative */
+
+      /* --- Borders --- */
+      --color-border:        #3a3020;  /* default borders */
+      --color-border-accent: rgba(212, 164, 75, 0.25); /* accent-tinted borders */
+      --color-border-strong: #5a4e42;  /* hover / focus ring */
+
+      /* --- Semantic --- */
+      --color-success: #7c9a52;
+      --color-error:   #b85042;
+      --color-warning: #d4a44b;  /* same as accent */
+
+      /* --- Typography --- */
+      --font-heading: 'Raleway', sans-serif;
+      --font-body:    'Poppins', sans-serif;
+      --font-mono:    'Courier New', Courier, monospace;
+
+      /* --- Spacing scale (rem, base 10px via html font-size: 62.5%) --- */
+      --space-xs:  0.4rem;
+      --space-sm:  0.8rem;
+      --space-md:  1.6rem;
+      --space-lg:  2.4rem;
+      --space-xl:  4.0rem;
+      --space-2xl: 6.4rem;
+
+      /* --- Radius --- */
+      --radius-sm: 3px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+
+      /* --- Shadow --- */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+      /* --- Transitions --- */
+      --transition: 200ms ease;
+    }
+
+    /* ============================================================
+       BRAND BOOK PAGE STYLES (not for production use)
+    ============================================================ */
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      font-size: 62.5%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--color-text);
+      background: var(--color-base);
+    }
+
+    /* --- Page layout --- */
+    .bb-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 1.4rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .bb-nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--color-accent);
+    }
+
+    .bb-nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    .bb-nav-links a {
+      text-decoration: none;
+      font-size: 1.3rem;
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+    }
+
+    .bb-nav-links a:hover { color: var(--color-accent); }
+
+    .bb-hero {
+      padding: 8rem 4rem 6rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .bb-eyebrow {
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .bb-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 5.2rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.1;
+      margin-bottom: 1.6rem;
+    }
+
+    .bb-hero p {
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: var(--color-text-muted);
+      max-width: 56rem;
+    }
+
+    .bb-meta {
+      margin-top: 3.2rem;
+      display: flex;
+      gap: 2.4rem;
+      flex-wrap: wrap;
+    }
+
+    .bb-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .bb-meta-label {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-faint);
+    }
+
+    .bb-meta-value {
+      font-size: 1.4rem;
+      color: var(--color-text-muted);
+    }
+
+    .bb-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 4rem 8rem;
+    }
+
+    /* --- Sections --- */
+    .bb-section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .bb-section:last-child { border-bottom: none; }
+
+    .bb-section-header {
+      margin-bottom: 4rem;
+    }
+
+    .bb-section-number {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      color: var(--color-accent);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .bb-section-title {
+      font-family: var(--font-heading);
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 0.8rem;
+    }
+
+    .bb-section-desc {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--color-text-muted);
+      max-width: 60rem;
+    }
+
+    /* --- Color palette --- */
+    .bb-color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.6rem;
+    }
+
+    .bb-color-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .bb-color-swatch {
+      height: 80px;
+    }
+
+    .bb-color-info {
+      background: var(--color-surface);
+      padding: 1.2rem 1.4rem;
+    }
+
+    .bb-color-name {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--color-text);
+      margin-bottom: 0.2rem;
+    }
+
+    .bb-color-hex {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      color: var(--color-accent);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .bb-color-var {
+      font-family: var(--font-mono);
+      font-size: 1.0rem;
+      color: var(--color-text-faint);
+      display: block;
+      word-break: break-all;
+    }
+
+    .bb-color-group-label {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-faint);
+      margin: 3.2rem 0 1.4rem;
+    }
+
+    /* --- Typography --- */
+    .bb-type-sample {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 3.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .bb-type-meta {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--color-text-faint);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .bb-type-h1 {
+      font-family: var(--font-heading);
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.1;
+    }
+
+    .bb-type-h2 {
+      font-family: var(--font-heading);
+      font-size: 4.2rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+
+    .bb-type-h3 {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .bb-type-subtitle {
+      font-family: var(--font-body);
+      font-size: 2rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--color-accent);
+    }
+
+    .bb-type-body {
+      font-family: var(--font-body);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--color-text);
+      line-height: 1.7;
+    }
+
+    .bb-type-body-sm {
+      font-family: var(--font-body);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .bb-type-caption {
+      font-family: var(--font-body);
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--color-text-faint);
+    }
+
+    .bb-type-code {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      background: var(--color-elevated);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* --- Components --- */
+    .bb-component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      align-items: flex-start;
+    }
+
+    .bb-component-block {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .bb-component-label {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-faint);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2.2rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-accent-muted);
+    }
+
+    .btn-ghost {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--color-border-strong);
+      background: var(--color-elevated);
+    }
+
+    .btn-danger {
+      background: transparent;
+      color: var(--color-error);
+      border: 1px solid var(--color-error);
+    }
+
+    .btn-danger:hover {
+      background: rgba(184, 80, 66, 0.1);
+    }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    /* Cards */
+    .bb-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+
+    .bb-card:hover {
+      border-color: var(--color-border-strong);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .bb-card-img {
+      height: 140px;
+      background: var(--color-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      color: var(--color-text-faint);
+    }
+
+    .bb-card-body {
+      padding: 1.6rem 2rem;
+    }
+
+    .bb-card-title {
+      font-size: 1.7rem;
+      color: var(--color-accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .bb-card-subtitle {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--color-text-muted);
+    }
+
+    .bb-card-tags {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Tags / Badges */
+    .tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-sm);
+      font-size: 1.1rem;
+      font-family: var(--font-mono);
+      font-weight: 400;
+    }
+
+    .tag-default {
+      background: var(--color-elevated);
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+    }
+
+    .tag-accent {
+      background: var(--color-accent-muted);
+      color: var(--color-accent);
+      border: 1px solid var(--color-border-accent);
+    }
+
+    .tag-success {
+      background: rgba(124, 154, 82, 0.15);
+      color: var(--color-success);
+      border: 1px solid rgba(124, 154, 82, 0.3);
+    }
+
+    .tag-error {
+      background: rgba(184, 80, 66, 0.12);
+      color: var(--color-error);
+      border: 1px solid rgba(184, 80, 66, 0.3);
+    }
+
+    /* Nav component */
+    .bb-nav-demo {
+      background: var(--color-accent);
+      padding: 1.4rem 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: var(--radius-md);
+    }
+
+    .bb-nav-demo-logo {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-on-accent);
+    }
+
+    .bb-nav-demo-links {
+      list-style: none;
+      display: flex;
+      gap: 2.4rem;
+    }
+
+    .bb-nav-demo-links a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--color-on-accent);
+      transition: opacity var(--transition);
+    }
+
+    .bb-nav-demo-links a:hover { opacity: 0.7; }
+
+    /* Form elements */
+    .bb-input {
+      width: 100%;
+      padding: 1rem 1.4rem;
+      background: var(--color-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1.5rem;
+      color: var(--color-text);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .bb-input::placeholder { color: var(--color-text-faint); }
+    .bb-input:focus { border-color: var(--color-accent); }
+
+    .bb-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .bb-label {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--color-text-muted);
+    }
+
+    /* Code block */
+    .bb-code {
+      background: var(--color-elevated);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      padding: 2rem 2.4rem;
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .bb-code .c-comment { color: var(--color-text-faint); }
+    .bb-code .c-var { color: var(--color-accent); }
+    .bb-code .c-val { color: var(--color-success); }
+    .bb-code .c-prop { color: var(--color-text); }
+
+    /* Usage DOs and DON'Ts */
+    .bb-rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .bb-rule-block {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2.4rem;
+    }
+
+    .bb-rule-block.do { border-top: 3px solid var(--color-success); }
+    .bb-rule-block.dont { border-top: 3px solid var(--color-error); }
+
+    .bb-rule-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.6rem;
+    }
+
+    .bb-rule-block.do .bb-rule-title { color: var(--color-success); }
+    .bb-rule-block.dont .bb-rule-title { color: var(--color-error); }
+
+    .bb-rule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .bb-rule-list li {
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--color-text-muted);
+      padding-left: 1.6rem;
+      position: relative;
+    }
+
+    .bb-rule-block.do .bb-rule-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-success);
+    }
+
+    .bb-rule-block.dont .bb-rule-list li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--color-error);
+    }
+
+    /* Section anchor links */
+    h2[id], h3[id] { scroll-margin-top: 70px; }
+
+    /* Divider */
+    .bb-divider {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 2.4rem 0;
+    }
+
+    /* Footer */
+    .bb-footer {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      padding: 3.2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bb-footer p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--color-text-faint);
+    }
+
+    .bb-footer a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .bb-hero h1 { font-size: 3.6rem; }
+      .bb-rules-grid { grid-template-columns: 1fr; }
+      .bb-main { padding: 0 2rem 6rem; }
+      .bb-nav { padding: 1.4rem 2rem; }
+      .bb-footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="bb-nav">
+    <span class="bb-nav-logo">AL · Brand Book</span>
+    <ul class="bb-nav-links">
+      <li><a href="#colors">Colors</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#usage">Usage</a></li>
+      <li><a href="#variables">Variables</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <div class="bb-hero">
+    <p class="bb-eyebrow">Refined Ember · Design System v1.0</p>
+    <h1 class="bb-type-h1">Brand Book</h1>
+    <p>The visual identity system for <strong style="color:var(--color-text);font-weight:400;">alekseilopatin.com</strong>, <strong style="color:var(--color-text);font-weight:400;">school.alekseilopatin.com</strong>, and <strong style="color:var(--color-text);font-weight:400;">gradebook.alekseilopatin.com</strong>. One cohesive brand across all three projects.</p>
+    <div class="bb-meta">
+      <div class="bb-meta-item">
+        <span class="bb-meta-label">Style name</span>
+        <span class="bb-meta-value">Refined Ember</span>
+      </div>
+      <div class="bb-meta-item">
+        <span class="bb-meta-label">Version</span>
+        <span class="bb-meta-value">1.0 · June 2026</span>
+      </div>
+      <div class="bb-meta-item">
+        <span class="bb-meta-label">Primary font</span>
+        <span class="bb-meta-value">Poppins (body) + Raleway (headings)</span>
+      </div>
+      <div class="bb-meta-item">
+        <span class="bb-meta-label">Accent</span>
+        <span class="bb-meta-value" style="color:var(--color-accent);">#d4a44b · Gold</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bb-main">
+
+    <!-- 01 · COLORS -->
+    <section class="bb-section" id="colors">
+      <div class="bb-section-header">
+        <span class="bb-section-number">01</span>
+        <h2 class="bb-section-title">Color Palette</h2>
+        <p class="bb-section-desc">A warm, dark palette built around a gold accent. Three depth layers for backgrounds, one accent, two text shades, and semantic status colors.</p>
+      </div>
+
+      <p class="bb-color-group-label">Backgrounds</p>
+      <div class="bb-color-grid">
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#141210; border-bottom:1px solid #3a3020;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Base</p>
+            <span class="bb-color-hex">#141210</span>
+            <span class="bb-color-var">--color-base</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#201c18;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Surface</p>
+            <span class="bb-color-hex">#201c18</span>
+            <span class="bb-color-var">--color-surface</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#2c2620;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Elevated</p>
+            <span class="bb-color-hex">#2c2620</span>
+            <span class="bb-color-var">--color-elevated</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#3a3020; border-bottom:1px solid #5a4e42;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Border</p>
+            <span class="bb-color-hex">#3a3020</span>
+            <span class="bb-color-var">--color-border</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="bb-color-group-label">Accent</p>
+      <div class="bb-color-grid">
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#d4a44b;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Gold (primary)</p>
+            <span class="bb-color-hex">#d4a44b</span>
+            <span class="bb-color-var">--color-accent</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#e8b85c;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Gold (hover)</p>
+            <span class="bb-color-hex">#e8b85c</span>
+            <span class="bb-color-var">--color-accent-hover</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:rgba(212,164,75,0.15); border-bottom:1px solid var(--color-border);"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Gold (muted bg)</p>
+            <span class="bb-color-hex">rgba(212,164,75,0.15)</span>
+            <span class="bb-color-var">--color-accent-muted</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#141210; display:flex; align-items:center; justify-content:center;">
+            <span style="font-size:1.3rem; font-family:'Poppins',sans-serif; color:#141210; background:#d4a44b; padding:0.4rem 1rem; border-radius:3px;">Text on accent</span>
+          </div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">On Accent</p>
+            <span class="bb-color-hex">#141210</span>
+            <span class="bb-color-var">--color-on-accent</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="bb-color-group-label">Text</p>
+      <div class="bb-color-grid">
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#e8dcc8;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Primary text</p>
+            <span class="bb-color-hex">#e8dcc8</span>
+            <span class="bb-color-var">--color-text</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#9a8870;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Muted text</p>
+            <span class="bb-color-hex">#9a8870</span>
+            <span class="bb-color-var">--color-text-muted</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#5a4e42;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Faint / disabled</p>
+            <span class="bb-color-hex">#5a4e42</span>
+            <span class="bb-color-var">--color-text-faint</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="bb-color-group-label">Semantic</p>
+      <div class="bb-color-grid">
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#7c9a52;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Success</p>
+            <span class="bb-color-hex">#7c9a52</span>
+            <span class="bb-color-var">--color-success</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#b85042;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Error</p>
+            <span class="bb-color-hex">#b85042</span>
+            <span class="bb-color-var">--color-error</span>
+          </div>
+        </div>
+        <div class="bb-color-card">
+          <div class="bb-color-swatch" style="background:#d4a44b;"></div>
+          <div class="bb-color-info">
+            <p class="bb-color-name">Warning</p>
+            <span class="bb-color-hex">#d4a44b</span>
+            <span class="bb-color-var">--color-warning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · TYPOGRAPHY -->
+    <section class="bb-section" id="typography">
+      <div class="bb-section-header">
+        <span class="bb-section-number">02</span>
+        <h2 class="bb-section-title">Typography</h2>
+        <p class="bb-section-desc">Raleway (700) for all headings. Poppins (300/400) for body, UI copy, and captions. Monospace for code and technical labels.</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Raleway 700 · font-size: 6rem · --color-text</span>
+        <p class="bb-type-h1">Aleksei Lopatin</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Raleway 700 · font-size: 4.2rem · --color-text</span>
+        <p class="bb-type-h2">My Projects</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Raleway 700 · font-size: 2.8rem · --color-text</span>
+        <p class="bb-type-h3">School Portal</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Poppins 300 italic · font-size: 2rem · --color-accent</span>
+        <p class="bb-type-subtitle">Software Engineer · Math Teacher · Athlete</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Poppins 400 · font-size: 1.8rem · --color-text</span>
+        <p class="bb-type-body">Developer by passion, teacher by profession. I build interactive web projects — from school management tools to RPG utilities and mini games — and teach math when I'm not writing code.</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Poppins 300 · font-size: 1.5rem · --color-text-muted</span>
+        <p class="bb-type-body-sm">Next.js 16 · TypeScript · Supabase · Tailwind CSS · Vercel + Railway deploy</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Poppins 300 · font-size: 1.3rem · --color-text-faint</span>
+        <p class="bb-type-caption">© 2026 Aleksei Lopatin. All rights reserved.</p>
+      </div>
+
+      <div class="bb-type-sample">
+        <span class="bb-type-meta">Courier New · --color-accent on --color-elevated</span>
+        <p><span class="bb-type-code">&lt; School Portal /&gt;</span> &nbsp; <span class="bb-type-code">var(--color-accent)</span> &nbsp; <span class="bb-type-code">font-family: mono</span></p>
+      </div>
+    </section>
+
+    <!-- 03 · COMPONENTS -->
+    <section class="bb-section" id="components">
+      <div class="bb-section-header">
+        <span class="bb-section-number">03</span>
+        <h2 class="bb-section-title">Components</h2>
+        <p class="bb-section-desc">Reusable patterns built from the color and type systems. Every component uses CSS variables — swap the root values, everything updates.</p>
+      </div>
+
+      <!-- Nav -->
+      <span class="bb-component-label">Navigation bar</span>
+      <div class="bb-nav-demo" style="margin-bottom:3.2rem;">
+        <span class="bb-nav-demo-logo">Aleksei Lopatin</span>
+        <ul class="bb-nav-demo-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Work</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Buttons -->
+      <span class="bb-component-label" style="display:block; margin-bottom:1.2rem;">Buttons</span>
+      <div class="btn-row" style="margin-bottom:3.2rem;">
+        <button class="btn btn-primary">Primary action</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-danger">Delete</button>
+      </div>
+
+      <!-- Cards -->
+      <span class="bb-component-label" style="display:block; margin-bottom:1.2rem;">Project card</span>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:1.6rem; margin-bottom:3.2rem;">
+        <div class="bb-card">
+          <div class="bb-card-img">[ project screenshot ]</div>
+          <div class="bb-card-body">
+            <p class="bb-card-title">&lt; School Portal /&gt;</p>
+            <p class="bb-card-subtitle">Multilingual school management portal</p>
+            <div class="bb-card-tags">
+              <span class="tag tag-default">Next.js</span>
+              <span class="tag tag-default">TypeScript</span>
+              <span class="tag tag-success">● live</span>
+            </div>
+          </div>
+        </div>
+        <div class="bb-card">
+          <div class="bb-card-img">[ project screenshot ]</div>
+          <div class="bb-card-body">
+            <p class="bb-card-title">&lt; Gradebook /&gt;</p>
+            <p class="bb-card-subtitle">React + FastAPI grade tracking app</p>
+            <div class="bb-card-tags">
+              <span class="tag tag-default">React</span>
+              <span class="tag tag-default">FastAPI</span>
+              <span class="tag tag-success">● live</span>
+            </div>
+          </div>
+        </div>
+        <div class="bb-card">
+          <div class="bb-card-img">[ project screenshot ]</div>
+          <div class="bb-card-body">
+            <p class="bb-card-title">&lt; Mini Games /&gt;</p>
+            <p class="bb-card-subtitle">Platformer, RPG, dice &amp; more</p>
+            <div class="bb-card-tags">
+              <span class="tag tag-default">Vanilla JS</span>
+              <span class="tag tag-accent">featured</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <span class="bb-component-label" style="display:block; margin-bottom:1.2rem;">Tags / badges</span>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:3.2rem;">
+        <span class="tag tag-default">TypeScript</span>
+        <span class="tag tag-accent">featured</span>
+        <span class="tag tag-success">● live</span>
+        <span class="tag tag-error">deprecated</span>
+      </div>
+
+      <!-- Form -->
+      <span class="bb-component-label" style="display:block; margin-bottom:1.2rem;">Form elements</span>
+      <div style="max-width:420px;">
+        <div class="bb-input-group">
+          <label class="bb-label">Student name</label>
+          <input class="bb-input" type="text" placeholder="e.g. Somchai Jaidee">
+        </div>
+        <div class="bb-input-group">
+          <label class="bb-label">Subject</label>
+          <input class="bb-input" type="text" placeholder="e.g. Mathematics">
+        </div>
+        <div style="display:flex; gap:1rem;">
+          <button class="btn btn-primary">Save</button>
+          <button class="btn btn-ghost">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · USAGE -->
+    <section class="bb-section" id="usage">
+      <div class="bb-section-header">
+        <span class="bb-section-number">04</span>
+        <h2 class="bb-section-title">Usage Rules</h2>
+        <p class="bb-section-desc">Guidelines for keeping the brand consistent across all projects and contexts.</p>
+      </div>
+
+      <div class="bb-rules-grid">
+        <div class="bb-rule-block do">
+          <p class="bb-rule-title">Do</p>
+          <ul class="bb-rule-list">
+            <li>Use <code style="font-size:1.2rem;color:var(--color-accent);">--color-accent</code> for all primary CTAs, active states, and key links</li>
+            <li>Use Raleway 700 exclusively for headings (h1–h3)</li>
+            <li>Maintain the three background depth levels (base → surface → elevated) for visual hierarchy</li>
+            <li>Keep body text at Poppins 300/400 — never heavier than 400 for paragraphs</li>
+            <li>Use the <code style="font-size:1.2rem;color:var(--color-accent);">&lt; Project /&gt;</code> code-tag format for all project titles</li>
+            <li>Apply <code style="font-size:1.2rem;color:var(--color-accent);">--color-border-accent</code> for borders on accent-highlighted cards</li>
+            <li>Use CSS variables — never hardcode hex values in component files</li>
+          </ul>
+        </div>
+        <div class="bb-rule-block dont">
+          <p class="bb-rule-title">Don't</p>
+          <ul class="bb-rule-list">
+            <li>Don't use white or light backgrounds — all surfaces must be warm dark</li>
+            <li>Don't add a second accent color; gold is the only accent</li>
+            <li>Don't use font-weight 600 or 700 in body text (Poppins only)</li>
+            <li>Don't use blue as a link color — accent gold covers all interactive elements</li>
+            <li>Don't mix Inter or other sans-serifs with Poppins in the same interface</li>
+            <li>Don't use drop shadows for decoration — only for elevation signals</li>
+            <li>Don't use the school-blue (#004aad) anywhere — it's been replaced by the gold accent</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · VARIABLES -->
+    <section class="bb-section" id="variables">
+      <div class="bb-section-header">
+        <span class="bb-section-number">05</span>
+        <h2 class="bb-section-title">CSS Variables Reference</h2>
+        <p class="bb-section-desc">Copy this <code style="color:var(--color-accent);">:root</code> block into any project's main CSS file. For Tailwind, map these values into <code style="color:var(--color-accent);">tailwind.config.js</code> under <code style="color:var(--color-accent);">theme.extend.colors</code>.</p>
+      </div>
+
+      <div class="bb-code">
+<span class="c-comment">/* Refined Ember — Aleksei Lopatin brand system v1.0 */</span>
+<span class="c-prop">:root {</span>
+
+  <span class="c-comment">/* Backgrounds */</span>
+  <span class="c-var">--color-base</span>:            <span class="c-val">#141210</span>;
+  <span class="c-var">--color-surface</span>:         <span class="c-val">#201c18</span>;
+  <span class="c-var">--color-elevated</span>:        <span class="c-val">#2c2620</span>;
+
+  <span class="c-comment">/* Accent (gold) */</span>
+  <span class="c-var">--color-accent</span>:          <span class="c-val">#d4a44b</span>;
+  <span class="c-var">--color-accent-hover</span>:    <span class="c-val">#e8b85c</span>;
+  <span class="c-var">--color-accent-muted</span>:    <span class="c-val">rgba(212, 164, 75, 0.15)</span>;
+  <span class="c-var">--color-on-accent</span>:       <span class="c-val">#141210</span>;
+
+  <span class="c-comment">/* Text */</span>
+  <span class="c-var">--color-text</span>:            <span class="c-val">#e8dcc8</span>;
+  <span class="c-var">--color-text-muted</span>:      <span class="c-val">#9a8870</span>;
+  <span class="c-var">--color-text-faint</span>:      <span class="c-val">#5a4e42</span>;
+
+  <span class="c-comment">/* Borders */</span>
+  <span class="c-var">--color-border</span>:          <span class="c-val">#3a3020</span>;
+  <span class="c-var">--color-border-accent</span>:   <span class="c-val">rgba(212, 164, 75, 0.25)</span>;
+  <span class="c-var">--color-border-strong</span>:   <span class="c-val">#5a4e42</span>;
+
+  <span class="c-comment">/* Semantic */</span>
+  <span class="c-var">--color-success</span>:         <span class="c-val">#7c9a52</span>;
+  <span class="c-var">--color-error</span>:           <span class="c-val">#b85042</span>;
+  <span class="c-var">--color-warning</span>:         <span class="c-val">#d4a44b</span>;
+
+  <span class="c-comment">/* Typography */</span>
+  <span class="c-var">--font-heading</span>:          <span class="c-val">'Raleway', sans-serif</span>;
+  <span class="c-var">--font-body</span>:             <span class="c-val">'Poppins', sans-serif</span>;
+  <span class="c-var">--font-mono</span>:             <span class="c-val">'Courier New', Courier, monospace</span>;
+
+  <span class="c-comment">/* Spacing (rem, base: html font-size 62.5%) */</span>
+  <span class="c-var">--space-xs</span>:  <span class="c-val">0.4rem</span>;
+  <span class="c-var">--space-sm</span>:  <span class="c-val">0.8rem</span>;
+  <span class="c-var">--space-md</span>:  <span class="c-val">1.6rem</span>;
+  <span class="c-var">--space-lg</span>:  <span class="c-val">2.4rem</span>;
+  <span class="c-var">--space-xl</span>:  <span class="c-val">4.0rem</span>;
+  <span class="c-var">--space-2xl</span>: <span class="c-val">6.4rem</span>;
+
+  <span class="c-comment">/* Border radius */</span>
+  <span class="c-var">--radius-sm</span>: <span class="c-val">3px</span>;
+  <span class="c-var">--radius-md</span>: <span class="c-val">6px</span>;
+  <span class="c-var">--radius-lg</span>: <span class="c-val">10px</span>;
+
+  <span class="c-comment">/* Shadows */</span>
+  <span class="c-var">--shadow-sm</span>: <span class="c-val">0 1px 3px rgba(0, 0, 0, 0.4)</span>;
+  <span class="c-var">--shadow-md</span>: <span class="c-val">0 4px 12px rgba(0, 0, 0, 0.5)</span>;
+
+  <span class="c-comment">/* Transition */</span>
+  <span class="c-var">--transition</span>: <span class="c-val">200ms ease</span>;
+<span class="c-prop">}</span>
+      </div>
+
+      <hr class="bb-divider">
+
+      <p class="bb-section-desc" style="margin-top:2.4rem;">For Tailwind CSS projects (school portal, gradebook), add to <code style="color:var(--color-accent);">tailwind.config.js</code>:</p>
+      <div class="bb-code" style="margin-top:1.6rem;">
+<span class="c-prop">module.exports = {</span>
+  <span class="c-prop">theme: {</span>
+    <span class="c-prop">extend: {</span>
+      <span class="c-prop">colors: {</span>
+        <span class="c-var">ember</span>: {
+          <span class="c-var">base</span>:     <span class="c-val">'#141210'</span>,
+          <span class="c-var">surface</span>: <span class="c-val">'#201c18'</span>,
+          <span class="c-var">elevated</span>:<span class="c-val">'#2c2620'</span>,
+          <span class="c-var">accent</span>:  <span class="c-val">'#d4a44b'</span>,
+          <span class="c-var">text</span>:    <span class="c-val">'#e8dcc8'</span>,
+          <span class="c-var">muted</span>:   <span class="c-val">'#9a8870'</span>,
+          <span class="c-var">border</span>:  <span class="c-val">'#3a3020'</span>,
+          <span class="c-var">success</span>: <span class="c-val">'#7c9a52'</span>,
+          <span class="c-var">error</span>:   <span class="c-val">'#b85042'</span>,
+        }
+      <span class="c-prop">},</span>
+      <span class="c-prop">fontFamily: {</span>
+        <span class="c-var">heading</span>: <span class="c-val">['Raleway', 'sans-serif']</span>,
+        <span class="c-var">body</span>:    <span class="c-val">['Poppins', 'sans-serif']</span>,
+      <span class="c-prop">}</span>
+    <span class="c-prop">}</span>
+  <span class="c-prop">}</span>
+<span class="c-prop">}</span>
+      </div>
+    </section>
+
+  </div><!-- /bb-main -->
+
+  <footer class="bb-footer">
+    <p>Refined Ember · Brand System v1.0 · <a href="https://alekseilopatin.com">alekseilopatin.com</a></p>
+    <p>Last updated: June 2026</p>
+  </footer>
+
+</body>
+</html>

@@ -1,80 +1,146 @@
-/* styles.css */
+/* Refined Ember · Aleksei Lopatin brand system v1.0
+   Variables injected via ../../brand.css */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  min-height: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background-color: var(--color-base);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
 }
 
 h1 {
-    color: #2c3e50;
-    font-size: 2.5em;
-    margin-bottom: 20px;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin-bottom: 1.4rem;
+  color: var(--color-text);
+  text-align: center;
 }
 
 h2 {
-    color: #34495e;
-    font-size: 1.8em;
-    margin-bottom: 10px;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-text);
+  text-align: center;
 }
 
-#input-box {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+#input-box,
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
 }
 
 label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.1em;
-    color: #2c3e50;
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  color: var(--color-text-muted);
 }
 
-#text-input {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 2px solid #3498db;
-    border-radius: 4px;
-    font-size: 1em;
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  margin-bottom: 1rem;
+  background-color: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition);
 }
 
-#check-btn {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: var(--color-accent);
 }
 
-#check-btn:hover {
-    background-color: #2980b9;
+button,
+.btn {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  padding: 0.65rem 1.4rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
 }
 
-#result {
-    margin-top: 15px;
-    font-size: 1.2em;
-    color: #27ae60;
+button:hover,
+.btn:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
 }
 
+#result,
+.result,
+#results-div,
+.result-text {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--color-success);
+  min-height: 2rem;
+}
+
+.invalid,
+.error {
+  color: var(--color-error);
+}
+
+p,
 #definition {
-    margin-top: 30px;
-    font-size: 0.9em;
-    color: #7f8c8d;
-    text-align: center;
-    max-width: 600px;
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.results-text {
+  font-size: 1rem;
+  padding: 0.4rem;
+  color: var(--color-text);
+  margin: 0.5rem 0;
+}
+
+#results-div {
+  overflow-y: auto;
+  max-height: 260px;
+  width: 100%;
+  color: var(--color-text);
+  margin-top: 1rem;
+}
+
+#clear-btn {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  margin-left: 0.5rem;
+}
+
+#clear-btn:hover {
+  background: var(--color-elevated);
+  color: var(--color-text);
 }
