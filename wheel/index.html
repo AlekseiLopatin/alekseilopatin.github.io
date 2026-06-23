@@ -274,7 +274,7 @@ const DEFAULTS = [
 const LS_KEY = 'student-picker-v2';
 let S;
 try { S = JSON.parse(localStorage.getItem(LS_KEY)); } catch(e){}
-if (!S || !Array.isArray(S.grades) || S.grades.length !== 3) {
+if (!S || !Array.isArray(S.grades) || S.grades.length !== 7) {
   S = {
     grades: DEFAULTS.map(g => ({label:g.label, names:[...g.names], picked:[]})),
     current:0, mode:'wheel', removeOnPick:true, muted:false,
