@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fraction Simplifier — alekseilopatin.com</title>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 <style>
   :root{
     --bg:#0f172a; --panel:#1e293b; --panel2:#334155; --text:#f1f5f9; --muted:#94a3b8;
@@ -34,6 +36,10 @@
   .tab.active{background:var(--accent); color:#1c1003;}
   .tab:hover:not(.active){background:var(--panel2); color:var(--text);}
   .spacer{flex:1;}
+  .connStatus{font-size:12px; font-weight:700; padding:5px 12px; border-radius:999px; background:var(--panel2); color:var(--muted); white-space:nowrap;}
+  .connStatus.synced{background:#10b98133; color:var(--good);}
+  .connStatus.offline{background:#ef444433; color:#fca5a5;}
+  .setupBanner{background:#78350f; color:#fef3c7; font-size:13px; padding:10px 18px; text-align:center;}
 
   .difficulty-row{
     display:flex; gap:8px; flex-wrap:wrap; padding:10px 18px; background:#0b122288;
@@ -70,6 +76,7 @@
   }
   .pickbtn:active{transform:translateY(2px); box-shadow:0 2px 0 #92400e;}
   .pickbtn:disabled{filter:grayscale(.6) brightness(.7); cursor:default;}
+  .pickCaption{font-size:11px; color:var(--muted);}
 
   /* exercise */
   .fracRow{display:flex; align-items:center; justify-content:center; gap:18px; padding:18px 0 10px; flex-wrap:wrap;}
@@ -124,7 +131,13 @@
   <h1>🧮 Fraction <span>Simplifier</span></h1>
   <div class="tabs" id="gradeTabs"></div>
   <div class="spacer"></div>
+  <span class="connStatus" id="connStatus">⏳ Connecting…</span>
 </header>
+
+<div class="setupBanner" id="setupBanner" style="display:none;">
+  ⚠️ Not connected to the shared database yet — scores are only saved on this device/browser.
+  Paste your Firebase config into the FIREBASE_CONFIG block in this file to sync scores everywhere.
+</div>
 
 <div class="difficulty-row" id="diffTabs"></div>
 
@@ -136,6 +149,7 @@
       <div class="solver">
         <div class="solverName empty" id="solverName">Tap to pick a student</div>
         <button class="pickbtn" id="pickBtn">🎲 Pick Random Student</button>
+        <div class="pickCaption">🎯 Students lower on the scoreboard get picked more often</div>
       </div>
     </div>
 
@@ -192,6 +206,59 @@ if (!S || !Array.isArray(S.grades) || S.grades.length !== 3) {
 const save = () => localStorage.setItem(LS_KEY, JSON.stringify(S));
 const G = () => S.grades[S.current];
 
+/* =================== shared database (Firebase Firestore) =================== */
+// Only SCORES are synced across devices — difficulty, current grade tab, current
+// exercise, and current solver stay local to each browser (localStorage as before).
+//
+// ONE-TIME SETUP (~5 min): create a free project at https://console.firebase.google.com/
+// -> Build -> Firestore Database -> Create database -> in the Rules tab allow
+// read/write on the gradeScores collection -> register a Web app ("</>") and paste
+// the firebaseConfig object it gives you into FIREBASE_CONFIG below.
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyCLBlsR_HR2RsFamgN8sex2ViH_FJc8lKM",
+  authDomain: "classroom-scores-c5b28.firebaseapp.com",
+  projectId: "classroom-scores-c5b28",
+  storageBucket: "classroom-scores-c5b28.firebasestorage.app",
+  messagingSenderId: "659883471740",
+  appId: "1:659883471740:web:19e0b84e985acdb6862af9",
+};
+const FIREBASE_READY = !!(FIREBASE_CONFIG.apiKey && !FIREBASE_CONFIG.apiKey.startsWith('PASTE_'));
+let db = null;
+function setConnStatus(kind, label){
+  const el = document.getElementById('connStatus');
+  el.className = 'connStatus ' + kind;
+  el.textContent = label;
+}
+if (FIREBASE_READY){
+  firebase.initializeApp(FIREBASE_CONFIG);
+  db = firebase.firestore();
+  S.grades.forEach(g => {
+    db.collection('gradeScores').doc(g.label).onSnapshot(snap => {
+      const data = snap.data();
+      g.scores = (data && data.scores) || {};
+      setConnStatus('synced', '☁️ Synced');
+      renderBoard();
+    }, err => {
+      console.error('Firestore sync error', err);
+      setConnStatus('offline', '⚠️ Sync error');
+    });
+  });
+} else {
+  document.getElementById('setupBanner').style.display = 'block';
+  setConnStatus('offline', '📴 Local only');
+}
+function remoteBumpScore(gradeLabel, name, delta){
+  if (!db) return;
+  db.collection('gradeScores').doc(gradeLabel).set(
+    { scores: { [name]: firebase.firestore.FieldValue.increment(delta) } },
+    { merge: true }
+  ).catch(err => console.error('score sync failed', err));
+}
+function remoteResetScores(gradeLabel){
+  if (!db) return;
+  db.collection('gradeScores').doc(gradeLabel).set({ scores: {} }).catch(err => console.error('reset sync failed', err));
+}
+
 /* =================== utils =================== */
 const irand = n => Math.floor(Math.random()*n);
 const clamp = (x,a,b) => Math.max(a, Math.min(b,x));
@@ -209,6 +276,26 @@ function biasedInt(min, max, skew){
   return Math.round(min + t*(max-min));
 }
 const PALETTE = ['#ef4444','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899','#14b8a6'];
+
+/* =================== weighted student randomizer =================== */
+// Catch-up mechanic: ranked by current score, the bottom 10 get picked most often,
+// the middle 10 less often, and the top 10 least often — keeps a few strong
+// scorers from hogging every turn while still leaving them a (smaller) chance.
+const PICK_TIER_WEIGHT = {top:1, middle:2, bottom:3};
+function rankedTiers(){
+  const g = G();
+  const ranked = g.names.map(name => ({name, pts: g.scores[name] || 0}))
+    .sort((a,b) => b.pts - a.pts); // highest score first
+  return {top: ranked.slice(0,10), middle: ranked.slice(10,20), bottom: ranked.slice(20)};
+}
+function weightedPickStudent(){
+  const {top, middle, bottom} = rankedTiers();
+  const items = [];
+  top.forEach(s => items.push([s.name, PICK_TIER_WEIGHT.top]));
+  middle.forEach(s => items.push([s.name, PICK_TIER_WEIGHT.middle]));
+  bottom.forEach(s => items.push([s.name, PICK_TIER_WEIGHT.bottom]));
+  return pickWeighted(items);
+}
 
 /* =================== fraction generation =================== */
 // every exercise = (a*k)/(b*k) with gcd(a,b)=1 and k>1, so it is ALWAYS reducible —
@@ -369,7 +456,7 @@ document.getElementById('pickBtn').onclick = () => {
   if (!names.length) return;
   spinning = true;
   document.getElementById('pickBtn').disabled = true;
-  const winner = names[irand(names.length)];
+  const winner = weightedPickStudent();
   const display = document.getElementById('solverName');
   display.classList.remove('empty');
   const dur = 2200, t0 = performance.now();
@@ -409,6 +496,7 @@ function score(points){
   lastScored = S.currentStudent;
   save();
   renderBoard();
+  remoteBumpScore(g.label, S.currentStudent, points);
   clearTimeout(flashTimer);
   flashTimer = setTimeout(() => { lastScored = null; renderBoard(); }, 1200);
   if (points === 10){
@@ -428,7 +516,9 @@ document.getElementById('scoreTried').onclick = () => score(2);
 /* =================== reset scores =================== */
 document.getElementById('resetScoresBtn').onclick = () => {
   if (!confirm(`Reset all scores for ${G().label}?`)) return;
-  G().scores = {}; save(); renderBoard();
+  const g = G();
+  g.scores = {}; save(); renderBoard();
+  remoteResetScores(g.label);
 };
 
 /* =================== init =================== */
