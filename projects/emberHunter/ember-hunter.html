@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ember Hunter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-base: #141210;
+    --color-surface: #201c18;
+    --color-elevated: #2c2620;
+    --color-accent: #d4a44b;
+    --color-accent-hover: #e8b85c;
+    --color-accent-muted: rgba(212, 164, 75, 0.15);
+    --color-on-accent: #141210;
+    --color-text: #e8dcc8;
+    --color-text-muted: #9a8870;
+    --color-text-faint: #5a4e42;
+    --color-border: #3a3020;
+    --color-border-accent: rgba(212, 164, 75, 0.28);
+    --color-border-strong: #5a4e42;
+    --color-success: #7c9a52;
+    --color-error: #b85042;
+    --color-error-muted: rgba(184, 80, 66, 0.12);
+    --color-system: #5eb7a7;
+    --color-focus: #8b7cf6;
+    --font-heading: "Raleway", sans-serif;
+    --font-body: "Poppins", sans-serif;
+    --radius-sm: 3px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --shadow-md: 0 16px 44px rgba(0, 0, 0, 0.42);
+    --transition: 180ms ease;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body { min-height: 100%; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background:
+      radial-gradient(circle at 50% -10%, rgba(212, 164, 75, 0.2), transparent 32rem),
+      radial-gradient(circle at 8% 16%, rgba(94, 183, 167, 0.11), transparent 20rem),
+      linear-gradient(180deg, #191511 0%, var(--color-base) 40%, #0f0d0b 100%);
+  }
+
+  button, input, select { font: inherit; }
+  button { border: 0; cursor: pointer; }
+
+  .app-shell {
+    width: min(100%, 480px);
+    min-height: 100dvh;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(32, 28, 24, 0.74), rgba(20, 18, 16, 0.94));
+    border-left: 1px solid rgba(212, 164, 75, 0.08);
+    border-right: 1px solid rgba(212, 164, 75, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .screen { min-height: 100dvh; padding: 22px 18px 92px; }
+  .hidden { display: none !important; }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, var(--color-accent), #8d5f1e);
+    color: var(--color-on-accent);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    box-shadow: 0 0 28px rgba(212, 164, 75, 0.28);
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    margin: 0;
+    letter-spacing: 0;
+  }
+
+  h1 { font-size: 38px; line-height: 1.02; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 16px; }
+
+  p { color: var(--color-text-muted); line-height: 1.58; }
+
+  .onboarding {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    justify-content: space-between;
+  }
+
+  .hero-copy { padding-top: 34px; }
+
+  .hero-title {
+    margin-top: 18px;
+    max-width: 8ch;
+  }
+
+  .hero-card,
+  .panel,
+  .quest-card,
+  .achievement-card,
+  .stat-card {
+    background: rgba(32, 28, 24, 0.88);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .hero-card { padding: 16px; box-shadow: var(--shadow-md); }
+
+  .field { display: grid; gap: 8px; margin-bottom: 14px; }
+  .label { color: var(--color-text-muted); font-size: 12px; }
+
+  .input {
+    width: 100%;
+    color: var(--color-text);
+    background: var(--color-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 12px 13px;
+    outline: none;
+  }
+
+  .input:focus { border-color: var(--color-accent); }
+
+  .choice-grid { display: grid; gap: 10px; }
+
+  .choice {
+    text-align: left;
+    color: var(--color-text);
+    background: var(--color-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 13px;
+    transition: border-color var(--transition), transform var(--transition), background var(--transition);
+  }
+
+  .choice strong { display: block; font-size: 14px; margin-bottom: 4px; }
+  .choice span { color: var(--color-text-muted); font-size: 12px; line-height: 1.45; display: block; }
+  .choice.active { border-color: var(--color-accent); background: var(--color-accent-muted); }
+  .choice:active { transform: scale(0.99); }
+
+  .primary-btn,
+  .secondary-btn,
+  .small-btn {
+    border-radius: var(--radius-md);
+    min-height: 44px;
+    font-weight: 700;
+  }
+
+  .primary-btn {
+    width: 100%;
+    background: linear-gradient(180deg, var(--color-accent-hover), var(--color-accent));
+    color: var(--color-on-accent);
+  }
+
+  .secondary-btn {
+    background: var(--color-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0 14px;
+  }
+
+  .small-btn {
+    min-height: 36px;
+    background: var(--color-accent-muted);
+    color: var(--color-accent);
+    border: 1px solid var(--color-border-accent);
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .identity { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .identity h2 { font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .identity p { margin: 2px 0 0; font-size: 11px; }
+
+  .currency {
+    color: var(--color-accent);
+    background: var(--color-accent-muted);
+    border: 1px solid var(--color-border-accent);
+    border-radius: 999px;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .rank-panel {
+    padding: 16px;
+    background:
+      linear-gradient(135deg, rgba(212, 164, 75, 0.18), rgba(94, 183, 167, 0.08)),
+      var(--color-surface);
+    border: 1px solid var(--color-border-accent);
+    border-radius: var(--radius-lg);
+    margin-bottom: 16px;
+  }
+
+  .rank-row { display: flex; justify-content: space-between; gap: 12px; align-items: end; }
+  .rank-row h1 { font-size: 30px; }
+  .rank-row p { margin: 4px 0 0; font-size: 12px; }
+
+  .xp-wrap {
+    height: 10px;
+    background: rgba(20, 18, 16, 0.7);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .xp-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-system));
+    transition: width 300ms ease;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 20px 0 10px;
+  }
+
+  .section-head p { margin: 3px 0 0; font-size: 12px; }
+
+  .deadline {
+    min-width: 92px;
+    text-align: right;
+  }
+
+  .deadline span {
+    display: block;
+    color: var(--color-text-faint);
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+
+  .deadline strong {
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    font-size: 15px;
+  }
+
+  .quest-list, .achievement-list, .stat-grid { display: grid; gap: 10px; }
+
+  .consequence-panel {
+    display: grid;
+    gap: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background:
+      linear-gradient(135deg, var(--color-error-muted), rgba(212, 164, 75, 0.08)),
+      var(--color-surface);
+    border: 1px solid rgba(184, 80, 66, 0.5);
+    border-radius: var(--radius-lg);
+  }
+
+  .consequence-panel.resolved {
+    background: rgba(124, 154, 82, 0.08);
+    border-color: rgba(124, 154, 82, 0.42);
+  }
+
+  .consequence-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .consequence-head h3 { font-size: 18px; }
+  .consequence-head p { margin: 5px 0 0; font-size: 12px; }
+
+  .severity-mark {
+    flex: 0 0 auto;
+    color: var(--color-error);
+    background: var(--color-error-muted);
+    border: 1px solid rgba(184, 80, 66, 0.44);
+    border-radius: var(--radius-sm);
+    padding: 5px 7px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .consequence-requirement {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 13px;
+  }
+
+  .consequence-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .consequence-actions .primary-btn,
+  .consequence-actions .secondary-btn { width: 100%; }
+
+  .quest-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    padding: 14px;
+    min-height: 88px;
+  }
+
+  .quest-card.done {
+    border-color: rgba(124, 154, 82, 0.42);
+    background: rgba(124, 154, 82, 0.08);
+  }
+
+  .quest-meta {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .alternative-btn {
+    min-height: 28px;
+    padding: 3px 8px;
+    color: var(--color-system);
+    background: rgba(94, 183, 167, 0.09);
+    border: 1px solid rgba(94, 183, 167, 0.28);
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .tag {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    background: var(--color-elevated);
+    padding: 3px 7px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .tag.gold { color: var(--color-accent); border-color: var(--color-border-accent); background: var(--color-accent-muted); }
+  .tag.system { color: var(--color-system); border-color: rgba(94, 183, 167, 0.28); background: rgba(94, 183, 167, 0.09); }
+
+  .complete-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    align-self: center;
+    background: var(--color-elevated);
+    color: var(--color-accent);
+    border: 1px solid var(--color-border-accent);
+    font-weight: 800;
+  }
+
+  .quest-card.done .complete-btn {
+    color: var(--color-on-accent);
+    background: var(--color-success);
+    border-color: var(--color-success);
+  }
+
+  .achievement-card { padding: 13px; }
+  .achievement-card h3 { display: flex; justify-content: space-between; gap: 10px; }
+  .achievement-card p { margin: 5px 0 10px; font-size: 12px; }
+
+  .progress-line {
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(20, 18, 16, 0.82);
+    border: 1px solid var(--color-border);
+  }
+
+  .progress-line span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-focus));
+  }
+
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat-card { padding: 14px; min-height: 92px; }
+  .stat-card strong { font-family: var(--font-heading); font-size: 24px; display: block; }
+  .stat-card span { color: var(--color-text-muted); font-size: 12px; }
+
+  .bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: min(100%, 480px);
+    height: calc(70px + env(safe-area-inset-bottom));
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: rgba(20, 18, 16, 0.92);
+    border-top: 1px solid var(--color-border);
+    backdrop-filter: blur(14px);
+    z-index: 5;
+  }
+
+  .nav-btn {
+    color: var(--color-text-muted);
+    background: transparent;
+    border-radius: var(--radius-md);
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 3px;
+    font-size: 10px;
+  }
+
+  .nav-btn b { font-size: 15px; line-height: 1; }
+  .nav-btn.active { color: var(--color-accent); background: var(--color-accent-muted); }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 84px;
+    transform: translateX(-50%) translateY(18px);
+    width: min(calc(100% - 28px), 440px);
+    padding: 13px 14px;
+    background: var(--color-elevated);
+    border: 1px solid var(--color-border-accent);
+    border-radius: var(--radius-lg);
+    color: var(--color-text);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition), transform var(--transition);
+    z-index: 10;
+  }
+
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .system-alert-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    background: rgba(15, 13, 11, 0.86);
+    backdrop-filter: blur(8px);
+  }
+
+  .system-alert {
+    width: min(100%, 420px);
+    padding: 20px;
+    background: var(--color-surface);
+    border: 1px solid rgba(184, 80, 66, 0.58);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .system-alert .brand-mark {
+    background: var(--color-error);
+    box-shadow: 0 0 28px rgba(184, 80, 66, 0.28);
+  }
+
+  .system-alert h2 { margin-top: 16px; }
+  .system-alert p { margin: 8px 0 18px; font-size: 13px; }
+
+  .mode-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--color-system);
+    border: 1px solid rgba(94, 183, 167, 0.3);
+    background: rgba(94, 183, 167, 0.09);
+    border-radius: 999px;
+    padding: 6px 9px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .settings-row:last-child { border-bottom: 0; }
+  .settings-row p { margin: 3px 0 0; font-size: 12px; }
+
+  @media (min-width: 720px) {
+    body { padding: 24px 0; }
+    .app-shell { min-height: calc(100dvh - 48px); border-radius: 18px; box-shadow: var(--shadow-md); }
+    .screen { min-height: calc(100dvh - 48px); }
+    .bottom-nav { bottom: 24px; border-radius: 0 0 18px 18px; }
+  }
+
+  @media (max-width: 360px) {
+    .consequence-actions { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main class="app-shell">
+  <section id="onboarding" class="screen onboarding">
+    <div class="hero-copy">
+      <div class="brand-mark">EH</div>
+      <p class="eyebrow">The Ember System is online</p>
+      <h1 class="hero-title">Ember Hunter</h1>
+      <p>Complete concrete daily training and life quests, earn Embers, and grow stronger through The Ember System.</p>
+    </div>
+
+    <div class="hero-card">
+      <div class="field">
+        <label class="label" for="hunterName">Hunter name</label>
+        <input class="input" id="hunterName" type="text" maxlength="28" placeholder="Aleksei">
+      </div>
+
+      <div class="field">
+        <span class="label">Experience style</span>
+        <div class="choice-grid" id="modeChoices"></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Starting rank</span>
+        <div class="choice-grid" id="rankChoices"></div>
+      </div>
+
+      <button class="primary-btn" id="startBtn">Enter the System</button>
+    </div>
+  </section>
+
+  <section id="app" class="screen hidden">
+    <header class="topbar">
+      <div class="identity">
+        <div class="brand-mark">EH</div>
+        <div>
+          <h2 id="displayName">Hunter</h2>
+          <p id="displaySubtitle">The Ember Path</p>
+        </div>
+      </div>
+      <div class="currency"><span id="embers">0</span> Embers</div>
+    </header>
+
+    <section class="rank-panel">
+      <div class="rank-row">
+        <div>
+          <p class="eyebrow" id="modeLabel">Discipline Mode</p>
+          <h1 id="rankTitle">Spark Rank</h1>
+          <p id="xpLabel">Level 1 - 0 / 100 XP</p>
+        </div>
+        <span class="mode-pill" id="dailyState">0 / 0 clear</span>
+      </div>
+      <div class="xp-wrap"><div class="xp-bar" id="xpBar"></div></div>
+    </section>
+
+    <div id="view-quests" class="view">
+      <div class="section-head">
+        <div>
+          <h2>Daily Contracts</h2>
+          <p id="questHint">The Ember System generated today's work.</p>
+        </div>
+        <div class="deadline" aria-label="Time remaining until daily reset">
+          <span>Reset in</span>
+          <strong id="deadlineCountdown">--:--:--</strong>
+        </div>
+      </div>
+      <section id="consequencePanel" class="consequence-panel hidden" aria-live="polite"></section>
+      <div class="quest-list" id="questList"></div>
+    </div>
+
+    <div id="view-stats" class="view hidden">
+      <div class="section-head">
+        <div>
+          <h2>Hunter Status</h2>
+          <p>Your growth summary on this device.</p>
+        </div>
+      </div>
+      <div class="stat-grid" id="statGrid"></div>
+    </div>
+
+    <div id="view-profile" class="view hidden">
+      <div class="section-head">
+        <div>
+          <h2>System Settings</h2>
+          <p>Tune the tone without restarting your journey.</p>
+        </div>
+      </div>
+      <div class="panel" style="padding: 0 14px;">
+        <div class="settings-row">
+          <div>
+            <h3>Mode</h3>
+            <p>Switch between grounded and dramatic copy.</p>
+          </div>
+          <button class="secondary-btn" id="toggleMode">Change</button>
+        </div>
+        <div class="settings-row">
+          <div>
+            <h3>Rank</h3>
+            <p>Controls tomorrow's contract count and intensity.</p>
+          </div>
+          <button class="secondary-btn" id="cycleRank">Change</button>
+        </div>
+        <div class="settings-row">
+          <div>
+            <h3>Daily Deadline</h3>
+            <p>Contracts reset at local midnight on this device.</p>
+          </div>
+          <span class="tag gold">00:00</span>
+        </div>
+        <div class="settings-row">
+          <div>
+            <h3>Device Save</h3>
+            <p>Progress is stored in this browser with localStorage.</p>
+          </div>
+          <button class="secondary-btn" id="exportData">Copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav id="bottomNav" class="bottom-nav hidden" aria-label="Main navigation">
+    <button class="nav-btn active" data-view="quests"><b>Q</b><span>Quests</span></button>
+    <button class="nav-btn" data-view="stats"><b>S</b><span>Stats</span></button>
+    <button class="nav-btn" data-view="profile"><b>H</b><span>Hunter</span></button>
+  </nav>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="system-alert-backdrop hidden" id="systemAlert" role="dialog" aria-modal="true" aria-labelledby="systemAlertTitle">
+  <section class="system-alert">
+    <div class="brand-mark">!</div>
+    <p class="eyebrow" id="systemAlertEyebrow">System review</p>
+    <h2 id="systemAlertTitle">Unfinished contracts detected</h2>
+    <p id="systemAlertMessage"></p>
+    <button class="primary-btn" id="acknowledgeConsequence">Accept Contract</button>
+  </section>
+</div>
+
+<script>
+const STORAGE_KEY = "ember-hunter-save-v1";
+
+const modes = {
+  discipline: {
+    name: "Discipline Mode",
+    description: "Calm, direct self-improvement language.",
+    complete: "Contract complete. Steady work counts.",
+    fullClear: "Full Clear Reward earned.",
+    consequenceName: "Recovery Quest",
+    consequenceWarning: "A required contract was left unfinished. Complete one harder, category-matched recovery task today.",
+    consequenceComplete: "Recovery complete. Your normal rhythm is restored.",
+    consequenceWaived: "Emergency recovery used. No reward was granted."
+  },
+  awakening: {
+    name: "Awakening Mode",
+    description: "Dramatic RPG language with stronger system flavor.",
+    complete: "Contract cleared. The Ember System recognizes your effort.",
+    fullClear: "Full Clear Reward unlocked. Your rank pressure rises.",
+    consequenceName: "Penalty Contract",
+    consequenceWarning: "Required contracts were not cleared. The Ember System has issued a harder contract.",
+    consequenceComplete: "Penalty Contract cleared. The Ember System releases you.",
+    consequenceWaived: "Emergency recovery accepted. Rewards have been sealed."
+  }
+};
+
+const consequenceTiers = {
+  1: { multiplier: 1.5, label: "Tier I", effort: "50% more" },
+  2: { multiplier: 1.75, label: "Tier II", effort: "75% more" },
+  3: { multiplier: 2, label: "Tier III", effort: "double" }
+};
+
+const ranks = [
+  { id: "spark", name: "Spark Rank", description: "2 light contracts per day.", questCount: 2, xp: 18, embers: 5 },
+  { id: "hunter", name: "Hunter Rank", description: "4 balanced contracts per day.", questCount: 4, xp: 24, embers: 7 },
+  { id: "monarch", name: "Monarch Trial", description: "6 ambitious contracts per day.", questCount: 6, xp: 32, embers: 10 }
+];
+
+const categoryMetrics = {
+  body: { metric: "training_sessions", unit: "sessions", target: 120, timeframe: "12 months" },
+  mind: { metric: "study_sessions", unit: "sessions", target: 160, timeframe: "12 months" },
+  character: { metric: "practice_reps", unit: "reps", target: 100, timeframe: "12 months" },
+  relationships: { metric: "connection_actions", unit: "actions", target: 80, timeframe: "12 months" },
+  creativity: { metric: "creative_blocks", unit: "blocks", target: 120, timeframe: "12 months" },
+  career: { metric: "mastery_blocks", unit: "blocks", target: 160, timeframe: "12 months" },
+  adventure: { metric: "planning_steps", unit: "steps", target: 60, timeframe: "12 months" },
+  inner: { metric: "reflection_sessions", unit: "sessions", target: 120, timeframe: "12 months" },
+  humanity: { metric: "impact_actions", unit: "actions", target: 80, timeframe: "12 months" }
+};
+
+const achievements = [
+  ["body", "Marathon Breaker", "Run a marathon under 3 hours."],
+  ["body", "Five-K Flame", "Run a sub-20 minute 5K."],
+  ["body", "Ultra Endurance", "Complete an ultramarathon."],
+  ["body", "Iron Body", "Finish an Ironman."],
+  ["body", "High Summit", "Climb a mountain over 5,000 m."],
+  ["body", "Seven-Day Trail", "Hike for 7 consecutive days."],
+  ["body", "Open Water Core", "Swim 10 km."],
+  ["body", "Wave Initiate", "Learn to surf."],
+  ["body", "Deep Sea License", "Learn to scuba dive."],
+  ["body", "Peak Composition", "Reach your healthiest body composition."],
+  ["body", "Decade of Vitality", "Maintain excellent health for a decade."],
+  ["body", "Century Independent", "Live to 100 with independence."],
+  ["body", "Lifetime Squat", "Master mobility for a full squat for life."],
+  ["body", "Year of Sleep", "Sleep consistently well for a full year."],
+  ["body", "Unbroken Health", "Go one year without major illness."],
+  ["mind", "Library Monarch", "Read 1,000 books."],
+  ["mind", "Calculus Adept", "Learn calculus deeply."],
+  ["mind", "Claim Breaker", "Understand statistics well enough to spot misleading claims."],
+  ["mind", "Instrument Bond", "Learn a musical instrument."],
+  ["mind", "Five Tongues", "Become conversational in five languages."],
+  ["mind", "Memory Archive", "Memorize 500 poems, quotes, or passages."],
+  ["mind", "Continental Scholar", "Understand the history of every continent."],
+  ["mind", "Many Traditions", "Study philosophy from multiple traditions."],
+  ["mind", "Night Navigator", "Learn enough astronomy to navigate the night sky."],
+  ["mind", "Body Scholar", "Learn enough biology to understand your own body."],
+  ["mind", "Personal Doctrine", "Write your own philosophy of life."],
+  ["mind", "Evidence Shift", "Change your mind because of evidence."],
+  ["mind", "Manipulation Shield", "Become difficult to manipulate."],
+  ["mind", "Bias Hunter", "Learn how your cognitive biases work."],
+  ["mind", "Thinking Mentor", "Teach someone to think rather than what to think."],
+  ["character", "Promise Keeper", "Become known as someone who keeps promises."],
+  ["character", "Endless Curiosity", "Never stop being curious."],
+  ["character", "Ego Surrender", "Admit when you are wrong."],
+  ["character", "Deep Forgiveness", "Forgive someone who truly hurt you."],
+  ["character", "Earned Respect", "Earn genuine respect instead of seeking approval."],
+  ["character", "Resilient Core", "Become emotionally resilient."],
+  ["character", "Crisis Calm", "Stay calm during a genuine crisis."],
+  ["character", "Solitude Ally", "Learn to enjoy solitude."],
+  ["character", "Patient Flame", "Develop patience."],
+  ["character", "Trusted Elder", "Become someone younger people seek advice from."],
+  ["relationships", "Half-Century Bond", "Maintain a friendship for 50 years."],
+  ["relationships", "Life Changer", "Help someone completely change their life."],
+  ["relationships", "Happy Child", "Raise a happy child, if you choose that path."],
+  ["relationships", "Warm Home", "Build a family people enjoy coming home to."],
+  ["relationships", "Proud Parents", "Become the person your parents are proud of."],
+  ["relationships", "Lost Connection", "Reconnect with someone you lost."],
+  ["relationships", "Deep Listener", "Learn deep listening."],
+  ["relationships", "Understood", "Make someone feel truly understood."],
+  ["relationships", "Dozens Mentored", "Mentor dozens of people."],
+  ["relationships", "Remembered Kind", "Be remembered as kind."],
+  ["creativity", "Booksmith", "Write a book."],
+  ["creativity", "Game Builder", "Build a video game."],
+  ["creativity", "Proud Canvas", "Paint something you are proud of."],
+  ["creativity", "Composer Spark", "Compose music."],
+  ["creativity", "Channel Ignition", "Start a YouTube channel."],
+  ["creativity", "Hundred-K Software", "Build software used by 100,000 people."],
+  ["creativity", "Surviving Work", "Create something that survives after your death."],
+  ["creativity", "Original Invention", "Invent something original."],
+  ["creativity", "Beautiful Home", "Design a beautiful home."],
+  ["creativity", "Handmade Proof", "Build something with your own hands."],
+  ["career", "World-Class Skill", "Become world-class at one skill."],
+  ["career", "Founder Flame", "Start a successful business."],
+  ["career", "Independent Ledger", "Reach financial independence."],
+  ["career", "Many Streams", "Build multiple income streams."],
+  ["career", "Thousand Students", "Teach thousands of students."],
+  ["career", "Global Speaker", "Speak at an international conference."],
+  ["career", "Useful Solution", "Solve a problem that improves lives."],
+  ["career", "High-Performing Lead", "Lead a high-performing team."],
+  ["career", "Loved Product", "Create a product people love."],
+  ["career", "Professional Integrity", "Become known for integrity in your profession."],
+  ["adventure", "Seven Continents", "Visit every continent."],
+  ["adventure", "Eclipse Witness", "See a total solar eclipse."],
+  ["adventure", "Starless City Escape", "Camp under a sky with no light pollution."],
+  ["adventure", "Foreign Chapter", "Live in another country."],
+  ["adventure", "Solo Month", "Travel alone for a month."],
+  ["adventure", "Whale Watcher", "Watch whales in the wild."],
+  ["adventure", "Ancient Rainforest", "Walk through an ancient rainforest."],
+  ["adventure", "Aurora Witness", "See the northern or southern lights."],
+  ["adventure", "Ocean Crossing", "Cross an ocean by ship."],
+  ["adventure", "Orbit Dream", "Watch Earth from space."],
+  ["inner", "Ten-Thousand Stillness", "Meditate for 10,000 hours."],
+  ["inner", "Offline Week", "Spend a week completely offline."],
+  ["inner", "Silent Retreat", "Go on a silent retreat."],
+  ["inner", "Thought Observer", "Observe thoughts without identifying with them."],
+  ["inner", "Awe Practice", "Experience profound awe regularly."],
+  ["inner", "Happiness Map", "Understand what truly makes you happy."],
+  ["inner", "Sacrifice Clarity", "Discover what you are willing to sacrifice for."],
+  ["inner", "Uncertainty Friend", "Become comfortable with uncertainty."],
+  ["inner", "Ethical Code", "Write your own ethical code."],
+  ["inner", "Mortal Calm", "Face mortality without panic."],
+  ["humanity", "Forest Maker", "Plant 10,000 trees directly or through verified restoration."],
+  ["humanity", "Meaningful Giving", "Donate enough to improve hundreds of lives."],
+  ["humanity", "Education Gate", "Help educate children who otherwise could not study."],
+  ["humanity", "Animal Mercy", "Reduce suffering for animals."],
+  ["humanity", "Better Planet", "Leave the planet slightly better than you found it."],
+  ["humanity", "Better Person Spark", "Inspire someone to become a better person."],
+  ["humanity", "Future Utility", "Build something future generations still use."],
+  ["humanity", "Readable Wisdom", "Leave behind wisdom worth reading."],
+  ["humanity", "Character Legacy", "Be remembered more for your character than achievements."],
+  ["humanity", "Wiser Every Year", "Become a little wiser every year until the end of life."]
+].map((item, index) => buildSmartAchievement(item, index));
+
+const questTemplates = {
+  body: {
+    spark: ["Move for 15 minutes", "Stretch hips and ankles for 8 minutes", "Drink water before your next meal"],
+    hunter: ["Train for 30 minutes", "Complete a mobility block", "Take a brisk 25-minute walk"],
+    monarch: ["Complete a focused endurance session", "Do strength and mobility work", "Plan one measurable health upgrade"]
+  },
+  mind: {
+    spark: ["Read 5 pages", "Study one idea for 10 minutes", "Write three things you learned"],
+    hunter: ["Read 20 pages", "Study one hard topic for 25 minutes", "Summarize an argument in your own words"],
+    monarch: ["Deep study for 45 minutes", "Read and take notes", "Challenge one belief with evidence"]
+  },
+  character: {
+    spark: ["Keep one small promise today", "Pause before reacting once", "Do one patient thing deliberately"],
+    hunter: ["Repair one small avoidance", "Practice calm in a stressful moment", "Choose honesty in one conversation"],
+    monarch: ["Handle one difficult responsibility", "Apologize or clarify where needed", "Act from values over approval"]
+  },
+  relationships: {
+    spark: ["Send one sincere message", "Listen without interrupting once", "Thank someone clearly"],
+    hunter: ["Have one meaningful check-in", "Ask better questions in a conversation", "Help someone without making it about you"],
+    monarch: ["Strengthen an important relationship", "Mentor or encourage someone", "Repair a weak connection"]
+  },
+  creativity: {
+    spark: ["Create for 10 minutes", "Capture one idea", "Improve one small part of a project"],
+    hunter: ["Build or write for 30 minutes", "Publish or share one small artifact", "Practice one creative skill"],
+    monarch: ["Do a deep creative block", "Finish a shippable piece", "Design something with care"]
+  },
+  career: {
+    spark: ["Improve one professional skill for 10 minutes", "Organize one work item", "Write one useful note"],
+    hunter: ["Do 30 minutes of skill work", "Move one project forward", "Study someone excellent at your craft"],
+    monarch: ["Ship meaningful progress", "Solve one hard professional problem", "Strengthen a system that supports your work"]
+  },
+  adventure: {
+    spark: ["Research one future adventure", "Walk somewhere new", "Save one place to your travel list"],
+    hunter: ["Plan one concrete trip step", "Explore a new route", "Learn one outdoor or travel skill"],
+    monarch: ["Build an adventure plan", "Train for a future expedition", "Book or schedule one bold experience step"]
+  },
+  inner: {
+    spark: ["Sit quietly for 5 minutes", "Write one honest reflection", "Notice one thought without chasing it"],
+    hunter: ["Meditate for 12 minutes", "Journal one difficult feeling", "Spend 20 minutes without digital noise"],
+    monarch: ["Practice stillness for 25 minutes", "Write a clear values reflection", "Spend a deep block offline"]
+  },
+  humanity: {
+    spark: ["Do one helpful act", "Reduce one small waste", "Learn about one cause"],
+    hunter: ["Support one person or cause", "Make one ethical improvement", "Share useful knowledge"],
+    monarch: ["Contribute to something beyond yourself", "Plan one verified impact action", "Build something that helps others"]
+  }
+};
+
+function questLevel(primaryTitle, primaryAmount, primaryUnit, primaryCompletion, alternativeTitle, alternativeAmount, alternativeUnit, alternativeCompletion) {
+  return {
+    primary: { title: primaryTitle, amount: primaryAmount, unit: primaryUnit, completion: primaryCompletion },
+    alternative: { title: alternativeTitle, amount: alternativeAmount, unit: alternativeUnit, completion: alternativeCompletion }
+  };
+}
+
+const concreteQuestCatalog = [
+  {
+    id: "push-ups",
+    category: "body",
+    levels: {
+      spark: questLevel("Do 5 push-ups", 5, "reps", "Finish 5 controlled repetitions; sets are allowed.", "Do 10 wall push-ups", 10, "reps", "Finish 10 controlled wall repetitions."),
+      hunter: questLevel("Do 15 push-ups", 15, "reps", "Finish 15 controlled repetitions; sets are allowed.", "Do 25 wall push-ups", 25, "reps", "Finish 25 controlled wall repetitions; sets are allowed."),
+      monarch: questLevel("Do 30 push-ups", 30, "reps", "Finish 30 controlled repetitions; sets are allowed.", "Do 45 wall push-ups", 45, "reps", "Finish 45 controlled wall repetitions; sets are allowed.")
+    }
+  },
+  {
+    id: "squats",
+    category: "body",
+    levels: {
+      spark: questLevel("Do 10 bodyweight squats", 10, "reps", "Complete 10 controlled squats to a comfortable depth.", "Do 10 chair sit-to-stands", 10, "reps", "Stand up from a chair and sit down with control 10 times."),
+      hunter: questLevel("Do 25 bodyweight squats", 25, "reps", "Complete 25 controlled squats; sets are allowed.", "Do 20 chair sit-to-stands", 20, "reps", "Complete 20 controlled chair repetitions."),
+      monarch: questLevel("Do 50 bodyweight squats", 50, "reps", "Complete 50 controlled squats; sets are allowed.", "Do 35 chair sit-to-stands", 35, "reps", "Complete 35 controlled chair repetitions; sets are allowed.")
+    }
+  },
+  {
+    id: "plank",
+    category: "body",
+    levels: {
+      spark: questLevel("Hold a plank for 20 seconds", 20, "seconds", "Accumulate 20 seconds with a braced, pain-free position.", "Do 10 dead-bug repetitions", 10, "reps", "Complete 5 controlled repetitions per side."),
+      hunter: questLevel("Hold a plank for 45 seconds", 45, "seconds", "Accumulate 45 seconds; multiple holds are allowed.", "Do 20 dead-bug repetitions", 20, "reps", "Complete 10 controlled repetitions per side."),
+      monarch: questLevel("Hold a plank for 90 seconds", 90, "seconds", "Accumulate 90 seconds; multiple holds are allowed.", "Do 30 dead-bug repetitions", 30, "reps", "Complete 15 controlled repetitions per side.")
+    }
+  },
+  {
+    id: "distance",
+    category: "body",
+    levels: {
+      spark: questLevel("Walk briskly for 10 minutes", 10, "minutes", "Walk continuously for 10 minutes at a purposeful pace.", "Cycle for 10 minutes", 10, "minutes", "Cycle continuously for 10 comfortable minutes."),
+      hunter: questLevel("Walk or run for 2 km", 2, "km", "Record a total distance of 2 km in one session.", "Cycle for 20 minutes", 20, "minutes", "Cycle continuously for 20 minutes."),
+      monarch: questLevel("Walk or run for 5 km", 5, "km", "Record a total distance of 5 km in one session.", "Cycle for 40 minutes", 40, "minutes", "Cycle continuously for 40 minutes.")
+    }
+  },
+  {
+    id: "core",
+    category: "body",
+    levels: {
+      spark: questLevel("Do 10 sit-ups", 10, "reps", "Complete 10 controlled repetitions without pulling your neck.", "Do 10 bird-dog repetitions", 10, "reps", "Complete 5 controlled repetitions per side."),
+      hunter: questLevel("Do 25 sit-ups", 25, "reps", "Complete 25 controlled repetitions; sets are allowed.", "Do 20 bird-dog repetitions", 20, "reps", "Complete 10 controlled repetitions per side."),
+      monarch: questLevel("Do 50 sit-ups", 50, "reps", "Complete 50 controlled repetitions; sets are allowed.", "Do 30 bird-dog repetitions", 30, "reps", "Complete 15 controlled repetitions per side.")
+    }
+  },
+  {
+    id: "floors",
+    category: "home",
+    levels: {
+      spark: questLevel("Sweep the floor for 5 minutes", 5, "minutes", "Sweep one used area continuously for 5 minutes.", "Wipe surfaces for 5 minutes", 5, "minutes", "Wipe visible dust or marks for 5 minutes."),
+      hunter: questLevel("Sweep and mop 1 room for 15 minutes", 15, "minutes", "Finish the main floor area of one room.", "Wipe surfaces for 15 minutes", 15, "minutes", "Clean desks, counters, or shelves for 15 minutes."),
+      monarch: questLevel("Clean floors in 2 rooms for 25 minutes", 25, "minutes", "Sweep or mop the main floor areas in two rooms.", "Wipe surfaces for 25 minutes", 25, "minutes", "Clean visible surfaces in two used areas for 25 minutes.")
+    }
+  },
+  {
+    id: "dishes",
+    category: "home",
+    levels: {
+      spark: questLevel("Wash and put away 5 dishes", 5, "items", "Wash, dry, and return 5 kitchen items.", "Clean the kitchen sink for 5 minutes", 5, "minutes", "Empty and wipe the sink area for 5 minutes."),
+      hunter: questLevel("Wash and put away 12 dishes", 12, "items", "Wash, dry, and return 12 kitchen items.", "Clean the kitchen sink for 10 minutes", 10, "minutes", "Empty, scrub, and wipe the sink area."),
+      monarch: questLevel("Wash and put away 20 dishes", 20, "items", "Wash, dry, and return 20 kitchen items.", "Clean the kitchen sink for 15 minutes", 15, "minutes", "Empty, scrub, and clean the sink and surrounding counter.")
+    }
+  },
+  {
+    id: "desk",
+    category: "home",
+    levels: {
+      spark: questLevel("Put away 5 items from your desk", 5, "items", "Return 5 misplaced items to their proper places.", "Tidy 1 shelf for 5 minutes", 5, "minutes", "Remove clutter and align one shelf for 5 minutes."),
+      hunter: questLevel("Put away 12 items from your workspace", 12, "items", "Return 12 misplaced items and wipe the work surface.", "Tidy 1 shelf for 10 minutes", 10, "minutes", "Remove clutter and organize one shelf for 10 minutes."),
+      monarch: questLevel("Put away 20 items from your workspace", 20, "items", "Return 20 items and leave the work surface ready to use.", "Tidy 2 shelves for 20 minutes", 20, "minutes", "Remove clutter and organize two shelves.")
+    }
+  },
+  {
+    id: "laundry",
+    category: "home",
+    levels: {
+      spark: questLevel("Fold and put away 5 clothing items", 5, "items", "Fold and return 5 clean items to storage.", "Organize 1 drawer for 5 minutes", 5, "minutes", "Arrange one clothing drawer for 5 minutes."),
+      hunter: questLevel("Fold and put away 12 clothing items", 12, "items", "Fold and return 12 clean items to storage.", "Organize 1 drawer for 10 minutes", 10, "minutes", "Empty, sort, and reset one clothing drawer."),
+      monarch: questLevel("Fold and put away 20 clothing items", 20, "items", "Fold and return 20 clean items to storage.", "Organize 2 drawers for 20 minutes", 20, "minutes", "Sort and reset two clothing drawers.")
+    }
+  },
+  {
+    id: "bathroom",
+    category: "home",
+    levels: {
+      spark: questLevel("Clean the bathroom sink for 5 minutes", 5, "minutes", "Wipe the basin, tap, and surrounding area.", "Clean 1 mirror for 5 minutes", 5, "minutes", "Remove visible marks from one mirror."),
+      hunter: questLevel("Clean the sink and mirror for 10 minutes", 10, "minutes", "Finish the basin, tap, counter, and mirror.", "Clean the toilet for 10 minutes", 10, "minutes", "Clean the seat, bowl, and exterior surfaces."),
+      monarch: questLevel("Clean the bathroom for 20 minutes", 20, "minutes", "Clean the sink, mirror, toilet, and visible floor area.", "Scrub the shower area for 20 minutes", 20, "minutes", "Scrub the main shower or bath surfaces for 20 minutes.")
+    }
+  },
+  {
+    id: "reading",
+    category: "mind",
+    levels: {
+      spark: questLevel("Read 5 pages", 5, "pages", "Read 5 full pages without switching apps.", "Listen to an audiobook for 10 minutes", 10, "minutes", "Listen actively for 10 minutes without multitasking."),
+      hunter: questLevel("Read 15 pages", 15, "pages", "Read 15 full pages and note one useful idea.", "Listen to an audiobook for 25 minutes", 25, "minutes", "Listen actively and note one useful idea."),
+      monarch: questLevel("Read 30 pages", 30, "pages", "Read 30 full pages and write a three-sentence summary.", "Listen to an audiobook for 45 minutes", 45, "minutes", "Listen actively and write a three-sentence summary.")
+    }
+  },
+  {
+    id: "study",
+    category: "mind",
+    levels: {
+      spark: questLevel("Study one subject for 10 minutes", 10, "minutes", "Use a timer and focus on one defined topic.", "Watch 1 educational lesson and write 3 notes", 3, "notes", "Finish one lesson and record three useful points."),
+      hunter: questLevel("Study one subject for 25 minutes", 25, "minutes", "Complete one uninterrupted focused study block.", "Watch 1 educational lesson and write 5 notes", 5, "notes", "Finish one lesson and record five useful points."),
+      monarch: questLevel("Study one subject for 45 minutes", 45, "minutes", "Complete one focused block and produce a short summary.", "Watch 2 educational lessons and write 10 notes", 10, "notes", "Finish two lessons and record ten useful points.")
+    }
+  },
+  {
+    id: "math",
+    category: "mind",
+    levels: {
+      spark: questLevel("Solve 3 math problems", 3, "problems", "Solve and check three problems at your current level.", "Complete 3 logic puzzles", 3, "puzzles", "Finish three short logic or number puzzles."),
+      hunter: questLevel("Solve 8 math problems", 8, "problems", "Solve and check eight problems; correct any mistakes.", "Complete 6 logic puzzles", 6, "puzzles", "Finish six logic or number puzzles."),
+      monarch: questLevel("Solve 15 math problems", 15, "problems", "Solve, check, and correct fifteen problems.", "Complete 10 logic puzzles", 10, "puzzles", "Finish ten logic or number puzzles.")
+    }
+  },
+  {
+    id: "language",
+    category: "mind",
+    levels: {
+      spark: questLevel("Learn 5 new words", 5, "words", "Write each word with its meaning and one example.", "Speak 5 practice sentences", 5, "sentences", "Say five complete sentences aloud."),
+      hunter: questLevel("Learn 12 new words", 12, "words", "Review twelve words and recall them without looking.", "Speak 12 practice sentences", 12, "sentences", "Say twelve complete sentences aloud."),
+      monarch: questLevel("Learn 20 new words", 20, "words", "Review twenty words and test your recall.", "Speak for 10 minutes in your target language", 10, "minutes", "Speak aloud for ten minutes with minimal switching.")
+    }
+  },
+  {
+    id: "notes",
+    category: "mind",
+    levels: {
+      spark: questLevel("Review notes for 10 minutes", 10, "minutes", "Review one topic and mark one weak point.", "Write a 3-sentence summary", 3, "sentences", "Summarize one topic in three complete sentences."),
+      hunter: questLevel("Review notes for 20 minutes", 20, "minutes", "Review one topic and test yourself once.", "Write a 6-sentence summary", 6, "sentences", "Summarize one topic in six complete sentences."),
+      monarch: questLevel("Review notes for 35 minutes", 35, "minutes", "Review, self-test, and correct one weak topic.", "Write a 10-sentence summary", 10, "sentences", "Explain one topic in ten complete sentences.")
+    }
+  },
+  {
+    id: "groceries",
+    category: "life",
+    levels: {
+      spark: questLevel("Write a grocery list with 5 needed items", 5, "items", "Check your kitchen first and list five actual needs.", "Check food supplies for 5 minutes", 5, "minutes", "Inspect the fridge and cupboards and note what is low."),
+      hunter: questLevel("Write and organize a grocery list with 10 items", 10, "items", "Group ten needed items by store section.", "Check food supplies for 10 minutes", 10, "minutes", "Inspect food supplies and remove expired items."),
+      monarch: questLevel("Plan groceries for 5 meals", 5, "meals", "Choose five meals and list every missing ingredient.", "Check and organize food supplies for 20 minutes", 20, "minutes", "Inspect, discard expired food, and group similar items.")
+    }
+  },
+  {
+    id: "meal",
+    category: "life",
+    levels: {
+      spark: questLevel("Prepare 1 simple meal", 1, "meal", "Prepare one meal or snack from basic ingredients.", "Prepare 1 healthy snack and 1 glass of water", 2, "items", "Prepare both items and consume them mindfully."),
+      hunter: questLevel("Prepare 1 meal with protein and vegetables", 1, "meal", "Finish one meal containing both components.", "Prepare 2 healthy snacks", 2, "items", "Prepare two portions for today or tomorrow."),
+      monarch: questLevel("Prepare 2 balanced meals", 2, "meals", "Prepare two meals with protein, plants, and a carbohydrate source.", "Prepare 3 healthy snacks", 3, "items", "Prepare three portions for later use.")
+    }
+  },
+  {
+    id: "messages",
+    category: "life",
+    levels: {
+      spark: questLevel("Reply to 1 important message", 1, "message", "Send one complete reply you have been postponing.", "Make 1 necessary phone call", 1, "call", "Complete one practical call or leave a clear message."),
+      hunter: questLevel("Reply to 3 important messages", 3, "messages", "Send three complete replies you have been postponing.", "Make 2 necessary phone calls", 2, "calls", "Complete two practical calls or leave clear messages."),
+      monarch: questLevel("Reply to 5 important messages", 5, "messages", "Clear five meaningful messages from your backlog.", "Make 3 necessary phone calls", 3, "calls", "Complete three practical calls or leave clear messages.")
+    }
+  },
+  {
+    id: "planning",
+    category: "life",
+    levels: {
+      spark: questLevel("Write your top 3 tasks for tomorrow", 3, "tasks", "Write three specific actions in priority order.", "Schedule 2 calendar blocks", 2, "blocks", "Place two realistic work or recovery blocks on your calendar."),
+      hunter: questLevel("Plan your top 5 tasks for tomorrow", 5, "tasks", "Write five actions and choose the first one to start.", "Schedule 4 calendar blocks", 4, "blocks", "Place four realistic blocks on your calendar."),
+      monarch: questLevel("Plan your top 7 tasks for the next 3 days", 7, "tasks", "Assign seven actions to specific days and priorities.", "Schedule 6 calendar blocks", 6, "blocks", "Place six realistic blocks across the next three days.")
+    }
+  },
+  {
+    id: "finances",
+    category: "life",
+    levels: {
+      spark: questLevel("Review spending for 5 minutes", 5, "minutes", "Open your records and identify one unnecessary expense.", "Categorize 3 recent expenses", 3, "expenses", "Assign a category to three recent transactions."),
+      hunter: questLevel("Review spending for 10 minutes", 10, "minutes", "Check recent transactions and update one budget category.", "Categorize 8 recent expenses", 8, "expenses", "Assign a category to eight recent transactions."),
+      monarch: questLevel("Review spending for 20 minutes", 20, "minutes", "Check accounts, categorize spending, and record one adjustment.", "Categorize 15 recent expenses", 15, "expenses", "Assign a category to fifteen recent transactions.")
+    }
+  }
+];
+
+const questCategorySchedule = ["body", "home", "mind", "life", "body", "home"];
+
+function buildSmartAchievement(item, index) {
+  const [category, name, original] = item;
+  const process = categoryMetrics[category] || { metric: "progress_units", unit: "units", target: 100, timeframe: "12 months" };
+  const outcome = inferSmartMetric(original, category);
+  return {
+    id: `a${index + 1}`,
+    category,
+    name,
+    original,
+    metric: process.metric,
+    target: process.target,
+    unit: process.unit,
+    timeframe: outcome.timeframe || process.timeframe,
+    outcomeMetric: outcome.metric,
+    outcomeTarget: outcome.target,
+    outcomeUnit: outcome.unit,
+    smart: `Outcome: ${original.replace(/\.$/, "")}. Process target: complete ${process.target} ${process.unit} within ${outcome.timeframe || process.timeframe}. Track each related quest and review weekly.`
+  };
+}
+
+function inferSmartMetric(text, category) {
+  const lower = text.toLowerCase();
+  if (lower.includes("1,000 books")) return { metric: "books_completed", unit: "books", target: 1000, timeframe: "lifetime" };
+  if (lower.includes("500 poems")) return { metric: "memorized_passages", unit: "passages", target: 500, timeframe: "10 years" };
+  if (lower.includes("five languages")) return { metric: "language_milestones", unit: "milestones", target: 5, timeframe: "10 years" };
+  if (lower.includes("10,000 hours")) return { metric: "meditation_hours", unit: "hours", target: 10000, timeframe: "lifetime" };
+  if (lower.includes("10,000 trees")) return { metric: "trees_planted_or_funded", unit: "trees", target: 10000, timeframe: "10 years" };
+  if (lower.includes("100,000 people")) return { metric: "users_reached", unit: "users", target: 100000, timeframe: "10 years" };
+  if (lower.includes("10 km")) return { metric: "swim_distance", unit: "km", target: 10, timeframe: "24 months" };
+  if (lower.includes("5,000 m")) return { metric: "mountain_altitude", unit: "meters", target: 5000, timeframe: "5 years" };
+  if (lower.includes("7 consecutive days")) return { metric: "consecutive_hiking_days", unit: "days", target: 7, timeframe: "24 months" };
+  if (lower.includes("50 years")) return { metric: "friendship_years_maintained", unit: "years", target: 50, timeframe: "lifetime" };
+  if (lower.includes("20 minute 5k")) return { metric: "best_5k_time_minutes", unit: "minutes", target: 20, timeframe: "24 months", lowerIsBetter: true };
+  if (lower.includes("marathon under 3 hours")) return { metric: "best_marathon_time_minutes", unit: "minutes", target: 180, timeframe: "5 years", lowerIsBetter: true };
+  if (lower.includes("full year") || lower.includes("one year")) return { metric: "consistent_days", unit: "days", target: 365, timeframe: "12 months" };
+  if (lower.includes("decade")) return { metric: "healthy_years", unit: "years", target: 10, timeframe: "10 years" };
+  if (lower.includes("live to 100")) return { metric: "independent_years_after_65", unit: "years", target: 35, timeframe: "lifetime" };
+  if (lower.includes("dozens")) return { metric: "people_mentored", unit: "people", target: 24, timeframe: "10 years" };
+  if (lower.includes("thousands")) return { metric: "students_taught", unit: "students", target: 1000, timeframe: "10 years" };
+  if (lower.includes("every continent")) return { metric: "continents_visited", unit: "continents", target: 7, timeframe: "10 years" };
+  return categoryMetrics[category] || { metric: "progress_units", unit: "units", target: 100, timeframe: "12 months" };
+}
+
+function questAmountForRank(rankId) {
+  if (rankId === "monarch") return 3;
+  if (rankId === "hunter") return 2;
+  return 1;
+}
+
+let state = loadState();
+let selectedMode = "discipline";
+let selectedRank = "spark";
+let activeView = "quests";
+
+function todayKey() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function defaultState() {
+  return {
+    saveVersion: 3,
+    onboarded: false,
+    name: "Hunter",
+    mode: "discipline",
+    rank: "spark",
+    xp: 0,
+    embers: 0,
+    completedQuests: 0,
+    completedConsequences: 0,
+    fullClears: 0,
+    failedDays: 0,
+    recoverySkips: 0,
+    generatedDate: "",
+    quests: [],
+    questHistory: [],
+    consequenceHistory: [],
+    activeConsequence: null,
+    penaltyStreak: 0,
+    warningAcknowledgedId: "",
+    fullClearAwardedDate: "",
+    achievementProgress: {}
+  };
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    const migrated = {
+      ...defaultState(),
+      ...saved,
+      saveVersion: 3,
+      quests: Array.isArray(saved.quests) ? saved.quests : [],
+      questHistory: Array.isArray(saved.questHistory) ? saved.questHistory : [],
+      consequenceHistory: Array.isArray(saved.consequenceHistory) ? saved.consequenceHistory : [],
+      achievementProgress: saved.achievementProgress && typeof saved.achievementProgress === "object" ? saved.achievementProgress : {}
+    };
+
+    // Replace pre-catalog prompts without treating the migration as a failed day.
+    if (!saved.saveVersion || saved.saveVersion < 3) {
+      migrated.generatedDate = "";
+      migrated.quests = [];
+      migrated.activeConsequence = null;
+      migrated.penaltyStreak = 0;
+      migrated.warningAcknowledgedId = "";
+    }
+
+    return migrated;
+  } catch {
+    return defaultState();
+  }
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function rankConfig(id = state.rank) {
+  return ranks.find(rank => rank.id === id) || ranks[0];
+}
+
+function levelFromXp(xp) {
+  return Math.floor(xp / 100) + 1;
+}
+
+function xpIntoLevel(xp) {
+  return xp % 100;
+}
+
+function pickDailyQuestTasks(count, rankId) {
+  const daySeed = Number(todayKey().replaceAll("-", ""));
+  const rankOffset = ranks.findIndex(rank => rank.id === rankId) * 11;
+  const usedIds = new Set();
+
+  return questCategorySchedule.slice(0, count).map((category, slot) => {
+    const candidates = concreteQuestCatalog.filter(task => task.category === category);
+    const start = (daySeed + rankOffset + slot * 7) % candidates.length;
+    const task = Array.from({ length: candidates.length }, (_, offset) => candidates[(start + offset) % candidates.length])
+      .find(candidate => !usedIds.has(candidate.id));
+    usedIds.add(task.id);
+    return task;
+  });
+}
+
+function consequenceSource(quest) {
+  return {
+    id: quest.id,
+    achievementId: quest.achievementId,
+    category: quest.category,
+    title: quest.title,
+    target: quest.target,
+    metric: quest.metric,
+    amount: Number(quest.amount) || 1,
+    unit: quest.unit,
+    xp: Number(quest.xp) || 18
+  };
+}
+
+function scaleQuestTitle(title, multiplier) {
+  let changed = false;
+  const scaled = title.replace(/\d+(?:\.\d+)?/g, value => {
+    changed = true;
+    return String(Math.ceil(Number(value) * multiplier));
+  });
+  return changed ? scaled : title;
+}
+
+function buildConsequence(quest, level, sourceDate) {
+  const safeLevel = Math.max(1, Math.min(3, level));
+  const tier = consequenceTiers[safeLevel];
+  const source = quest.sourceQuest || consequenceSource(quest);
+  return {
+    id: `consequence-${todayKey()}-${source.id}-${safeLevel}`,
+    sourceDate,
+    createdDate: todayKey(),
+    dueDate: todayKey(),
+    sourceQuest: source,
+    achievementId: source.achievementId,
+    category: source.category,
+    title: scaleQuestTitle(source.title, tier.multiplier),
+    target: source.target,
+    metric: source.metric,
+    amount: Math.max(source.amount + 1, Math.ceil(source.amount * tier.multiplier)),
+    unit: source.unit,
+    xp: Math.max(10, Math.round(source.xp * 0.75)),
+    embers: 0,
+    level: safeLevel,
+    multiplier: tier.multiplier,
+    effort: tier.effort,
+    done: false,
+    waived: false
+  };
+}
+
+function archiveActiveConsequence(outcome) {
+  const consequence = state.activeConsequence;
+  if (!consequence || state.consequenceHistory.some(item => item.id === consequence.id)) return;
+  state.consequenceHistory.unshift({
+    ...consequence,
+    outcome: outcome || (consequence.done ? "cleared" : consequence.waived ? "waived" : "expired")
+  });
+  state.consequenceHistory = state.consequenceHistory.slice(0, 90);
+}
+
+function evaluatePreviousDay() {
+  const date = state.generatedDate;
+  if (!date || state.questHistory.some(day => day.date === date)) return;
+
+  const incomplete = state.quests.filter(quest => !quest.done);
+  const outstandingConsequence = state.activeConsequence && !state.activeConsequence.done && !state.activeConsequence.waived
+    ? state.activeConsequence
+    : null;
+
+  state.questHistory.unshift({
+    date,
+    status: incomplete.length || outstandingConsequence ? "failed" : "cleared",
+    completedCount: state.quests.length - incomplete.length,
+    requiredCount: state.quests.length,
+    quests: state.quests.map(quest => ({ ...quest }))
+  });
+  state.questHistory = state.questHistory.slice(0, 90);
+
+  if (incomplete.length || outstandingConsequence) {
+    const nextLevel = outstandingConsequence ? Math.min(3, Math.max(1, state.penaltyStreak) + 1) : 1;
+    const source = incomplete[0] || outstandingConsequence.sourceQuest;
+    if (state.activeConsequence) archiveActiveConsequence(outstandingConsequence ? "escalated" : undefined);
+    state.failedDays += 1;
+    state.penaltyStreak = nextLevel;
+    state.activeConsequence = buildConsequence(source, nextLevel, date);
+    state.warningAcknowledgedId = "";
+    return;
+  }
+
+  if (state.activeConsequence) archiveActiveConsequence();
+  state.activeConsequence = null;
+  state.penaltyStreak = 0;
+}
+
+function generateDailyQuests() {
+  const today = todayKey();
+  if (state.generatedDate && state.generatedDate < today && state.quests.length) evaluatePreviousDay();
+  if (state.generatedDate === today && state.quests.length) {
+    saveState();
+    return;
+  }
+
+  const rank = rankConfig();
+  state.generatedDate = today;
+  state.quests = pickDailyQuestTasks(rank.questCount, state.rank).map((task, index) => {
+    const variants = task.levels[state.rank];
+    const primary = { ...variants.primary, metric: `${task.id}_primary` };
+    const alternative = { ...variants.alternative, metric: `${task.id}_alternative` };
+    return {
+      id: `${today}-${task.id}-${index}`,
+      catalogId: task.id,
+      achievementId: null,
+      category: task.category,
+      title: primary.title,
+      completion: primary.completion,
+      target: "Complete before local midnight",
+      metric: primary.metric,
+      amount: primary.amount,
+      unit: primary.unit,
+      primary,
+      alternative,
+      usingAlternative: false,
+      xp: rank.xp,
+      embers: rank.embers,
+      done: false
+    };
+  });
+  saveState();
+}
+
+function useQuestAlternative(id) {
+  const quest = state.quests.find(item => item.id === id);
+  if (!quest || quest.done || !quest.primary || !quest.alternative) return;
+
+  quest.usingAlternative = !quest.usingAlternative;
+  const selected = quest.usingAlternative ? quest.alternative : quest.primary;
+  quest.title = selected.title;
+  quest.completion = selected.completion;
+  quest.metric = selected.metric;
+  quest.amount = selected.amount;
+  quest.unit = selected.unit;
+  saveState();
+  showToast(quest.usingAlternative ? "Alternative requirement activated." : "Original requirement restored.");
+  renderApp();
+}
+
+function maybeAwardFullClear() {
+  const allDailyDone = state.quests.length > 0 && state.quests.every(item => item.done);
+  const consequenceCleared = !state.activeConsequence || state.activeConsequence.done;
+  if (!allDailyDone || !consequenceCleared || state.fullClearAwardedDate === todayKey()) return false;
+  awardFullClear();
+  return true;
+}
+
+function completeQuest(id) {
+  const quest = state.quests.find(item => item.id === id);
+  if (!quest || quest.done) return;
+
+  quest.done = true;
+  state.xp += quest.xp;
+  state.embers += quest.embers;
+  state.completedQuests += 1;
+  state.achievementProgress[quest.achievementId] = (state.achievementProgress[quest.achievementId] || 0) + quest.amount;
+
+  const awarded = maybeAwardFullClear();
+  if (!awarded) {
+    const dailyDone = state.quests.every(item => item.done);
+    const consequenceOutstanding = state.activeConsequence && !state.activeConsequence.done && !state.activeConsequence.waived;
+    if (dailyDone && consequenceOutstanding) {
+      showToast(`${modes[state.mode].consequenceName} remains before Full Clear.`);
+    } else {
+      showToast(modes[state.mode].complete);
+    }
+  }
+
+  saveState();
+  renderApp();
+}
+
+function completeConsequence() {
+  const consequence = state.activeConsequence;
+  if (!consequence || consequence.done || consequence.waived) return;
+
+  consequence.done = true;
+  consequence.completedAt = new Date().toISOString();
+  state.xp += consequence.xp;
+  state.completedQuests += 1;
+  state.completedConsequences += 1;
+  if (consequence.achievementId) {
+    state.achievementProgress[consequence.achievementId] = (state.achievementProgress[consequence.achievementId] || 0) + consequence.amount;
+  }
+  state.warningAcknowledgedId = consequence.id;
+
+  if (!maybeAwardFullClear()) {
+    showToast(`${modes[state.mode].consequenceComplete} +${consequence.xp} XP`);
+  }
+
+  saveState();
+  renderApp();
+}
+
+function waiveConsequence() {
+  const consequence = state.activeConsequence;
+  if (!consequence || consequence.done || consequence.waived) return;
+
+  consequence.waived = true;
+  consequence.waivedAt = new Date().toISOString();
+  state.recoverySkips += 1;
+  state.penaltyStreak = 0;
+  state.warningAcknowledgedId = consequence.id;
+  showToast(modes[state.mode].consequenceWaived);
+
+  saveState();
+  renderApp();
+}
+
+function awardFullClear() {
+  const rank = rankConfig();
+  state.embers += rank.embers * 2;
+  state.xp += 25;
+  state.fullClears += 1;
+  state.fullClearAwardedDate = todayKey();
+  showToast(`${modes[state.mode].fullClear} +${rank.embers * 2} Embers`);
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => toast.classList.remove("show"), 2400);
+}
+
+function renderChoices() {
+  const modeWrap = document.getElementById("modeChoices");
+  modeWrap.innerHTML = Object.entries(modes).map(([id, mode]) => `
+    <button class="choice ${selectedMode === id ? "active" : ""}" data-mode="${id}">
+      <strong>${mode.name}</strong>
+      <span>${mode.description}</span>
+    </button>
+  `).join("");
+
+  const rankWrap = document.getElementById("rankChoices");
+  rankWrap.innerHTML = ranks.map(rank => `
+    <button class="choice ${selectedRank === rank.id ? "active" : ""}" data-rank="${rank.id}">
+      <strong>${rank.name}</strong>
+      <span>${rank.description}</span>
+    </button>
+  `).join("");
+}
+
+function renderShell() {
+  const onboard = document.getElementById("onboarding");
+  const app = document.getElementById("app");
+  const nav = document.getElementById("bottomNav");
+  onboard.classList.toggle("hidden", state.onboarded);
+  app.classList.toggle("hidden", !state.onboarded);
+  nav.classList.toggle("hidden", !state.onboarded);
+  if (state.onboarded) renderApp();
+}
+
+function renderApp() {
+  generateDailyQuests();
+  const rank = rankConfig();
+  const level = levelFromXp(state.xp);
+  const xpLevel = xpIntoLevel(state.xp);
+  const done = state.quests.filter(quest => quest.done).length;
+
+  document.getElementById("displayName").textContent = state.name;
+  document.getElementById("displaySubtitle").textContent = "The Ember System is active";
+  document.getElementById("embers").textContent = state.embers;
+  document.getElementById("modeLabel").textContent = modes[state.mode].name;
+  document.getElementById("rankTitle").textContent = rank.name;
+  document.getElementById("xpLabel").textContent = `Level ${level} - ${xpLevel} / 100 XP`;
+  document.getElementById("xpBar").style.width = `${xpLevel}%`;
+  document.getElementById("dailyState").textContent = state.activeConsequence && !state.activeConsequence.done && !state.activeConsequence.waived
+    ? `T${state.activeConsequence.level} - ${done}/${state.quests.length}`
+    : `${done} / ${state.quests.length} clear`;
+  document.getElementById("questHint").textContent = state.activeConsequence && !state.activeConsequence.done && !state.activeConsequence.waived
+    ? `Clear the ${modes[state.mode].consequenceName} to unlock today's Full Clear reward.`
+    : state.activeConsequence && state.activeConsequence.waived
+      ? "Emergency recovery used. Today's Full Clear reward is unavailable."
+      : "The Ember System generated today's work.";
+
+  renderConsequence();
+  renderQuests();
+  renderStats();
+  renderSystemAlert();
+  updateDeadlineCountdown();
+}
+
+function updateDeadlineCountdown() {
+  const countdown = document.getElementById("deadlineCountdown");
+  if (!countdown) return;
+  const now = new Date();
+  const deadline = new Date(now);
+  deadline.setHours(24, 0, 0, 0);
+  const seconds = Math.max(0, Math.floor((deadline - now) / 1000));
+  const hours = String(Math.floor(seconds / 3600)).padStart(2, "0");
+  const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+  const remainingSeconds = String(seconds % 60).padStart(2, "0");
+  countdown.textContent = `${hours}:${minutes}:${remainingSeconds}`;
+}
+
+function renderConsequence() {
+  const panel = document.getElementById("consequencePanel");
+  const consequence = state.activeConsequence;
+  if (!consequence) {
+    panel.classList.add("hidden");
+    panel.innerHTML = "";
+    return;
+  }
+
+  const copy = modes[state.mode];
+  const tier = consequenceTiers[consequence.level] || consequenceTiers[1];
+  const resolved = consequence.done || consequence.waived;
+  const requirement = consequence.title === consequence.sourceQuest.title
+    ? `Repeat "${consequence.title}" with ${tier.effort} time, repetitions, or focused effort.`
+    : `Complete: ${consequence.title}.`;
+  const status = consequence.done ? "Cleared" : consequence.waived ? "Emergency recovery" : tier.label;
+
+  panel.classList.remove("hidden");
+  panel.classList.toggle("resolved", resolved);
+  panel.innerHTML = `
+    <div class="consequence-head">
+      <div>
+        <p class="eyebrow">${copy.consequenceName}</p>
+        <h3>${consequence.title}</h3>
+        <p>Issued after ${consequence.sourceDate}</p>
+      </div>
+      <span class="severity-mark">${status}</span>
+    </div>
+    <p class="consequence-requirement">${requirement} Stop or substitute the task if pain, illness, or unsafe conditions appear.</p>
+    <div class="quest-meta" style="margin-top:0;">
+      <span class="tag">${consequence.category}</span>
+      <span class="tag">${consequence.multiplier}x effort</span>
+      <span class="tag system">+${consequence.xp} XP</span>
+      <span class="tag">No Embers</span>
+    </div>
+    ${resolved ? "" : `
+      <div class="consequence-actions">
+        <button class="primary-btn" data-consequence-complete>Mark Complete</button>
+        <button class="secondary-btn" data-consequence-waive>Emergency Recovery</button>
+      </div>
+    `}
+  `;
+}
+
+function renderSystemAlert() {
+  const alert = document.getElementById("systemAlert");
+  const consequence = state.activeConsequence;
+  const shouldShow = state.onboarded && consequence && !consequence.done && !consequence.waived && state.warningAcknowledgedId !== consequence.id;
+  alert.classList.toggle("hidden", !shouldShow);
+  if (!shouldShow) return;
+
+  const copy = modes[state.mode];
+  document.getElementById("systemAlertEyebrow").textContent = state.mode === "awakening" ? "The Ember System" : "Daily review";
+  document.getElementById("systemAlertTitle").textContent = copy.consequenceName;
+  document.getElementById("systemAlertMessage").textContent = `${copy.consequenceWarning} Difficulty is capped at ${state.activeConsequence.multiplier}x for this contract.`;
+  document.getElementById("acknowledgeConsequence").textContent = state.mode === "awakening" ? "Accept Contract" : "Begin Recovery";
+}
+
+function renderQuests() {
+  const list = document.getElementById("questList");
+  list.innerHTML = state.quests.map(quest => `
+    <article class="quest-card ${quest.done ? "done" : ""}">
+      <div>
+        <h3>${quest.title}</h3>
+        <p style="margin: 5px 0 0; font-size: 12px;">Clear condition: ${quest.completion || quest.target}</p>
+        <div class="quest-meta">
+          <span class="tag">${quest.category}</span>
+          <span class="tag">${quest.amount} ${quest.unit}</span>
+          <span class="tag gold">+${quest.embers} Embers</span>
+          <span class="tag system">+${quest.xp} XP</span>
+          ${quest.usingAlternative ? '<span class="tag system">Alternative</span>' : ""}
+          ${quest.alternative && !quest.done ? `<button class="alternative-btn" data-alternative="${quest.id}">${quest.usingAlternative ? "Use original" : "Alternative"}</button>` : ""}
+        </div>
+      </div>
+      <button class="complete-btn" data-complete="${quest.id}" aria-label="Complete quest">${quest.done ? "OK" : "+"}</button>
+    </article>
+  `).join("");
+}
+
+function renderStats() {
+  const stats = [
+    ["Level", levelFromXp(state.xp)],
+    ["Total XP", state.xp],
+    ["Contracts", state.completedQuests],
+    ["Full Clears", state.fullClears],
+    ["Failed Days", state.failedDays],
+    ["Penalty Clears", state.completedConsequences],
+    ["Embers", state.embers],
+    ["Recovery Uses", state.recoverySkips]
+  ];
+
+  document.getElementById("statGrid").innerHTML = stats.map(([label, value]) => `
+    <article class="stat-card">
+      <strong>${value}</strong>
+      <span>${label}</span>
+    </article>
+  `).join("");
+}
+
+function setView(view) {
+  activeView = view;
+  document.querySelectorAll(".view").forEach(item => item.classList.add("hidden"));
+  document.getElementById(`view-${view}`).classList.remove("hidden");
+  document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.view === view));
+}
+
+document.addEventListener("click", event => {
+  const modeButton = event.target.closest("[data-mode]");
+  if (modeButton) {
+    selectedMode = modeButton.dataset.mode;
+    renderChoices();
+  }
+
+  const rankButton = event.target.closest("[data-rank]");
+  if (rankButton) {
+    selectedRank = rankButton.dataset.rank;
+    renderChoices();
+  }
+
+  const completeButton = event.target.closest("[data-complete]");
+  if (completeButton) completeQuest(completeButton.dataset.complete);
+
+  const alternativeButton = event.target.closest("[data-alternative]");
+  if (alternativeButton) useQuestAlternative(alternativeButton.dataset.alternative);
+
+  if (event.target.closest("[data-consequence-complete]")) completeConsequence();
+  if (event.target.closest("[data-consequence-waive]")) waiveConsequence();
+
+  const navButton = event.target.closest("[data-view]");
+  if (navButton) setView(navButton.dataset.view);
+});
+
+document.getElementById("startBtn").addEventListener("click", () => {
+  const name = document.getElementById("hunterName").value.trim();
+  state = { ...defaultState(), name: name || "Hunter", mode: selectedMode, rank: selectedRank, onboarded: true };
+  generateDailyQuests();
+  saveState();
+  renderShell();
+});
+
+document.getElementById("acknowledgeConsequence").addEventListener("click", () => {
+  if (!state.activeConsequence) return;
+  state.warningAcknowledgedId = state.activeConsequence.id;
+  saveState();
+  renderSystemAlert();
+});
+
+document.getElementById("toggleMode").addEventListener("click", () => {
+  state.mode = state.mode === "discipline" ? "awakening" : "discipline";
+  saveState();
+  showToast(`Mode changed to ${modes[state.mode].name}.`);
+  renderApp();
+});
+
+document.getElementById("cycleRank").addEventListener("click", () => {
+  const current = ranks.findIndex(rank => rank.id === state.rank);
+  state.rank = ranks[(current + 1) % ranks.length].id;
+  saveState();
+  showToast(`Rank changed to ${rankConfig().name}. It applies tomorrow.`);
+  renderApp();
+});
+
+document.getElementById("exportData").addEventListener("click", async () => {
+  const payload = JSON.stringify(state, null, 2);
+  try {
+    await navigator.clipboard.writeText(payload);
+    showToast("Device save copied to clipboard.");
+  } catch {
+    showToast("Clipboard is unavailable in this browser.");
+  }
+});
+
+renderChoices();
+renderShell();
+setInterval(() => {
+  if (state.onboarded && state.generatedDate !== todayKey()) {
+    renderApp();
+    return;
+  }
+  updateDeadlineCountdown();
+}, 1000);
+</script>
+</body>
+</html>
