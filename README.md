@@ -1,4 +1,4 @@
-<h1 align="center">alekseilopatin.com</h1>
+<h1 align="center">www.alekseilopatin.com</h1>
 
 <p align="center">My personal portfolio site — built from scratch in vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies.</p>
 
@@ -40,41 +40,41 @@ Visit **[alekseilopatin.com](https://www.alekseilopatin.com)** to see everything
 
 | Project | What it does |
 |---|---|
-| [Stopwatch](https://alekseilopatin.com/projects/stopwatch/stopwatch.html) | Start / stop / lap timer with millisecond precision |
-| [Music Player](https://alekseilopatin.com/projects/musicPlayer/musicPlayer.html) | Browser-based audio player with a playlist |
-| [Todo App](https://alekseilopatin.com/projects/todoApp/todoApp.html) | Classic add / complete / delete task manager |
-| [Shopping Cart](https://alekseilopatin.com/projects/shoppingCart/shoppingCart.html) | Add items, adjust quantities, calculate totals |
-| [Calorie Counter](https://alekseilopatin.com/projects/calorieCounter/calorieCounter.html) | Track daily calorie intake against a budget |
-| [Spreadsheet](https://alekseilopatin.com/projects/spreadsheet/spreadsheet.html) | Mini Excel-style spreadsheet with formulas |
-| [Student Cards](https://alekseilopatin.com/projects/studentCards/studentCards.html) | Student record cards with editable fields |
-| [Newspaper Layout](https://alekseilopatin.com/projects/newspaperLayout/newspaperLayout.html) | CSS layout exercise — print-style newspaper page |
+| [Stopwatch](https://www.alekseilopatin.com/projects/stopwatch/stopwatch.html) | Start / stop / lap timer with millisecond precision |
+| [Music Player](https://www.alekseilopatin.com/projects/musicPlayer/musicPlayer.html) | Browser-based audio player with a playlist |
+| [Todo App](https://www.alekseilopatin.com/projects/todoApp/todoApp.html) | Classic add / complete / delete task manager |
+| [Shopping Cart](https://www.alekseilopatin.com/projects/shoppingCart/shoppingCart.html) | Add items, adjust quantities, calculate totals |
+| [Calorie Counter](https://www.alekseilopatin.com/projects/calorieCounter/calorieCounter.html) | Track daily calorie intake against a budget |
+| [Spreadsheet](https://www.alekseilopatin.com/projects/spreadsheet/spreadsheet.html) | Mini Excel-style spreadsheet with formulas |
+| [Student Cards](https://www.alekseilopatin.com/projects/studentCards/studentCards.html) | Student record cards with editable fields |
+| [Newspaper Layout](https://www.alekseilopatin.com/projects/newspaperLayout/newspaperLayout.html) | CSS layout exercise — print-style newspaper page |
 
 ### Converters & calculators
 
 | Project | What it does |
 |---|---|
-| [Date Formatter](https://alekseilopatin.com/projects/dateFormatter/dateFormatter.html) | Convert dates between common formats |
-| [Decimal to Binary](https://alekseilopatin.com/projects/decimalToBinary/decimalToBinary.html) | Convert decimal numbers to binary, with steps |
-| [Roman Numerals Converter](https://alekseilopatin.com/projects/romanToNumeral/romanToNumeral.html) | Convert numbers to Roman numerals |
-| [Statistics Calculator](https://alekseilopatin.com/projects/statisticsCalculator/statisticsCalculator.html) | Mean, median, mode, range from a number list |
-| [Palindrome Checker](https://alekseilopatin.com/projects/palindrome/palindrome.html) | Check whether a string reads the same forwards and backwards |
-| [Telephone Number Validator](https://alekseilopatin.com/projects/phoneValidator/phoneValidator.html) | Validate US phone number formats |
+| [Date Formatter](https://www.alekseilopatin.com/projects/dateFormatter/dateFormatter.html) | Convert dates between common formats |
+| [Decimal to Binary](https://www.alekseilopatin.com/projects/decimalToBinary/decimalToBinary.html) | Convert decimal numbers to binary, with steps |
+| [Roman Numerals Converter](https://www.alekseilopatin.com/projects/romanToNumeral/romanToNumeral.html) | Convert numbers to Roman numerals |
+| [Statistics Calculator](https://www.alekseilopatin.com/projects/statisticsCalculator/statisticsCalculator.html) | Mean, median, mode, range from a number list |
+| [Palindrome Checker](https://www.alekseilopatin.com/projects/palindrome/palindrome.html) | Check whether a string reads the same forwards and backwards |
+| [Telephone Number Validator](https://www.alekseilopatin.com/projects/phoneValidator/phoneValidator.html) | Validate US phone number formats |
 
 ### Mini games
 
 | Project | What it does |
 |---|---|
-| [Dragon Repeller](https://alekseilopatin.com/miniGames/dragonRepeller/dragonRepeller.html) | Text-based RPG — fight monsters, level up, defeat the dragon |
-| [Rock, Scissors, Paper, Lizard, Spock](https://alekseilopatin.com/miniGames/rockScissorsPaper/rockScissorsPaperLizardSpock.html) | The Big Bang Theory variant of the classic game |
-| [Platformer Game](https://alekseilopatin.com/miniGames/platformer/platformer.html) | Side-scrolling jump-and-run platformer |
-| [Advanced Dice Game](https://alekseilopatin.com/miniGames/advancedDiceGame/advancedDiceGame.html) | Multi-round dice game with scoring rules |
+| [Dragon Repeller](https://www.alekseilopatin.com/miniGames/dragonRepeller/dragonRepeller.html) | Text-based RPG — fight monsters, level up, defeat the dragon |
+| [Rock, Scissors, Paper, Lizard, Spock](https://www.alekseilopatin.com/miniGames/rockScissorsPaper/rockScissorsPaperLizardSpock.html) | The Big Bang Theory variant of the classic game |
+| [Platformer Game](https://www.alekseilopatin.com/miniGames/platformer/platformer.html) | Side-scrolling jump-and-run platformer |
+| [Advanced Dice Game](https://www.alekseilopatin.com/miniGames/advancedDiceGame/advancedDiceGame.html) | Multi-round dice game with scoring rules |
 
 ### RPG tools
 
 | Project | What it does |
 |---|---|
-| [Critical Hits for D&D](https://alekseilopatin.com/rpgTools/criticalHits/criticalHits.html) | Look up extended D&D critical-hit results by damage type |
-| [Operations Generator for Bands of Blades](https://alekseilopatin.com/rpgTools/operationGenerator/operationsGenerator.html) | Procedurally generates operations for the *Band of Blades* TTRPG |
+| [Critical Hits for D&D](https://www.alekseilopatin.com/rpgTools/criticalHits/criticalHits.html) | Look up extended D&D critical-hit results by damage type |
+| [Operations Generator for Bands of Blades](https://www.alekseilopatin.com/rpgTools/operationGenerator/operationsGenerator.html) | Procedurally generates operations for the *Band of Blades* TTRPG |
 
 ## Tech stack
 
