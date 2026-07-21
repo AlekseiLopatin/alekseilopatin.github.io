@@ -3,7 +3,7 @@
 <p align="center">My personal portfolio site — built from scratch in vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies.</p>
 
 <p align="center">
-  <a href="https://alekseilopatin.com">
+  <a href="https://www.alekseilopatin.com">
     <img alt="Live site" src="https://img.shields.io/badge/Live-alekseilopatin.com-2962FF?style=flat-square&logo=googlechrome&logoColor=white">
   </a>
   <img alt="HTML5" src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
@@ -26,7 +26,7 @@ Every project in this repo is hand-written vanilla JavaScript — no React, no V
 
 ## Live site
 
-Visit **[alekseilopatin.com](https://alekseilopatin.com)** to see everything in action. Each project below also links directly to its live demo.
+Visit **[alekseilopatin.com](https://www.alekseilopatin.com)** to see everything in action. Each project below also links directly to its live demo.
 
 ## Projects
 
