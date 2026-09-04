@@ -166,8 +166,11 @@
     </section>
     <!--Footer-->
     <footer class="footer">
-      <p>© 2026 Aleksei Lopatin. All rights reserved.</p>
+      <p>© <span id="footer-year">2026</span> Aleksei Lopatin. All rights reserved.</p>
     </footer>
+    <script>
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
     <script src="./script.js"></script>
   </body>
 </html>
