@@ -1,10 +1,26 @@
-<h1 align="center">www.alekseilopatin.com</h1>
+# Aleksei Lopatin — Portfolio v1 (Legacy)
 
-<p align="center">My personal portfolio site — built from scratch in vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies.</p>
+**Archived first version of my portfolio, built with vanilla HTML, CSS and JavaScript.**
+
+**Current portfolio: [alekseilopatin.com](https://alekseilopatin.com)**
+
+**Current React source: [alekseilopatin-react](https://github.com/AlekseiLopatin/alekseilopatin-react)**
+
+This version remains online at [legacy.alekseilopatin.com](https://legacy.alekseilopatin.com) because older projects still run here. For my current developer portfolio and recent full-stack work, start with the links above.
+
+## Current work
+
+- [School Portal](https://github.com/AlekseiLopatin/school-website) — Next.js, TypeScript and Supabase school platform.
+- [Mini-Gradebook API](https://github.com/AlekseiLopatin/school-portal-api) — FastAPI, PostgreSQL, JWT authentication and pytest CI.
+- [Mini-Gradebook Frontend](https://github.com/AlekseiLopatin/school-portal-frontend) — React and TypeScript with a centralized typed API client.
+- [Thai Buddy](https://github.com/AlekseiLopatin/thai-buddy) — Next.js and Supabase Thai-learning application.
+- [MacroKin](https://github.com/AlekseiLopatin/macro-calculated-meals) — Next.js meal planning with USDA nutrition data and grocery-list generation.
+
+## Legacy site
 
 <p align="center">
-  <a href="https://www.alekseilopatin.com">
-    <img alt="Live site" src="https://img.shields.io/badge/Live-alekseilopatin.com-2962FF?style=flat-square&logo=googlechrome&logoColor=white">
+  <a href="https://legacy.alekseilopatin.com">
+    <img alt="Legacy site" src="https://img.shields.io/badge/Legacy-legacy.alekseilopatin.com-2962FF?style=flat-square&logo=googlechrome&logoColor=white">
   </a>
   <img alt="HTML5" src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
   <img alt="CSS3" src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
@@ -13,20 +29,20 @@
 </p>
 
 <p align="center">
-  <img src="media/screenshot.png" alt="Portfolio screenshot" width="800">
+  <img src="media/screenshot.png" alt="Legacy portfolio screenshot" width="800">
 </p>
 
 ---
 
 ## About
 
-This repo contains the source code for my personal portfolio site, plus 20 small interactive projects I've built while learning front-end development. The site is hosted on GitHub Pages and served from a custom domain.
+This repository preserves my first portfolio and its vanilla-JavaScript projects. It is hosted on GitHub Pages at the legacy subdomain; active portfolio development takes place in the React repository linked above.
 
 Every project in this repo is hand-written vanilla JavaScript — no React, no Vue, no bundlers. The goal was to build a strong foundation in the language itself before reaching for libraries.
 
-## Live site
+## Legacy demos
 
-Visit **[alekseilopatin.com](https://www.alekseilopatin.com)** to see everything in action. Each project below also links directly to its live demo.
+Visit **[legacy.alekseilopatin.com](https://legacy.alekseilopatin.com)** for the archived site. The original project files and legacy domain remain available.
 
 ## Projects
 
@@ -40,41 +56,41 @@ Visit **[alekseilopatin.com](https://www.alekseilopatin.com)** to see everything
 
 | Project | What it does |
 |---|---|
-| [Stopwatch](https://www.alekseilopatin.com/projects/stopwatch/stopwatch.html) | Start / stop / lap timer with millisecond precision |
-| [Music Player](https://www.alekseilopatin.com/projects/musicPlayer/musicPlayer.html) | Browser-based audio player with a playlist |
-| [Todo App](https://www.alekseilopatin.com/projects/todoApp/todoApp.html) | Classic add / complete / delete task manager |
-| [Shopping Cart](https://www.alekseilopatin.com/projects/shoppingCart/shoppingCart.html) | Add items, adjust quantities, calculate totals |
-| [Calorie Counter](https://www.alekseilopatin.com/projects/calorieCounter/calorieCounter.html) | Track daily calorie intake against a budget |
-| [Spreadsheet](https://www.alekseilopatin.com/projects/spreadsheet/spreadsheet.html) | Mini Excel-style spreadsheet with formulas |
-| [Student Cards](https://www.alekseilopatin.com/projects/studentCards/studentCards.html) | Student record cards with editable fields |
-| [Newspaper Layout](https://www.alekseilopatin.com/projects/newspaperLayout/newspaperLayout.html) | CSS layout exercise — print-style newspaper page |
+| [Stopwatch](https://legacy.alekseilopatin.com/stopwatch/) | Start / stop / lap timer with millisecond precision |
+| [Music Player](https://legacy.alekseilopatin.com/projects/musicPlayer/musicPlayer.html) | Browser-based audio player with a playlist |
+| [Todo App](https://legacy.alekseilopatin.com/projects/todoApp/todoApp.html) | Classic add / complete / delete task manager |
+| [Shopping Cart](https://legacy.alekseilopatin.com/projects/shoppingCart/shoppingCart.html) | Add items, adjust quantities, calculate totals |
+| [Calorie Counter](https://legacy.alekseilopatin.com/projects/calorieCounter/calorieCounter.html) | Track daily calorie intake against a budget |
+| [Spreadsheet](https://legacy.alekseilopatin.com/projects/spreadsheet/spreadsheet.html) | Mini Excel-style spreadsheet with formulas |
+| [Student Cards](https://legacy.alekseilopatin.com/projects/studentCards/studentCards.html) | Student record cards with editable fields |
+| [Newspaper Layout](https://legacy.alekseilopatin.com/projects/newspaperLayout/newspaperLayout.html) | CSS layout exercise — print-style newspaper page |
 
 ### Converters & calculators
 
 | Project | What it does |
 |---|---|
-| [Date Formatter](https://www.alekseilopatin.com/projects/dateFormatter/dateFormatter.html) | Convert dates between common formats |
-| [Decimal to Binary](https://www.alekseilopatin.com/projects/decimalToBinary/decimalToBinary.html) | Convert decimal numbers to binary, with steps |
-| [Roman Numerals Converter](https://www.alekseilopatin.com/projects/romanToNumeral/romanToNumeral.html) | Convert numbers to Roman numerals |
-| [Statistics Calculator](https://www.alekseilopatin.com/projects/statisticsCalculator/statisticsCalculator.html) | Mean, median, mode, range from a number list |
-| [Palindrome Checker](https://www.alekseilopatin.com/projects/palindrome/palindrome.html) | Check whether a string reads the same forwards and backwards |
-| [Telephone Number Validator](https://www.alekseilopatin.com/projects/phoneValidator/phoneValidator.html) | Validate US phone number formats |
+| [Date Formatter](https://legacy.alekseilopatin.com/projects/dateFormatter/dateFormatter.html) | Convert dates between common formats |
+| [Decimal to Binary](https://legacy.alekseilopatin.com/projects/decimalToBinary/decimalToBinary.html) | Convert decimal numbers to binary, with steps |
+| [Roman Numerals Converter](https://legacy.alekseilopatin.com/projects/romanToNumeral/romanToNumeral.html) | Convert numbers to Roman numerals |
+| [Statistics Calculator](https://legacy.alekseilopatin.com/projects/statisticsCalculator/statisticsCalculator.html) | Mean, median, mode, range from a number list |
+| [Palindrome Checker](https://legacy.alekseilopatin.com/projects/palindrome/palindrome.html) | Check whether a string reads the same forwards and backwards |
+| [Telephone Number Validator](https://legacy.alekseilopatin.com/projects/phoneValidator/phoneValidator.html) | Validate US phone number formats |
 
 ### Mini games
 
 | Project | What it does |
 |---|---|
-| [Dragon Repeller](https://www.alekseilopatin.com/miniGames/dragonRepeller/dragonRepeller.html) | Text-based RPG — fight monsters, level up, defeat the dragon |
-| [Rock, Scissors, Paper, Lizard, Spock](https://www.alekseilopatin.com/miniGames/rockScissorsPaper/rockScissorsPaperLizardSpock.html) | The Big Bang Theory variant of the classic game |
-| [Platformer Game](https://www.alekseilopatin.com/miniGames/platformer/platformer.html) | Side-scrolling jump-and-run platformer |
-| [Advanced Dice Game](https://www.alekseilopatin.com/miniGames/advancedDiceGame/advancedDiceGame.html) | Multi-round dice game with scoring rules |
+| [Dragon Repeller](https://legacy.alekseilopatin.com/miniGames/dragonRepeller/dragonRepeller.html) | Text-based RPG — fight monsters, level up, defeat the dragon |
+| [Rock, Scissors, Paper, Lizard, Spock](https://legacy.alekseilopatin.com/miniGames/rockScissorsPaper/rockScissorsPaperLizardSpock.html) | The Big Bang Theory variant of the classic game |
+| [Platformer Game](https://legacy.alekseilopatin.com/miniGames/platformer/platformer.html) | Side-scrolling jump-and-run platformer |
+| [Advanced Dice Game](https://legacy.alekseilopatin.com/miniGames/advancedDiceGame/advancedDiceGame.html) | Multi-round dice game with scoring rules |
 
 ### RPG tools
 
 | Project | What it does |
 |---|---|
-| [Critical Hits for D&D](https://www.alekseilopatin.com/rpgTools/criticalHits/criticalHits.html) | Look up extended D&D critical-hit results by damage type |
-| [Operations Generator for Bands of Blades](https://www.alekseilopatin.com/rpgTools/operationGenerator/operationsGenerator.html) | Procedurally generates operations for the *Band of Blades* TTRPG |
+| [Critical Hits for D&D](https://legacy.alekseilopatin.com/rpgTools/criticalHits/criticalHits.html) | Look up extended D&D critical-hit results by damage type |
+| [Operations Generator for Bands of Blades](https://legacy.alekseilopatin.com/rpgTools/operationGenerator/operationsGenerator.html) | Procedurally generates operations for the *Band of Blades* TTRPG |
 
 ## Tech stack
 
@@ -128,7 +144,9 @@ npx serve
 # Then open http://localhost:8000
 ```
 
-## Roadmap
+## Historical roadmap
+
+These were ideas for v1, not the current portfolio roadmap. New portfolio work belongs in [the React repository](https://github.com/AlekseiLopatin/alekseilopatin-react).
 
 - [ ] Refactor shared UI patterns into reusable components
 - [ ] Add a dark mode toggle across the site
