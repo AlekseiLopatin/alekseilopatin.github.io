@@ -492,6 +492,7 @@ iframe {
 /* Legacy homepage introduction; scoped to leave archived sub-pages unchanged. */
 .welcome-section.legacy-intro {
   position: relative;
+  isolation: isolate;
   height: auto;
   min-height: 100vh;
   padding: 12rem 2.4rem 6rem;
