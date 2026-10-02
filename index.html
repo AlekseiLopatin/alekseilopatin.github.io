@@ -8,7 +8,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="description" content="Aleksei Lopatin — Software Engineer and Math Teacher. Explore my portfolio of web projects including games, RPG tools, and interactive apps.">
+    <meta name="description" content="Portfolio v1 (Legacy) of Aleksei Lopatin, full-stack developer. Visit alekseilopatin.com for current React, Next.js, TypeScript and Python projects.">
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,200&display=swap"
       rel="stylesheet"
@@ -21,18 +21,18 @@
     <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16x16.png">
     <link rel="manifest" href="media/site.webmanifest">
-    <title>Aleksei Lopatin</title>
+    <title>Aleksei Lopatin — Portfolio v1 (Legacy)</title>
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://alekseilopatin.com/">
-    <meta property="og:title" content="Aleksei Lopatin — Software Engineer & Math Teacher">
-    <meta property="og:description" content="Portfolio of Aleksei Lopatin — web projects including games, RPG tools, calculators, and interactive apps.">
-    <meta property="og:image" content="https://alekseilopatin.com/media/laptop.jpg">
+    <meta property="og:url" content="https://legacy.alekseilopatin.com/">
+    <meta property="og:title" content="Aleksei Lopatin — Portfolio v1 (Legacy)">
+    <meta property="og:description" content="Archived first portfolio of full-stack developer Aleksei Lopatin. Current projects and source code: alekseilopatin.com.">
+    <meta property="og:image" content="https://legacy.alekseilopatin.com/media/laptop.jpg">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Aleksei Lopatin — Software Engineer & Math Teacher">
-    <meta name="twitter:description" content="Portfolio of Aleksei Lopatin — web projects including games, RPG tools, calculators, and interactive apps.">
-    <meta name="twitter:image" content="https://alekseilopatin.com/media/laptop.jpg">
+    <meta name="twitter:title" content="Aleksei Lopatin — Portfolio v1 (Legacy)">
+    <meta name="twitter:description" content="Archived first portfolio of full-stack developer Aleksei Lopatin. Current projects and source code: alekseilopatin.com.">
+    <meta name="twitter:image" content="https://legacy.alekseilopatin.com/media/laptop.jpg">
   </head>
   <body>
     <!--Nav-->
@@ -50,7 +50,7 @@
       </ul>
     </nav>
     <!--Welcome-->
-    <section id="welcome-section" class="welcome-section">
+    <section id="welcome-section" class="welcome-section legacy-intro" aria-labelledby="intro-name">
       <div class="bubbles">
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -63,12 +63,17 @@
         <div class="bubble"></div>
       </div>
       <div class="content">
-        <h1>Hey, I am Aleksei</h1>
-        <p id="def1" class="hide">Software Engineer</p>
-        <p id="def2" class="hide">Math Teacher</p>
-        <p id="def3" class="hide">Husband</p>
-        <p id="def4" class="hide">Athlete</p>
-        <p class="bio">Developer by passion, teacher by profession. I build interactive web projects — from RPG tools and mini games to practical utilities — and teach math when I'm not writing code. Always open to interesting collaborations.</p>
+        <p class="archive-label">Portfolio v1 / Legacy</p>
+        <h1 id="intro-name">Aleksei Lopatin</h1>
+        <p class="developer-role">Full-Stack Developer</p>
+        <p class="developer-stack">React · Next.js · TypeScript · Python · FastAPI · PostgreSQL</p>
+        <p class="bio">I build and deploy web applications, from database schemas and APIs to frontend interfaces, authentication, testing and deployment. My recent work includes a school-management platform, a React + FastAPI gradebook, a Thai-learning app and a meal planner.</p>
+        <p class="bio">I previously worked as a data analyst at Knoema using Python and SQL. I currently teach mathematics and computer science, where several of my education projects originated.</p>
+        <p class="availability">Open to full-stack, frontend and Python backend roles — in Thailand, remotely or with relocation.</p>
+        <div class="archive-notice">
+          <p>This is the first version of my portfolio. Older projects remain available here. Visit my current portfolio for recent work and source code.</p>
+          <a class="current-portfolio-link" href="https://alekseilopatin.com">View current portfolio <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </section>
 
@@ -171,6 +176,5 @@
     <script>
       document.getElementById('footer-year').textContent = new Date().getFullYear();
     </script>
-    <script src="./script.js"></script>
   </body>
 </html>

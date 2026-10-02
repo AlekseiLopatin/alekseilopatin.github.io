@@ -11,9 +11,9 @@ This version remains online at [legacy.alekseilopatin.com](https://legacy.alekse
 ## Current work
 
 - [School Portal](https://github.com/AlekseiLopatin/school-website) — Next.js, TypeScript and Supabase school platform.
-- [Mini-Gradebook API](https://github.com/AlekseiLopatin/school-portal-api) — FastAPI, PostgreSQL, JWT authentication and pytest CI.
+- [Mini-Gradebook API](https://github.com/AlekseiLopatin/school-portal-api) — FastAPI and PostgreSQL, JWT authentication, protected endpoints, computed grade summaries and pytest in GitHub Actions.
 - [Mini-Gradebook Frontend](https://github.com/AlekseiLopatin/school-portal-frontend) — React and TypeScript with a centralized typed API client.
-- [Thai Buddy](https://github.com/AlekseiLopatin/thai-buddy) — Next.js and Supabase Thai-learning application.
+- [Thai Buddy](https://github.com/AlekseiLopatin/thai-buddy) — Next.js and Supabase Thai-learning application with authentication, cloud-synced progress and spaced repetition.
 - [MacroKin](https://github.com/AlekseiLopatin/macro-calculated-meals) — Next.js meal planning with USDA nutrition data and grocery-list generation.
 
 ## Legacy site
@@ -36,6 +36,14 @@ This version remains online at [legacy.alekseilopatin.com](https://legacy.alekse
 
 ## About
 
+I am a full-stack developer building web applications with React, Next.js, TypeScript, Python, FastAPI and PostgreSQL. My work spans database schemas, APIs, frontend interfaces, authentication, testing and deployment.
+
+Before focusing on software development, I worked for roughly four years as a data analyst at Knoema using Python and SQL. I currently teach mathematics and computer science, where several of my education projects originated.
+
+**Open to full-stack, frontend and Python backend roles — in Thailand, remotely or with relocation.**
+
+### About this archive
+
 This repository preserves my first portfolio and its vanilla-JavaScript projects. It is hosted on GitHub Pages at the legacy subdomain; active portfolio development takes place in the React repository linked above.
 
 Every project in this repo is hand-written vanilla JavaScript — no React, no Vue, no bundlers. The goal was to build a strong foundation in the language itself before reaching for libraries.
@@ -50,7 +58,7 @@ Visit **[legacy.alekseilopatin.com](https://legacy.alekseilopatin.com)** for the
 
 | Project | Stack | What it does |
 |---|---|---|
-| [School Portal](https://school.alekseilopatin.com) | Next.js · Supabase · Tailwind | Multilingual school management app — news feed, gradebook, and student art gallery. Teacher login with role-based access. Deployed on Vercel. |
+| [School Portal](https://school.alekseilopatin.com) | Next.js · Supabase · Tailwind | Multilingual school management app — news feed, gradebook, and student art gallery. Teacher authentication through Supabase. Deployed on Vercel. |
 
 ### Web apps & utilities
 
